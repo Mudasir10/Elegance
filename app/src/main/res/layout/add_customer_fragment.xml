@@ -24,8 +24,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
+        android:id="@+id/customerSerialNo"
         android:layout_margin="10dp"
-        android:id="@+id/cus_map_no"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/customer_map_no"
@@ -44,7 +44,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cus_map_no" />
+        app:layout_constraintTop_toBottomOf="@+id/customerSerialNo" />
 
     <EditText
         android:id="@+id/customerNumber"
@@ -59,12 +59,10 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-
-        android:id="@+id/textInputMeasurements"
+        android:id="@+id/customerMeasurement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/customerNumber">
@@ -72,26 +70,31 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:hint="Measurements"
-            android:maxLines="5" />
+            android:inputType="textMultiLine"
+            android:hint="@string/measurements"
+            android:maxLines="5"
+            android:gravity="top|start"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 
     <com.google.android.material.textfield.TextInputLayout
-
-        android:id="@+id/textInputDes"
+        android:id="@+id/customerDescription"
         android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputMeasurements">
+        app:layout_constraintTop_toBottomOf="@+id/customerMeasurement">
 
         <com.google.android.material.textfield.TextInputEditText
             android:maxLines="5"
             android:layout_width="match_parent"
             android:layout_height="80dp"
+            android:inputType="textMultiLine"
+            android:gravity="top|start"
+
             android:hint="@string/description" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -106,7 +109,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputDes" />
+        app:layout_constraintTop_toBottomOf="@+id/customerDescription" />
 
 
 
