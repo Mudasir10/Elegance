@@ -1,39 +1,51 @@
 package com.nanodevs.elegance.Pojo;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Customer  {
 
 
-    private long mapNo;
+    private long customerSerial;
     private String customerName;
     private String customerContact;
-    private String suitType;
-    private String clothType;
-
-    private String stitchType;
     private String customerMeasurements;
     private String suitDescription;
-    private boolean suitStatus;
+
+
 
 
     public Customer() {
     }
 
-    public Customer(long mapNo, String customerName, String customerContact, String customerMeasurements,
-                    String suitDescription, String suitType, String clothType, String stitchType, boolean suitStatus) {
-        this.mapNo = mapNo;
+    public Customer(long customerSerial, String customerName, String customerContact,
+                    String customerMeasurements, String suitDescription) {
+
+        this.customerSerial = customerSerial;
         this.customerName = customerName;
         this.customerContact = customerContact;
         this.customerMeasurements = customerMeasurements;
         this.suitDescription = suitDescription;
-        this.suitType = suitType;
-        this.clothType = clothType;
-        this.stitchType = stitchType;
-        this.suitStatus = suitStatus;
     }
 
 
-    public long getMapNo() {
-        return mapNo;
+
+    public Map<String,Object> toCustomerMap(){
+
+        HashMap<String,Object> result=new HashMap<>();
+        result.put("customerSerial",customerSerial);
+        result.put("customerName",customerName);
+        result.put("customerContact",customerContact);
+        result.put("customerMeasurements",customerMeasurements);
+        result.put("suitDescription",suitDescription);
+
+        return result;
+    }
+
+
+
+    public long getCustomerSerial() {
+        return customerSerial;
     }
 
     public String getCustomerName() {
@@ -52,21 +64,24 @@ public class Customer  {
         return suitDescription;
     }
 
-    public String getSuitType() {
-        return suitType;
+
+    public void setCustomerSerial(long customerSerial) {
+        this.customerSerial = customerSerial;
     }
 
-    public String getClothType() {
-        return clothType;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
-    public String getStitchType() {
-        return stitchType;
+    public void setCustomerContact(String customerContact) {
+        this.customerContact = customerContact;
     }
 
-    public boolean isSuitStatus() {
-        return suitStatus;
+    public void setCustomerMeasurements(String customerMeasurements) {
+        this.customerMeasurements = customerMeasurements;
     }
 
-
+    public void setSuitDescription(String suitDescription) {
+        this.suitDescription = suitDescription;
+    }
 }
