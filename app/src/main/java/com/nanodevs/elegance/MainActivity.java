@@ -7,6 +7,7 @@ import android.view.Menu;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.nanodevs.elegance.Fragments.AddCustomerFragment;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -30,8 +31,9 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+               /* getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,new AddCustomerFragment()).commit();*/
+
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

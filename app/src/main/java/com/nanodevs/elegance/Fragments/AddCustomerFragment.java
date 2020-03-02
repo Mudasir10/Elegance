@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,9 +31,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AddCustomerFragment extends Fragment {
-    DatabaseReference cusRef = FirebaseDatabase.getInstance().getReference();
-    private AddCustomerViewModel mViewModel;
-    private TextView customerName,customerContact,customerSerialNo,customerDescription,measurementDescription;
+
+    DatabaseReference cusRef = FirebaseDatabase.getInstance().getReference("Customer");
+
+    private TextView customerName,customerContact,customerSerialNo;
+    private TextInputLayout customerDescription,measurementDescription;
+    private long count;
 
     public static AddCustomerFragment newInstance() {
         return new AddCustomerFragment();
@@ -47,7 +51,16 @@ public class AddCustomerFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                count=dataSnapshot.getChildrenCount();
 
+                if (count<1){
+                    count=1;
+                    customerSerialNo.setText(String.valueOf(count));
+                }
+                else{
+                    count=count+1;
+                    customerSerialNo.setText(String.valueOf(count));
+                }
 
             }
 
@@ -76,16 +89,16 @@ public class AddCustomerFragment extends Fragment {
 
 
                 if(customerName.getText().toString().isEmpty()||customerContact.getText().toString().isEmpty()||
-                customerDescription.getText().toString().isEmpty()||measurementDescription.getText().toString().isEmpty()||
+                customerDescription.getEditText().toString().isEmpty()||measurementDescription.getEditText().toString().isEmpty()||
                 customerSerialNo.getText().toString().isEmpty()){
 
                     if(customerName.getText().toString().isEmpty())
                       customerName.setError("field is empty");
                     else if (customerContact.getText().toString().isEmpty())
                         customerContact.setError("field is empty");
-                    else if (customerDescription.getText().toString().isEmpty())
+                    else if (customerDescription.getEditText().toString().isEmpty())
                         customerDescription.setError("field is empty");
-                    else if (measurementDescription.getText().toString().isEmpty())
+                    else if (measurementDescription.getEditText().toString().isEmpty())
                         measurementDescription.setError("field is empty");
                     else if (customerSerialNo.getText().toString().isEmpty())
                         customerSerialNo.setError("field is empty");
@@ -94,8 +107,8 @@ public class AddCustomerFragment extends Fragment {
                 }
                 else{
                     saveCustomerData(customerSerialNo.getText().toString(),customerName.getText().toString(),customerContact.getText().toString(),
-                            customerDescription.getText().toString(),
-                            measurementDescription.getText().toString());
+                            customerDescription.getEditText().toString(),
+                            measurementDescription.getEditText().toString());
                 }
 
 
@@ -129,14 +142,14 @@ public class AddCustomerFragment extends Fragment {
 
         Map<String,Object> postValues=customer.toCustomerMap();
         Map<String,Object> childUpdates=new HashMap<>();
-        childUpdates.put("Customer/"+cusRef.push().getKey(),postValues);
+        childUpdates.put(cusRef.push().getKey(),postValues);
 
         cusRef.updateChildren(childUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
 
                 if(task.isSuccessful())
-                    Toast.makeText(getContext(), "Customer Registered ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Customer Added SuccessFully ", Toast.LENGTH_SHORT).show();
                 else
                     Toast.makeText(getContext(), "Task Failed", Toast.LENGTH_SHORT).show(); }
 
@@ -156,12 +169,6 @@ public class AddCustomerFragment extends Fragment {
 
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(AddCustomerViewModel.class);
-        // TODO: Use the ViewModel
-    }
 
 
 

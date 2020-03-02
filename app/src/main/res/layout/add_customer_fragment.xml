@@ -24,6 +24,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
+        android:enabled="false"
         android:id="@+id/customerSerialNo"
         android:layout_margin="10dp"
         android:layout_width="match_parent"
@@ -47,6 +48,7 @@
         app:layout_constraintTop_toBottomOf="@+id/customerSerialNo" />
 
     <EditText
+        android:inputType="number"
         android:id="@+id/customerNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,7 +72,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:inputType="textMultiLine"
+            android:inputType="textMultiLine|numberDecimal"
             android:hint="@string/measurements"
             android:maxLines="5"
             android:gravity="top|start"/>
@@ -90,9 +92,8 @@
             android:maxLines="5"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:inputType="textMultiLine"
+            android:inputType="textMultiLine|text"
             android:gravity="top|start"
-
             android:hint="@string/description" />
 
     </com.google.android.material.textfield.TextInputLayout>
