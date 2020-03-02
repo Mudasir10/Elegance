@@ -4,15 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="15dp"
+    app:layout_behavior="@string/bottom_sheet_behavior"
+    app:cardCornerRadius="10dp"
+    android:layout_marginBottom="50dp"
     >
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:padding="2dp">
-
 
         <TextView
             android:id="@+id/customerProfileTextView"
@@ -21,7 +21,7 @@
             android:layout_margin="10dp"
             android:layout_marginTop="16dp"
             android:text="@string/customer_register"
-            android:textColor="#000"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -50,6 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
+            android:textColorHint="@color/colorAccent"
             android:hint="@string/customer_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.555"
@@ -62,6 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:hint="@string/contact_no"
+            android:textColorHint="@color/colorAccent"
             android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.555"
@@ -74,6 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:textColorHint="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/customerNumber">
@@ -91,6 +94,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/customerDescription"
             android:layout_margin="10dp"
+            android:textColorHint="@color/colorAccent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -110,18 +114,20 @@
 
 
         <Button
-            android:drawableEnd="@drawable/ic_add"
             android:id="@+id/btnSaveCustomer"
-            android:layout_width="wrap_content"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_marginTop="8dp"
             android:text="@string/save_customer"
+            android:textAlignment="center"
+            android:drawableEnd="@drawable/ic_add"
+            android:background="@drawable/round_button"
+            android:layout_marginBottom="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/customerDescription" />
-
 
 
 

@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
@@ -29,11 +31,9 @@ import java.util.Map;
 public class RegisterCustomerSheet extends BottomSheetDialogFragment {
 
     DatabaseReference cusRef = FirebaseDatabase.getInstance().getReference("Customer");
-
     private TextView customerName,customerContact,customerSerialNo;
     private TextInputLayout customerDescription,measurementDescription;
     private long count;
-
 
     @Override
     public void onStart() {
@@ -61,10 +61,7 @@ public class RegisterCustomerSheet extends BottomSheetDialogFragment {
 
             }
         });
-
-
     }
-
 
     @Nullable
     @Override
@@ -100,7 +97,6 @@ public class RegisterCustomerSheet extends BottomSheetDialogFragment {
 
             }
         });
-
 
 
         return view;
