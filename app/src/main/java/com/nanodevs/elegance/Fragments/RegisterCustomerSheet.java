@@ -1,23 +1,19 @@
 package com.nanodevs.elegance.Fragments;
 
-import androidx.lifecycle.ViewModelProviders;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,17 +26,13 @@ import com.nanodevs.elegance.R;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddCustomerFragment extends Fragment {
+public class RegisterCustomerSheet extends BottomSheetDialogFragment {
 
     DatabaseReference cusRef = FirebaseDatabase.getInstance().getReference("Customer");
 
     private TextView customerName,customerContact,customerSerialNo;
     private TextInputLayout customerDescription,measurementDescription;
     private long count;
-
-    public static AddCustomerFragment newInstance() {
-        return new AddCustomerFragment();
-    }
 
 
     @Override
@@ -74,26 +66,21 @@ public class AddCustomerFragment extends Fragment {
     }
 
 
-
-
-
+    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.add_customer_fragment, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+      View view = inflater.inflate(R.layout.register_customersheet, container, false);
         initComponents(view);
-        
+
         view.findViewById(R.id.btnSaveCustomer).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 if(customerName.getText().toString().isEmpty()||customerContact.getText().toString().isEmpty()||
-                customerDescription.getEditText().toString().isEmpty()||measurementDescription.getEditText().toString().isEmpty()||
-                customerSerialNo.getText().toString().isEmpty()){
+                        customerDescription.getEditText().toString().isEmpty()||measurementDescription.getEditText().toString().isEmpty()||
+                        customerSerialNo.getText().toString().isEmpty()){
 
                     if(customerName.getText().toString().isEmpty())
-                      customerName.setError("field is empty");
+                        customerName.setError("field is empty");
                     else if (customerContact.getText().toString().isEmpty())
                         customerContact.setError("field is empty");
                     else if (customerDescription.getEditText().toString().isEmpty())
@@ -111,13 +98,20 @@ public class AddCustomerFragment extends Fragment {
                             measurementDescription.getEditText().toString());
                 }
 
-
-                
             }
         });
-        
+
+
 
         return view;
+
+    }
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setStyle(BottomSheetDialogFragment.STYLE_NORMAL, R.style.CustomBottomSheetDialogTheme);
 
     }
 
@@ -148,12 +142,14 @@ public class AddCustomerFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
 
-                if(task.isSuccessful())
+                if(task.isSuccessful()){
+                    clearFields();
                     Toast.makeText(getContext(), "Customer Added SuccessFully ", Toast.LENGTH_SHORT).show();
+                }
                 else
                     Toast.makeText(getContext(), "Task Failed", Toast.LENGTH_SHORT).show(); }
 
-            }).addOnFailureListener(new OnFailureListener() {
+        }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(getContext(), "Task Failed : "+e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -161,15 +157,14 @@ public class AddCustomerFragment extends Fragment {
         });
 
 
-
-
-
-
-
-
     }
 
-
+    private void clearFields() {
+        customerName.setText("");
+         customerContact.setText("");
+         customerDescription.getEditText().setText("");
+        measurementDescription.getEditText().setText("");
+    }
 
 
 }

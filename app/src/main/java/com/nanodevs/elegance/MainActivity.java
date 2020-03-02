@@ -5,9 +5,8 @@ import android.view.View;
 import android.view.Menu;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
-import com.nanodevs.elegance.Fragments.AddCustomerFragment;
+import com.nanodevs.elegance.Fragments.RegisterCustomerSheet;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -31,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                new RegisterCustomerSheet().show(getSupportFragmentManager(),"Dialog");
 
                /* getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,new AddCustomerFragment()).commit();*/
 
