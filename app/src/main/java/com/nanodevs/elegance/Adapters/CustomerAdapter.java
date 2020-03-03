@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,12 +44,29 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.viewHo
 
 
     @Override
-    public void onBindViewHolder(@NonNull viewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull viewHolder holder, final int position) {
 
-        Customer customer = customerList.get(position);
-        holder.CusId.setText("Customer Id : " + customer.getCustomerSerial());
-        holder.CusName.setText("Customer Name : " + customer.getCustomerName());
-        holder.CusPhone.setText("Customer Phone : " + customer.getCustomerContact());
+        holder.CusId.setText("Customer Id : " + customerList.get(position).getCustomerSerial());
+        holder.CusName.setText("Customer Name : " + customerList.get(position).getCustomerName());
+        holder.CusPhone.setText("Customer Phone : " + customerList.get(position).getCustomerContact());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(context, CustomerDisplay.class);
+                intent.putExtra("cus_id",customerList.get(position).getCustomerSerial());
+                intent.putExtra("customerId", customerList.get(position).getCustomerSerial());
+                intent.putExtra("cus_name",customerList.get(position).getCustomerName());
+                intent.putExtra("cus_phone",customerList.get(position).getCustomerContact());
+                intent.putExtra("cus_measurements",customerList.get(position).getCustomerMeasurements());
+                intent.putExtra("suit_des",customerList.get(position).getSuitDescription());
+                context.startActivity(intent);
+
+            }
+        });
+
+
     }
 
 
@@ -95,31 +113,16 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.viewHo
 
     class viewHolder extends RecyclerView.ViewHolder {
 
-        TextView CusId, CusName, CusPhone;
+       private TextView CusId, CusName, CusPhone;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
+
             CusId = itemView.findViewById(R.id.customerDispId);
             CusName = itemView.findViewById(R.id.customerDispName);
             CusPhone = itemView.findViewById(R.id.customerDispContact);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
 
-                   int pos=getAdapterPosition();
-                  Customer customer= customerList.get(pos);
-
-                    Intent intent=new Intent(context, CustomerDisplay.class);
-                    intent.putExtra("cus_id",customer.getCustomerSerial());
-                    intent.putExtra("cus_name",customer.getCustomerName());
-                    intent.putExtra("cus_phone",customer.getCustomerContact());
-                    intent.putExtra("cus_measurements",customer.getCustomerMeasurements());
-                    intent.putExtra("suit_des",customer.getSuitDescription());
-                    context.startActivity(intent);
-
-                }
-            });
 
         }
     }

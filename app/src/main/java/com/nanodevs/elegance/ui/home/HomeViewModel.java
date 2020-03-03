@@ -19,17 +19,16 @@ import java.util.ArrayList;
 import java.util.List;
 public class HomeViewModel extends ViewModel {
 
-    DatabaseReference databaseReference;
-
-    private MutableLiveData<List<Customer>> customerslist;
+    private DatabaseReference databaseReference;
+    private MutableLiveData<List<Customer>> customersList;
 
 
     public LiveData<List<Customer>> getAllCustomers() {
-        if (customerslist == null) {
-            customerslist = new MutableLiveData<List<Customer>>();
+        if (customersList == null) {
+            customersList = new MutableLiveData<List<Customer>>();
             loadAllCustomers();
         }
-        return customerslist;
+        return customersList;
     }
 
     private void loadAllCustomers() {
@@ -57,7 +56,7 @@ public class HomeViewModel extends ViewModel {
                         Customer customer = snapshot.getValue(Customer.class);
                         list.add(customer);
                     }
-                    customerslist.setValue(list);
+                    customersList.setValue(list);
                 }
 
                 @Override

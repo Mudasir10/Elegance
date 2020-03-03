@@ -108,8 +108,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/customer_measurement"
-            android:singleLine="true"
-            android:textColor="@android:color/black"
+            android:maxLines="4"
+            android:lines="4"
+            android:singleLine="false"
+            android:textColor="@android:color/darker_gray"
             android:textSize="19sp"/>
 
 
@@ -119,7 +121,7 @@
             android:layout_height="wrap_content"
             android:text="@string/customer_description"
             android:singleLine="true"
-             android:layout_marginTop="40dp"
+             android:layout_marginTop="10dp"
             android:textColor="@android:color/black"
             android:textSize="19sp"/>
 
@@ -129,14 +131,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/customer_description"
-            android:singleLine="true"
-            android:textColor="@android:color/black"
+            android:maxLines="4"
+            android:lines="4"
+            android:singleLine="false"
+            android:textColor="@android:color/darker_gray"
             android:textSize="19sp"/>
 
 
     </LinearLayout>
-
-
     <ImageButton
         android:id="@+id/placeStitchOrderBtn"
         android:layout_width="80dp"

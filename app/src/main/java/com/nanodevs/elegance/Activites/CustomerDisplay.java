@@ -4,21 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nanodevs.elegance.R;
 
 public class CustomerDisplay extends AppCompatActivity {
 
-    TextView tvid,tvname,tvphone,tvmeasurements,tvdes;
+   private TextView tvid,tvname,tvphone,tvmeasurements,tvdes;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_display);
 
+        getSupportActionBar().setTitle("Customer Measurements");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         init();
-
-
-
 
     }
 
@@ -32,17 +32,11 @@ public class CustomerDisplay extends AppCompatActivity {
 
         if (getIntent()!=null){
 
-            String id = String.valueOf(getIntent().getStringExtra("cus_id"));
-            String name = String.valueOf(getIntent().getStringExtra("cus_name"));
-            String measurement = String.valueOf(getIntent().getStringExtra("cus_measurements"));
-            String contact = String.valueOf(getIntent().getStringExtra("cus_phone"));
-            String des = String.valueOf(getIntent().getStringExtra("suit_des"));
-
-            tvid.setText(id);
-            tvname.setText(name);
-            tvphone.setText(contact);
-            tvmeasurements.setText(measurement);
-            tvdes.setText(des);
+            tvid.setText(String.valueOf(getIntent().getLongExtra("customerId", 0)) );
+            tvname.setText(String.valueOf(getIntent().getStringExtra("cus_name")));
+            tvphone.setText(String.valueOf(getIntent().getStringExtra("cus_phone")));
+            tvmeasurements.setText(String.valueOf(getIntent().getStringExtra("cus_measurements")));
+            tvdes.setText(String.valueOf(getIntent().getStringExtra("suit_des")));
 
         }
 
