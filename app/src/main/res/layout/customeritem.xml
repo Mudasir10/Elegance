@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="5dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        >
+
+        <TextView
+            android:id="@+id/customerDispId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/customer_id"
+            android:textSize="19sp"
+            android:textStyle="bold"
+
+            android:textAlignment="center"
+            android:layout_margin="5dp"
+            android:layout_marginTop="5dp"
+            />
+
+        <TextView
+            android:id="@+id/customerDispName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textStyle="normal"
+            android:textSize="17sp"
+            android:text="@string/customer_name"
+            android:layout_below="@+id/customerDispId"
+            android:layout_margin="5dp"/>
+
+
+        <TextView
+            android:id="@+id/customerDispContact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textStyle="normal"
+            android:textSize="17sp"
+            android:text="@string/phone"
+            android:layout_below="@+id/customerDispName"
+            android:layout_margin="5dp"/>
+
+
+        </RelativeLayout>
+
+
+
+</androidx.cardview.widget.CardView>

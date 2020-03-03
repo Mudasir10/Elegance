@@ -22,6 +22,8 @@
     <string name="measurements">Measurements</string>
     <string name="customer_search">Customer Search</string>
     <string name="search_hint">Customer Name,MapNo,Contact</string>
+    <string name="customer_id">Customer id</string>
+    <string name="phone">Phone :</string>
 
     <string-array name="suit_type">
         <item>Shalwar Kameez</item>
