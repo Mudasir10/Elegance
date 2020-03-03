@@ -37,8 +37,6 @@ public class HomeFragment extends Fragment {
         init(root);
 
         return root;
-
-
     }
 
     private void init(View root) {
