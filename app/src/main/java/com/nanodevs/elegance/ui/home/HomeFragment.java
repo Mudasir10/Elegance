@@ -29,64 +29,53 @@ import com.nanodevs.elegance.Adapters.CustomerAdapter;
 import com.nanodevs.elegance.MainActivity;
 import com.nanodevs.elegance.Pojo.Customer;
 import com.nanodevs.elegance.R;
+import com.nanodevs.elegance.ui.slideshow.SlideshowViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    private DatabaseReference mDataBaseRef;
-    private RecyclerView recyclerView;
+  private DatabaseReference mDataBaseRef;
+  private RecyclerView recyclerView;
 
-    List<Customer> mCustomerList;
+  private  HomeViewModel homeViewModel;
+   private CustomerAdapter customerAdapter;
+
+
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
 
+       homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
+
+        View root = inflater.inflate(R.layout.fragment_home, container, false);
         this.setHasOptionsMenu(true);
         init(root);
+        homeViewModel.getAllCustomers().observe(getViewLifecycleOwner(), new Observer<List<Customer>>() {
+            @Override
+            public void onChanged(List<Customer> customers) {
+
+                customerAdapter=new CustomerAdapter(customers,getContext());
+                recyclerView.setAdapter(customerAdapter);
+
+            }
+        });
 
         return root;
     }
 
     private void init(View root) {
+
         mDataBaseRef= FirebaseDatabase.getInstance().getReference("Customer");
         recyclerView = root.findViewById(R.id.recyclerViewCustomers);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        mCustomerList=new ArrayList<>();
-
-        ReadAllCustomers();
-
-        CustomerAdapter adapter = new CustomerAdapter(mCustomerList,getContext());
-        recyclerView.setAdapter(adapter);
+        recyclerView.setHasFixedSize(true);
 
     }
 
 
-    private void ReadAllCustomers(){
-
-        mCustomerList.clear();
-        mDataBaseRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
-                 Customer customer=snapshot.getValue(Customer.class);
-                 mCustomerList.add(customer);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-    }
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -106,6 +95,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                customerAdapter.getFilter().filter(newText);
                 Toast.makeText(getContext(), "Searching Items", Toast.LENGTH_SHORT).show();
                 return false;
             }
