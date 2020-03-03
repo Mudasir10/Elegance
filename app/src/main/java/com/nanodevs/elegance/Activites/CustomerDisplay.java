@@ -17,6 +17,8 @@ public class CustomerDisplay extends AppCompatActivity {
 
         init();
 
+        getSupportActionBar().setTitle("Display Measurements");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
 
@@ -32,13 +34,13 @@ public class CustomerDisplay extends AppCompatActivity {
 
         if (getIntent()!=null){
 
-            String id = String.valueOf(getIntent().getStringExtra("cus_id"));
+            String id = String.valueOf(getIntent().getLongExtra("cus_id",0));
             String name = String.valueOf(getIntent().getStringExtra("cus_name"));
             String measurement = String.valueOf(getIntent().getStringExtra("cus_measurements"));
             String contact = String.valueOf(getIntent().getStringExtra("cus_phone"));
             String des = String.valueOf(getIntent().getStringExtra("suit_des"));
 
-            tvid.setText(id);
+            tvid.setText( id);
             tvname.setText(name);
             tvphone.setText(contact);
             tvmeasurements.setText(measurement);
