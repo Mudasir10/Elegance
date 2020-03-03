@@ -17,14 +17,11 @@ import com.nanodevs.elegance.Pojo.Customer;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Handler;
-
 public class HomeViewModel extends ViewModel {
 
     DatabaseReference databaseReference;
 
     private MutableLiveData<List<Customer>> customerslist;
-
 
 
     public LiveData<List<Customer>> getAllCustomers() {
@@ -41,24 +38,24 @@ public class HomeViewModel extends ViewModel {
         // do async operation to fetch articles
     }
 
-    class FetchAllCustomerAsyncTask extends AsyncTask<Void,Void,Void>{
+    class FetchAllCustomerAsyncTask extends AsyncTask<Void, Void, Void> {
 
         List<Customer> list;
 
         @Override
         protected Void doInBackground(Void... voids) {
 
-            list=new ArrayList<>();
+            list = new ArrayList<>();
 
-            databaseReference= FirebaseDatabase.getInstance().getReference("Customer");
+            databaseReference = FirebaseDatabase.getInstance().getReference("Customer");
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                     list.clear();
-                    for (DataSnapshot snapshot:dataSnapshot.getChildren()){
-                       Customer customer= snapshot.getValue(Customer.class);
-                       list.add(customer);
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        Customer customer = snapshot.getValue(Customer.class);
+                        list.add(customer);
                     }
                     customerslist.setValue(list);
                 }

@@ -36,19 +36,15 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-  private DatabaseReference mDataBaseRef;
-  private RecyclerView recyclerView;
-
-  private  HomeViewModel homeViewModel;
-   private CustomerAdapter customerAdapter;
-
-
-
+    private DatabaseReference mDataBaseRef;
+    private RecyclerView recyclerView;
+    private HomeViewModel homeViewModel;
+    private CustomerAdapter customerAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-       homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
+        homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         this.setHasOptionsMenu(true);
@@ -57,7 +53,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onChanged(List<Customer> customers) {
 
-                customerAdapter=new CustomerAdapter(customers,getContext());
+                customerAdapter = new CustomerAdapter(customers, getContext());
                 recyclerView.setAdapter(customerAdapter);
 
             }
@@ -68,7 +64,7 @@ public class HomeFragment extends Fragment {
 
     private void init(View root) {
 
-        mDataBaseRef= FirebaseDatabase.getInstance().getReference("Customer");
+        mDataBaseRef = FirebaseDatabase.getInstance().getReference("Customer");
         recyclerView = root.findViewById(R.id.recyclerViewCustomers);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
@@ -76,12 +72,11 @@ public class HomeFragment extends Fragment {
     }
 
 
-
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         // Inflate the menu; this adds items to the action bar if it is present.
-         inflater.inflate(R.menu.main, menu);
+        inflater.inflate(R.menu.main, menu);
         MenuItem searchItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) searchItem.getActionView();
 

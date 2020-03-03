@@ -32,8 +32,8 @@ import java.util.Map;
 public class RegisterCustomerSheet extends BottomSheetDialogFragment {
 
     private DatabaseReference cusRef = FirebaseDatabase.getInstance().getReference("Customer");
-    private TextView customerName,customerContact,customerSerialNo;
-    private TextInputLayout customerDescription,measurementDescription;
+    private TextView customerName, customerContact, customerSerialNo;
+    private TextInputLayout customerDescription, measurementDescription;
     private Button btnSaveCustomer;
     private long count;
 
@@ -45,14 +45,13 @@ public class RegisterCustomerSheet extends BottomSheetDialogFragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                count=dataSnapshot.getChildrenCount();
+                count = dataSnapshot.getChildrenCount();
 
-                if (count<1){
-                    count=1;
+                if (count < 1) {
+                    count = 1;
                     customerSerialNo.setText(String.valueOf(count));
-                }
-                else{
-                    count=count+1;
+                } else {
+                    count = count + 1;
                     customerSerialNo.setText(String.valueOf(count));
                 }
 
@@ -69,10 +68,7 @@ public class RegisterCustomerSheet extends BottomSheetDialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-
         View view = inflater.inflate(R.layout.register_customersheet, container, false);
-
-
         initComponents(view);
 
         return view;
@@ -91,22 +87,22 @@ public class RegisterCustomerSheet extends BottomSheetDialogFragment {
 
     private void initComponents(View view) {
 
-        customerName=view.findViewById(R.id.customerName);
-        customerContact=view.findViewById(R.id.customerNumber);
-        customerSerialNo=view.findViewById(R.id.customerSerialNo);
-        customerDescription=view.findViewById(R.id.customerDescription);
-        measurementDescription=view.findViewById(R.id.customerMeasurement);
-        btnSaveCustomer=view.findViewById(R.id.btnSaveCustomer);
+        customerName = view.findViewById(R.id.customerName);
+        customerContact = view.findViewById(R.id.customerNumber);
+        customerSerialNo = view.findViewById(R.id.customerSerialNo);
+        customerDescription = view.findViewById(R.id.customerDescription);
+        measurementDescription = view.findViewById(R.id.customerMeasurement);
+        btnSaveCustomer = view.findViewById(R.id.btnSaveCustomer);
 
         btnSaveCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(customerName.getText().toString().isEmpty()||customerContact.getText().toString().isEmpty()||
-                        customerDescription.getEditText().toString().isEmpty()||measurementDescription.getEditText().toString().isEmpty()||
-                        customerSerialNo.getText().toString().isEmpty()){
+                if (customerName.getText().toString().isEmpty() || customerContact.getText().toString().isEmpty() ||
+                        customerDescription.getEditText().getText().toString().isEmpty() || measurementDescription.getEditText().getText().toString().isEmpty() ||
+                        customerSerialNo.getText().toString().isEmpty()) {
 
-                    if(customerName.getText().toString().isEmpty())
+                    if (customerName.getText().toString().isEmpty())
                         customerName.setError("field is empty");
                     else if (customerContact.getText().toString().isEmpty())
                         customerContact.setError("field is empty");
@@ -118,11 +114,10 @@ public class RegisterCustomerSheet extends BottomSheetDialogFragment {
                         customerSerialNo.setError("field is empty");
                     else
                         Toast.makeText(getContext(), "All fields are empty !", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    saveCustomerData(customerSerialNo.getText().toString(),customerName.getText().toString(),customerContact.getText().toString(),
-                            customerDescription.getEditText().toString(),
-                            measurementDescription.getEditText().toString());
+                } else {
+                    saveCustomerData(customerSerialNo.getText().toString(), customerName.getText().toString(), customerContact.getText().toString(),
+                            customerDescription.getEditText().getText().toString(),
+                            measurementDescription.getEditText().getText().toString());
                 }
 
             }
@@ -130,33 +125,32 @@ public class RegisterCustomerSheet extends BottomSheetDialogFragment {
 
     }
 
-    private void saveCustomerData(String customerSerialNo,String customerName, String customerContact,
+    private void saveCustomerData(String customerSerialNo, String customerName, String customerContact,
                                   String customerDescription, String customerMeasurement) {
-
 
 
         Customer customer = new Customer(Long.parseLong(customerSerialNo), customerName, customerContact,
                 customerMeasurement, customerDescription);
 
-        Map<String,Object> postValues=customer.toCustomerMap();
-        Map<String,Object> childUpdates=new HashMap<>();
-        childUpdates.put(cusRef.push().getKey(),postValues);
+        Map<String, Object> postValues = customer.toCustomerMap();
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put(cusRef.push().getKey(), postValues);
 
         cusRef.updateChildren(childUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
 
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     clearFields();
                     Toast.makeText(getContext(), "Customer Added SuccessFully ", Toast.LENGTH_SHORT).show();
-                }
-                else
-                    Toast.makeText(getContext(), "Task Failed", Toast.LENGTH_SHORT).show(); }
+                } else
+                    Toast.makeText(getContext(), "Task Failed", Toast.LENGTH_SHORT).show();
+            }
 
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getContext(), "Task Failed : "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Task Failed : " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -165,8 +159,8 @@ public class RegisterCustomerSheet extends BottomSheetDialogFragment {
 
     private void clearFields() {
         customerName.setText("");
-         customerContact.setText("");
-         customerDescription.getEditText().setText("");
+        customerContact.setText("");
+        customerDescription.getEditText().setText("");
         measurementDescription.getEditText().setText("");
     }
 
