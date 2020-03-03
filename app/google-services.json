@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "632017942060",
+    "firebase_url": "https://elegance-cf56a.firebaseio.com",
+    "project_id": "elegance-cf56a",
+    "storage_bucket": "elegance-cf56a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:632017942060:android:92abfb5c6f73213b128389",
+        "android_client_info": {
+          "package_name": "com.nanodevs.elegance"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "632017942060-haso9ssc4ntr5dqibhar81rth7jqeor1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nanodevs.elegance",
+            "certificate_hash": "554ed3a63e5f3e9bb666dd6834d7aeeee9106a3b"
+          }
+        },
+        {
+          "client_id": "632017942060-uu5um0qv3k7o7vrt5gagmp5ul2co82qf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nanodevs.elegance",
+            "certificate_hash": "cd6ef0d358e3db5a9aee90ecb1be842a5211b130"
+          }
+        },
+        {
+          "client_id": "632017942060-ef1p3pnfnkb7lun5t70g1bntoi89hlue.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwc_AC1-6__JqWTrL62NTMO0eimQTd2kA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "632017942060-ef1p3pnfnkb7lun5t70g1bntoi89hlue.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
