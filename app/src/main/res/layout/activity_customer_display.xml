@@ -21,7 +21,7 @@
            android:layout_height="80dp"
            android:layout_marginStart="9dp"
            android:layout_marginTop="9dp"
-           android:src="@drawable/man"
+           android:src="@drawable/boss"
            app:civ_border_width="1dp"
            app:civ_shadow="true"
            app:civ_shadow_color="#8BC34A"
