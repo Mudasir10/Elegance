@@ -35,7 +35,6 @@ public class RegisterCustomerSheet extends BottomSheetDialogFragment {
     private TextView customerName,customerContact,customerSerialNo;
     private TextInputLayout customerDescription,measurementDescription;
     private Button btnSaveCustomer;
-
     private long count;
 
     @Override

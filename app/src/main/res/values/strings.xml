@@ -13,7 +13,7 @@
 
     <string name="home_second">Home Second</string>
     <string name="customer_register">Register Customer</string>
-    <string name="customer_map_no">Customer Serial No </string>
+    <string name="customer_map_no">Customer Serial No  </string>
     <string name="customer_name">Customer Name</string>
     <string name="contact_no">Contact No </string>
     <string name="status">Status</string>
@@ -24,6 +24,8 @@
     <string name="search_hint">Customer Name,MapNo,Contact</string>
     <string name="customer_id">Customer id</string>
     <string name="phone">Phone :</string>
+    <string name="customer_measurement">Customer Measurement</string>
+    <string name="customer_description">Customer Description</string>
 
     <string-array name="suit_type">
         <item>Shalwar Kameez</item>
