@@ -26,7 +26,6 @@ public class CustomerAdapter extends RecyclerView.Adapter {
         this.customerList = customerList;
         this.context = context;
     }
-
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -34,7 +33,6 @@ public class CustomerAdapter extends RecyclerView.Adapter {
         View v = LayoutInflater.from(context).inflate(R.layout.customeritem, parent);
         return new viewHolder(v);
     }
-
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
