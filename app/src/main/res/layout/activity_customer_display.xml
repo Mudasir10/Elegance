@@ -137,14 +137,14 @@
     </LinearLayout>
 
 
-    <Button
+    <ImageButton
         android:id="@+id/fab"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:background="@drawable/sewing"
+        android:src="@drawable/sewing"
         android:layout_centerHorizontal="true"
-        style="@style/AppTheme.RoundedCornerMaterialButton"
         android:layout_marginEnd="10dp"
+        android:background="@drawable/oval_button"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/MeasurementDescriptionLayout"/>
 

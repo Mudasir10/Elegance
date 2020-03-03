@@ -26,9 +26,6 @@
     </style>
 
 
-    <style name="AppTheme.RoundedCornerMaterialButton" parent="Widget.AppCompat.Button.Colored">
-        <item name="android:background">@drawable/roundbutton2</item>
-    </style>
 
 
 </resources>
