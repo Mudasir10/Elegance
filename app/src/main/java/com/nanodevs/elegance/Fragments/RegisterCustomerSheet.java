@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,9 +31,11 @@ import java.util.Map;
 
 public class RegisterCustomerSheet extends BottomSheetDialogFragment {
 
-    DatabaseReference cusRef = FirebaseDatabase.getInstance().getReference("Customer");
+    private DatabaseReference cusRef = FirebaseDatabase.getInstance().getReference("Customer");
     private TextView customerName,customerContact,customerSerialNo;
     private TextInputLayout customerDescription,measurementDescription;
+    private Button btnSaveCustomer;
+
     private long count;
 
     @Override
@@ -66,12 +69,40 @@ public class RegisterCustomerSheet extends BottomSheetDialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-      View view = inflater.inflate(R.layout.register_customersheet, container, false);
+
+
+        View view = inflater.inflate(R.layout.register_customersheet, container, false);
+
+
         initComponents(view);
 
-        view.findViewById(R.id.btnSaveCustomer).setOnClickListener(new View.OnClickListener() {
+        return view;
+
+    }
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setStyle(BottomSheetDialogFragment.STYLE_NORMAL, R.style.CustomBottomSheetDialogTheme);
+
+
+    }
+
+
+    private void initComponents(View view) {
+
+        customerName=view.findViewById(R.id.customerName);
+        customerContact=view.findViewById(R.id.customerNumber);
+        customerSerialNo=view.findViewById(R.id.customerSerialNo);
+        customerDescription=view.findViewById(R.id.customerDescription);
+        measurementDescription=view.findViewById(R.id.customerMeasurement);
+        btnSaveCustomer=view.findViewById(R.id.btnSaveCustomer);
+
+        btnSaveCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if(customerName.getText().toString().isEmpty()||customerContact.getText().toString().isEmpty()||
                         customerDescription.getEditText().toString().isEmpty()||measurementDescription.getEditText().toString().isEmpty()||
                         customerSerialNo.getText().toString().isEmpty()){
@@ -97,28 +128,6 @@ public class RegisterCustomerSheet extends BottomSheetDialogFragment {
 
             }
         });
-
-
-        return view;
-
-    }
-
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setStyle(BottomSheetDialogFragment.STYLE_NORMAL, R.style.CustomBottomSheetDialogTheme);
-
-    }
-
-
-    private void initComponents(View view) {
-
-        customerName=view.findViewById(R.id.customerName);
-        customerContact=view.findViewById(R.id.customerNumber);
-        customerSerialNo=view.findViewById(R.id.customerSerialNo);
-        customerDescription=view.findViewById(R.id.customerDescription);
-        measurementDescription=view.findViewById(R.id.customerMeasurement);
 
     }
 

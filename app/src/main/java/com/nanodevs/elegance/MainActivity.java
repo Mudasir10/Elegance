@@ -1,14 +1,23 @@
 package com.nanodevs.elegance;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.nanodevs.elegance.Fragments.RegisterCustomerSheet;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.DialogFragment;
@@ -19,6 +28,8 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,11 +46,12 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-               new RegisterCustomerSheet().show(getSupportFragmentManager(),"Dialog");
-
-               /* getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,new AddCustomerFragment()).commit();*/
-
+                /* getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,new AddCustomerFragment()).commit();*/
+                final boolean online = isOnline();
+                if (!online)
+                    Snackbar.make(view, "Please check your internet !", Snackbar.LENGTH_LONG).show();
+                    else
+                    new RegisterCustomerSheet().show(getSupportFragmentManager(),"Dialog");
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -59,7 +71,26 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Toast.makeText(MainActivity.this, "Searching Items", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
         return true;
+
     }
 
     @Override
@@ -68,4 +99,24 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+
+    private boolean isOnline() {
+        try {
+            return Runtime.getRuntime().exec("/system/bin/ping -c 1 8.8.8.8").waitFor() == 0; //  "8.8.8.8" is the server to ping
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
+
+
+
+
+
+
+
+
 }
