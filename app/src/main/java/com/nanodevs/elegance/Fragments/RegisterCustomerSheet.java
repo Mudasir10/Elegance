@@ -4,7 +4,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,13 +32,16 @@ import com.nanodevs.elegance.R;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RegisterCustomerSheet extends BottomSheetDialogFragment {
+public class RegisterCustomerSheet extends BottomSheetDialogFragment implements  AdapterView.OnItemSelectedListener {
 
     private DatabaseReference cusRef = FirebaseDatabase.getInstance().getReference("Customer");
     private TextView customerName, customerContact, customerSerialNo;
-    private TextInputLayout customerDescription, measurementDescription;
+
+    private Spinner spinner;
+
     private Button btnSaveCustomer;
     private long count;
+
 
     @Override
     public void onStart() {
@@ -71,6 +77,7 @@ public class RegisterCustomerSheet extends BottomSheetDialogFragment {
         View view = inflater.inflate(R.layout.register_customersheet, container, false);
         initComponents(view);
 
+
         return view;
 
     }
@@ -82,6 +89,10 @@ public class RegisterCustomerSheet extends BottomSheetDialogFragment {
         setStyle(BottomSheetDialogFragment.STYLE_NORMAL, R.style.CustomBottomSheetDialogTheme);
 
 
+
+
+
+
     }
 
 
@@ -90,34 +101,35 @@ public class RegisterCustomerSheet extends BottomSheetDialogFragment {
         customerName = view.findViewById(R.id.customerName);
         customerContact = view.findViewById(R.id.customerNumber);
         customerSerialNo = view.findViewById(R.id.customerSerialNo);
-        customerDescription = view.findViewById(R.id.customerDescription);
-        measurementDescription = view.findViewById(R.id.customerMeasurement);
+
         btnSaveCustomer = view.findViewById(R.id.btnSaveCustomer);
+
+        spinner= view.findViewById(R.id.spinnerCategory);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.categories, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
 
         btnSaveCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if (customerName.getText().toString().isEmpty() || customerContact.getText().toString().isEmpty() ||
-                        customerDescription.getEditText().getText().toString().isEmpty() || measurementDescription.getEditText().getText().toString().isEmpty() ||
                         customerSerialNo.getText().toString().isEmpty()) {
 
                     if (customerName.getText().toString().isEmpty())
                         customerName.setError("field is empty");
                     else if (customerContact.getText().toString().isEmpty())
                         customerContact.setError("field is empty");
-                    else if (customerDescription.getEditText().toString().isEmpty())
-                        customerDescription.setError("field is empty");
-                    else if (measurementDescription.getEditText().toString().isEmpty())
-                        measurementDescription.setError("field is empty");
                     else if (customerSerialNo.getText().toString().isEmpty())
                         customerSerialNo.setError("field is empty");
                     else
                         Toast.makeText(getContext(), "All fields are empty !", Toast.LENGTH_SHORT).show();
                 } else {
-                    saveCustomerData(customerSerialNo.getText().toString(), customerName.getText().toString(), customerContact.getText().toString(),
-                            customerDescription.getEditText().getText().toString(),
-                            measurementDescription.getEditText().getText().toString());
+
+
                 }
 
             }
@@ -160,9 +172,17 @@ public class RegisterCustomerSheet extends BottomSheetDialogFragment {
     private void clearFields() {
         customerName.setText("");
         customerContact.setText("");
-        customerDescription.getEditText().setText("");
-        measurementDescription.getEditText().setText("");
+
     }
 
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 }

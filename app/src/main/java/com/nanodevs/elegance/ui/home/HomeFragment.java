@@ -52,7 +52,6 @@ public class HomeFragment extends Fragment {
         homeViewModel.getAllCustomers().observe(getViewLifecycleOwner(), new Observer<List<Customer>>() {
             @Override
             public void onChanged(List<Customer> customers) {
-
                 customerAdapter = new CustomerAdapter(customers, getContext());
                 recyclerView.setAdapter(customerAdapter);
 
@@ -90,11 +89,26 @@ public class HomeFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                customerAdapter.getFilter().filter(newText);
-                Toast.makeText(getContext(), "Searching Items", Toast.LENGTH_SHORT).show();
+                if (isOnline()){
+                    customerAdapter.getFilter().filter(newText);
+                    Toast.makeText(getContext(), "Searching Items", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(getContext(), "Enable Internet To Search Items", Toast.LENGTH_SHORT).show();
+                }
+
                 return false;
             }
         });
 
+    }
+
+    private boolean isOnline() {
+        try {
+            return Runtime.getRuntime().exec("/system/bin/ping -c 1 8.8.8.8").waitFor() == 0; //  "8.8.8.8" is the server to ping
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

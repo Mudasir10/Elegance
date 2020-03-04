@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="categories">
+        <item>Kurta</item>
+        <item>Shirt</item>
+        <item> Full Coat</item>
+        <item> West Coat</item>
+        <item>Pent</item>
+        <item>Saffari</item>
+    </string-array>
+</resources>

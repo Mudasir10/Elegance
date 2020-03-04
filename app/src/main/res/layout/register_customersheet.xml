@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -71,63 +72,41 @@
             app:layout_constraintTop_toBottomOf="@+id/customerName" />
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/customerMeasurement"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:textColorHint="@color/colorAccent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/customerNumber">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:inputType="textMultiLine"
-                android:hint="@string/measurements"
-                android:maxLines="5"
-                android:gravity="top|start"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/customerDescription"
-            android:layout_margin="10dp"
-            android:textColorHint="@color/colorAccent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/customerMeasurement">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:maxLines="5"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:inputType="textMultiLine"
-                android:gravity="top|start"
-                android:hint="@string/description" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-
         <Button
             android:id="@+id/btnSaveCustomer"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:layout_marginTop="8dp"
+            android:background="@drawable/round_button"
+            android:drawableEnd="@drawable/ic_save"
             android:text="@string/save_customer"
             android:textAlignment="center"
-            android:drawableEnd="@drawable/ic_save"
-            android:background="@drawable/round_button"
-            android:layout_marginBottom="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/customerDescription" />
+            app:layout_constraintTop_toBottomOf="@+id/spinnerCategory" />
 
+        <Spinner
+            android:id="@+id/spinnerCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <TextView
+            android:textSize="15dp"
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Please Select a Category For Measurement"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/customerNumber" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
