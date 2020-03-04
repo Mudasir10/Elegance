@@ -52,6 +52,7 @@ public class HomeFragment extends Fragment {
         homeViewModel.getAllCustomers().observe(getViewLifecycleOwner(), new Observer<List<Customer>>() {
             @Override
             public void onChanged(List<Customer> customers) {
+
                 customerAdapter = new CustomerAdapter(customers, getContext());
                 recyclerView.setAdapter(customerAdapter);
 
@@ -89,6 +90,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+
                 if (isOnline()){
                     customerAdapter.getFilter().filter(newText);
                     Toast.makeText(getContext(), "Searching Items", Toast.LENGTH_SHORT).show();
