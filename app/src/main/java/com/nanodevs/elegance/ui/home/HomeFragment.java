@@ -89,7 +89,6 @@ public class HomeFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-
                 if (isOnline()){
                     customerAdapter.getFilter().filter(newText);
                     Toast.makeText(getContext(), "Searching Items", Toast.LENGTH_SHORT).show();
