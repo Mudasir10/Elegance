@@ -36,7 +36,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    private DatabaseReference mDataBaseRef;
+
     private RecyclerView recyclerView;
     private HomeViewModel homeViewModel;
     private CustomerAdapter customerAdapter;
@@ -64,7 +64,6 @@ public class HomeFragment extends Fragment {
 
     private void init(View root) {
 
-        mDataBaseRef = FirebaseDatabase.getInstance().getReference("Customer");
         recyclerView = root.findViewById(R.id.recyclerViewCustomers);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
