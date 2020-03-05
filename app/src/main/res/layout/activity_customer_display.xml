@@ -10,7 +10,7 @@
    <LinearLayout
        android:id="@+id/linearLayoutDisplay"
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"
+       android:layout_height="120dp"
        android:layout_margin="5dp"
        android:orientation="horizontal"
        >
@@ -30,7 +30,7 @@
 
        <LinearLayout
            android:layout_marginStart="9dp"
-           android:layout_marginTop="9dp"
+           android:layout_marginTop="5dp"
            android:layout_marginEnd="9dp"
            android:layout_width="match_parent"
            android:layout_height="match_parent"
@@ -80,9 +80,7 @@
         android:id="@+id/viewLine"
         android:layout_width="match_parent"
         android:layout_height="3dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="9dp"
-        android:layout_marginEnd="9dp"
+        android:layout_margin="10dp"
         android:background="@color/colorPrimary"
         android:layout_below="@+id/linearLayoutDisplay"
         />

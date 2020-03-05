@@ -12,9 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputLayout;
 import com.nanodevs.elegance.R;
 
 public class StitchCloth extends AppCompatActivity {
@@ -33,7 +31,7 @@ public class StitchCloth extends AppCompatActivity {
         initComponents();
 
         ArrayAdapter<CharSequence> suitAdapter = ArrayAdapter.createFromResource(this,
-                R.array.categories, android.R.layout.simple_spinner_item);
+                R.array.suitCategories, android.R.layout.simple_spinner_item);
         suitAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         suitSpinner.setAdapter(suitAdapter);
         suitSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

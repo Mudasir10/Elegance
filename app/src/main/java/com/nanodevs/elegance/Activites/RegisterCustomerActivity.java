@@ -115,7 +115,7 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
         spinner = findViewById(R.id.spinnerCategory);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(RegisterCustomerActivity.this,
-                R.array.categories, android.R.layout.simple_spinner_item);
+                R.array.suitCategories, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
@@ -195,6 +195,7 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
             etloosinghip.setVisibility(View.VISIBLE);
             etpentlength.setVisibility(View.VISIBLE);
             etpentbottom.setVisibility(View.VISIBLE);
+            etDescription.setVisibility(View.VISIBLE);
 
             // hide these TextBoxes
             etthigh.setVisibility(GONE);
@@ -220,16 +221,46 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
             etloosinghip.setVisibility(GONE);
             etpentbottom.setVisibility(GONE);
             etpentlength.setVisibility(GONE);
+            etwaist.setVisibility(GONE);
+            etthigh.setVisibility(GONE);
+
+
+        }
+        else if(SelectedCategory.equals(("Three Piece"))){
+
+            //showing EditText
+            etLenght.setHint("Coat Lenght");
+            etLenght.setVisibility(View.VISIBLE);
+
+            etSleeves.setVisibility(View.VISIBLE);
+            etShoulder.setVisibility(View.VISIBLE);
+            etcolr.setVisibility(View.VISIBLE);
+            etchest.setVisibility(View.VISIBLE);
+            etstomachSize.setVisibility(View.VISIBLE);
+            ethipSize.setVisibility(View.VISIBLE);
+            etwrist.setVisibility(View.VISIBLE);
+
+            etpentlength.setHint("pent Length");
+            etpentlength.setVisibility(View.VISIBLE);
+
+            etpentbottom.setHint("pent Bottom");
+            etpentbottom.setVisibility(View.VISIBLE);
+            etthigh.setVisibility(View.VISIBLE);
+            ethipSize.setVisibility(View.VISIBLE);
+            etwaist.setVisibility(View.VISIBLE);
+            etDescription.setVisibility(View.VISIBLE);
+
+            //hiding EditText
+
+            etloosingchest.setVisibility(GONE);
+            etloosingstomach.setVisibility(GONE);
+            etloosinghip.setVisibility(GONE);
+
 
 
 
         }
-        else if(SelectedCategory.equals(("3_piece"))){
-
-
-
-        }
-        else if(SelectedCategory.equals(("West_Coat"))){
+        else if(SelectedCategory.equals(("Waist Coat"))){
 
             //showing editText
             etLenght.setVisibility(View.VISIBLE);
@@ -237,9 +268,9 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
             etcolr.setVisibility(View.VISIBLE);
             etchest.setVisibility(View.VISIBLE);
             etstomachSize.setVisibility(View.VISIBLE);
-            ethipSize.setVisibility(View.VISIBLE);
             etloosingchest.setVisibility(View.VISIBLE);
             etloosingstomach.setVisibility(View.VISIBLE);
+            etDescription.setVisibility(View.VISIBLE);
 
 
             //hiding EditText
@@ -254,13 +285,17 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
             etthigh.setVisibility(GONE);
 
         }
-        else if(SelectedCategory.equals(("Pent"))){
+        else if(SelectedCategory.equals(("Pant"))){
 
             // showing textViews
             etwaist.setVisibility(View.VISIBLE);
             etthigh.setVisibility(View.VISIBLE);
             ethipSize.setVisibility(View.VISIBLE);
             etDescription.setVisibility(View.VISIBLE);
+            etpentlength.setVisibility(View.VISIBLE);
+            etpentlength.setHint("Pant Lenght");
+            etpentbottom.setVisibility(View.VISIBLE);
+            etpentbottom.setHint("pant bottom size");
 
 
             // hiding the Text Views
@@ -277,17 +312,37 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
             etloosinghip.setVisibility(GONE);
 
         }
-        else if(SelectedCategory.equals(("Saffari"))){
+        else if(SelectedCategory.equals(("Saffari Coat"))){
+
+            //showing EditText
+            etLenght.setHint("Saffari Coat Lenght");
+            etLenght.setVisibility(View.VISIBLE);
+
+            etSleeves.setVisibility(View.VISIBLE);
+            etShoulder.setVisibility(View.VISIBLE);
+            etcolr.setVisibility(View.VISIBLE);
+            etchest.setVisibility(View.VISIBLE);
+            etstomachSize.setVisibility(View.VISIBLE);
+            ethipSize.setVisibility(View.VISIBLE);
+            etwrist.setVisibility(View.VISIBLE);
+
+            etpentlength.setHint("pent Length");
+            etpentlength.setVisibility(View.VISIBLE);
+
+            etpentbottom.setHint("pent Bottom");
+            etpentbottom.setVisibility(View.VISIBLE);
+            etthigh.setVisibility(View.VISIBLE);
+            ethipSize.setVisibility(View.VISIBLE);
+            etwaist.setVisibility(View.VISIBLE);
+            etDescription.setVisibility(View.VISIBLE);
+
+            //hiding EditText
 
             etloosingchest.setVisibility(GONE);
             etloosingstomach.setVisibility(GONE);
             etloosinghip.setVisibility(GONE);
-            etpentlength.setVisibility(GONE);
-            etpentbottom.setVisibility(GONE);
-            etwaist.setVisibility(GONE);
-            etthigh.setVisibility(GONE);
         }
-        else if (SelectedCategory.equals("suit")){
+        else if (SelectedCategory.equals("Suit")){
 
             //showing EditText
             etLenght.setVisibility(View.VISIBLE);
@@ -299,10 +354,23 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
             ethipSize.setVisibility(View.VISIBLE);
             etarms.setVisibility(View.VISIBLE);
             etwrist.setVisibility(View.VISIBLE);
-
             etloosinghip.setVisibility(View.VISIBLE);
             etloosingchest.setVisibility(View.VISIBLE);
             etloosingstomach.setVisibility(View.VISIBLE);
+            etDescription.setVisibility(View.VISIBLE);
+
+
+            etpentlength.setHint("Shalwar Length");
+            etpentlength.setVisibility(View.VISIBLE);
+
+            etpentbottom.setHint("Shalwar Bottom Length ");
+            etpentbottom.setVisibility(View.VISIBLE);
+
+            // hiding the Edit Text
+            etwaist.setVisibility(GONE);
+            etthigh.setVisibility(GONE);
+
+
         }
 
 
