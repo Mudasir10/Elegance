@@ -26,7 +26,17 @@
     <string name="phone">Phone :</string>
     <string name="customer_measurement">Customer Measurement</string>
     <string name="customer_description">Customer Description</string>
-
+    <string name="boski">Boski :</string>
+    <string name="cloth_quantity">Qty</string>
+    <string name="suit_type">Suit Type :</string>
+    <string name="cotton">Cotton :</string>
+    <string name="khaadi">Khaadi :</string>
+    <string name="karandi">Karandi :</string>
+    <string name="lilan">Lilan :</string>
+    <string name="washing_wear">W/Wear :</string>
+    <string name="add_to_cart">Add To Cart</string>
+    <string name="counter">Counter</string>
+    <string name="add_cloth_order">Add Cloth Order</string>
 
 
 </resources>

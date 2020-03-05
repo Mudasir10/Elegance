@@ -6,7 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,8 +20,9 @@ import com.nanodevs.elegance.R;
 public class StitchCloth extends AppCompatActivity {
 
 
+    private Spinner suitSpinner;
+
     private TextView clothOrderCustomerSerialNo, clothOrderCustomerName, clothOrderCustomerContact;
-    private TextInputLayout clothOrderCustomerMeasurements, clothOrderCustomerSuitDescription;
 
 
     @Override
@@ -27,13 +32,30 @@ public class StitchCloth extends AppCompatActivity {
 
         initComponents();
 
+        ArrayAdapter<CharSequence> suitAdapter = ArrayAdapter.createFromResource(this,
+                R.array.categories, android.R.layout.simple_spinner_item);
+        suitAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        suitSpinner.setAdapter(suitAdapter);
+        suitSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
+
         if (getIntent() != null) {
 
             clothOrderCustomerSerialNo.setText(String.valueOf(getIntent().getStringExtra("customerUid")));
             clothOrderCustomerName.setText(String.valueOf(getIntent().getStringExtra("customerName")));
             clothOrderCustomerContact.setText(String.valueOf(getIntent().getStringExtra("customerContactNumber")));
-            clothOrderCustomerMeasurements.getEditText().setText(String.valueOf(getIntent().getStringExtra("customerMeasurementsDetails")));
-            clothOrderCustomerSuitDescription.getEditText().setText(String.valueOf(getIntent().getStringExtra("customerSuitDetails")));
 
         }
 
@@ -42,11 +64,11 @@ public class StitchCloth extends AppCompatActivity {
 
     private void initComponents() {
 
+        suitSpinner = findViewById(R.id.suitSpinner);
         clothOrderCustomerSerialNo = findViewById(R.id.customerClothSerialNo);
         clothOrderCustomerName = findViewById(R.id.customerClothDisplayName);
         clothOrderCustomerContact = findViewById(R.id.customerClothDisplayContactNo);
-        clothOrderCustomerMeasurements = findViewById(R.id.customerMeasurementClothDisplay);
-        clothOrderCustomerSuitDescription = findViewById(R.id.customerDescriptionClothOrder);
+
 
 
     }
@@ -71,4 +93,13 @@ public class StitchCloth extends AppCompatActivity {
         }
         return true;
     }
+
+
+
+
+
+
+
+
+
 }

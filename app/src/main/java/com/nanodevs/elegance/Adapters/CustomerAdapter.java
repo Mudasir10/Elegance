@@ -32,8 +32,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.viewHo
         this.context = context;
     }
 
-    public CustomerAdapter() {
-    }
+
 
     @NonNull
     @Override
