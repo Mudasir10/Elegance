@@ -26,36 +26,7 @@
     <string name="phone">Phone :</string>
     <string name="customer_measurement">Customer Measurement</string>
     <string name="customer_description">Customer Description</string>
-    <string name="customerprofilepic">customerProfilePic</string>
-    <string name="suit_type">Suit Type :</string>
-    <string name="boski">Boski</string>
-    <string name="stitchType">Stitch Type :</string>
-    <string name="double_stitch">Double Stitch</string>
-    <string name="singleStitch">Single Stitch</string>
-    <string name="karandi">Karandi</string>
-    <string name="cloth_type">Cloth Type :</string>
-    <string name="Simple">Simple</string>
-    <string name="kurta">Kurta</string>
-    <string name="cloth_quantity">Qty</string>
-    <string name="add_cloth_order">Add Cloth Order</string>
-    <string name="counter">Counter</string>
-    <string name="add_cart_item">Add Cart Item</string>
-    <string name="add_to_cart">Add To Cart</string>
-
-    <string-array name="suit_type">
-        <item>Kurta</item>
-        <item>Shirt</item>
-        <item>West Coat</item>
-        <item>Full Coat</item>
-        <item>Saffari Coat</item>
-    </string-array>
 
 
-    <string-array name="cloth_type">
-        <item>Boski</item>
-        <item>Cotton</item>
-        <item>Paper Cotton</item>
-        <item>karandi fabric</item>
-    </string-array>
 
 </resources>

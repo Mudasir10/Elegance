@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +27,8 @@ import com.nanodevs.elegance.R;
 import java.util.HashMap;
 import java.util.Map;
 
+import static android.view.View.GONE;
+
 public class RegisterCustomerActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private DatabaseReference cusRef = FirebaseDatabase.getInstance().getReference("Customer");
@@ -37,6 +40,9 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
     private long count;
     String SelectedCategory;
 
+    EditText etLenght, etShoulder, etSleeves, etcolr, etchest, etstomachSize, ethipSize, etarms, etwrist, etloosingchest, etloosingstomach,
+            etloosinghip, etpentlength, etpentbottom, etwaist, etthigh, etDescription;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +51,6 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
 
         initComponents();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
 
     }
@@ -79,16 +84,35 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
     }
 
 
-
     private void initComponents() {
 
+        // edit Text
+        etLenght = findViewById(R.id.act_reg_etlength);
+        etShoulder = findViewById(R.id.act_reg_etshoulder);
+        etSleeves = findViewById(R.id.act_reg_etsleeves);
+        etcolr = findViewById(R.id.act_reg_etcoler);
+        etchest = findViewById(R.id.act_reg_etchest);
+        etstomachSize = findViewById(R.id.act_reg_etstomach);
+        ethipSize = findViewById(R.id.act_reg_ethipsize);
+        etarms = findViewById(R.id.act_reg_etarms);
+        etwrist = findViewById(R.id.act_reg_etwrist);
+        etloosingchest = findViewById(R.id.act_reg_etloosingchest);
+        etloosingstomach = findViewById(R.id.act_reg_etloosingstomach);
+        etloosinghip = findViewById(R.id.act_reg_etloosinghip);
+        etpentlength = findViewById(R.id.act_reg_etpentlength);
+        etpentbottom = findViewById(R.id.act_reg_etpentbottom);
+        etDescription = findViewById(R.id.act_reg_etdescription);
+
+        etwaist = findViewById(R.id.act_reg_etwaist);
+        etthigh = findViewById(R.id.act_reg_etthigh);
+
         customerName = findViewById(R.id.customerName);
-        customerContact =findViewById(R.id.customerNumber);
-        customerSerialNo =findViewById(R.id.customerSerialNo);
+        customerContact = findViewById(R.id.customerNumber);
+        customerSerialNo = findViewById(R.id.customerSerialNo);
 
-        btnSaveCustomer =findViewById(R.id.btnSaveCustomer);
+        btnSaveCustomer = findViewById(R.id.btnSaveCustomer);
 
-        spinner= findViewById(R.id.spinnerCategory);
+        spinner = findViewById(R.id.spinnerCategory);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(RegisterCustomerActivity.this,
                 R.array.categories, android.R.layout.simple_spinner_item);
@@ -96,11 +120,10 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
+
         btnSaveCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
 
 
             }
@@ -153,8 +176,136 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-        SelectedCategory=parent.getItemAtPosition(position).toString();
-        Toast.makeText(this, ""+SelectedCategory, Toast.LENGTH_SHORT).show();
+        SelectedCategory = parent.getItemAtPosition(position).toString();
+
+        if (SelectedCategory.equals("Kurta")){
+
+            // Show these Text View
+            etLenght.setVisibility(View.VISIBLE);
+            etSleeves.setVisibility(View.VISIBLE);
+            etShoulder.setVisibility(View.VISIBLE);
+            etcolr.setVisibility(View.VISIBLE);
+            etchest.setVisibility(View.VISIBLE);
+            etstomachSize.setVisibility(View.VISIBLE);
+            ethipSize.setVisibility(View.VISIBLE);
+            etarms.setVisibility(View.VISIBLE);
+            etwrist.setVisibility(View.VISIBLE);
+            etloosingchest.setVisibility(View.VISIBLE);
+            etloosingstomach.setVisibility(View.VISIBLE);
+            etloosinghip.setVisibility(View.VISIBLE);
+            etpentlength.setVisibility(View.VISIBLE);
+            etpentbottom.setVisibility(View.VISIBLE);
+
+            // hide these TextBoxes
+            etthigh.setVisibility(GONE);
+            etwaist.setVisibility(GONE);
+        }
+        else if(SelectedCategory.equals(("Shirt"))){
+
+            // showText Views
+            etLenght.setVisibility(View.VISIBLE);
+            etSleeves.setVisibility(View.VISIBLE);
+            etShoulder.setVisibility(View.VISIBLE);
+            etcolr.setVisibility(View.VISIBLE);
+            etchest.setVisibility(View.VISIBLE);
+            etstomachSize.setVisibility(View.VISIBLE);
+            etarms.setVisibility(View.VISIBLE);
+            etwrist.setVisibility(View.VISIBLE);
+            etloosingchest.setVisibility(View.VISIBLE);
+            etloosingstomach.setVisibility(View.VISIBLE);
+            etDescription.setVisibility(View.VISIBLE);
+
+            //hide EditText
+            ethipSize.setVisibility(GONE);
+            etloosinghip.setVisibility(GONE);
+            etpentbottom.setVisibility(GONE);
+            etpentlength.setVisibility(GONE);
+
+
+
+        }
+        else if(SelectedCategory.equals(("3_piece"))){
+
+
+
+        }
+        else if(SelectedCategory.equals(("West_Coat"))){
+
+            //showing editText
+            etLenght.setVisibility(View.VISIBLE);
+            etShoulder.setVisibility(View.VISIBLE);
+            etcolr.setVisibility(View.VISIBLE);
+            etchest.setVisibility(View.VISIBLE);
+            etstomachSize.setVisibility(View.VISIBLE);
+            ethipSize.setVisibility(View.VISIBLE);
+            etloosingchest.setVisibility(View.VISIBLE);
+            etloosingstomach.setVisibility(View.VISIBLE);
+
+
+            //hiding EditText
+            etSleeves.setVisibility(GONE);
+            ethipSize.setVisibility(GONE);
+            etarms.setVisibility(GONE);
+            etwrist.setVisibility(GONE);
+            etloosinghip.setVisibility(GONE);
+            etpentlength.setVisibility(GONE);
+            etpentbottom.setVisibility(GONE);
+            etwaist.setVisibility(GONE);
+            etthigh.setVisibility(GONE);
+
+        }
+        else if(SelectedCategory.equals(("Pent"))){
+
+            // showing textViews
+            etwaist.setVisibility(View.VISIBLE);
+            etthigh.setVisibility(View.VISIBLE);
+            ethipSize.setVisibility(View.VISIBLE);
+            etDescription.setVisibility(View.VISIBLE);
+
+
+            // hiding the Text Views
+            etLenght.setVisibility(GONE);
+            etSleeves.setVisibility(GONE);
+            etShoulder.setVisibility(GONE);
+            etcolr.setVisibility(GONE);
+            etchest.setVisibility(GONE);
+            etstomachSize.setVisibility(GONE);
+            etarms.setVisibility(GONE);
+            etwrist.setVisibility(GONE);
+            etloosingchest.setVisibility(GONE);
+            etloosingstomach.setVisibility(GONE);
+            etloosinghip.setVisibility(GONE);
+
+        }
+        else if(SelectedCategory.equals(("Saffari"))){
+
+            etloosingchest.setVisibility(GONE);
+            etloosingstomach.setVisibility(GONE);
+            etloosinghip.setVisibility(GONE);
+            etpentlength.setVisibility(GONE);
+            etpentbottom.setVisibility(GONE);
+            etwaist.setVisibility(GONE);
+            etthigh.setVisibility(GONE);
+        }
+        else if (SelectedCategory.equals("suit")){
+
+            //showing EditText
+            etLenght.setVisibility(View.VISIBLE);
+            etSleeves.setVisibility(View.VISIBLE);
+            etShoulder.setVisibility(View.VISIBLE);
+            etcolr.setVisibility(View.VISIBLE);
+            etchest.setVisibility(View.VISIBLE);
+            etstomachSize.setVisibility(View.VISIBLE);
+            ethipSize.setVisibility(View.VISIBLE);
+            etarms.setVisibility(View.VISIBLE);
+            etwrist.setVisibility(View.VISIBLE);
+
+            etloosinghip.setVisibility(View.VISIBLE);
+            etloosingchest.setVisibility(View.VISIBLE);
+            etloosingstomach.setVisibility(View.VISIBLE);
+        }
+
+
     }
 
     @Override
