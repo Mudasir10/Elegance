@@ -27,20 +27,6 @@
     <string name="customer_measurement">Customer Measurement</string>
     <string name="customer_description">Customer Description</string>
 
-    <string-array name="suit_type">
-        <item>Shalwar Kameez</item>
-        <item>Kurta</item>
-        <item>Shirt</item>
-        <item>West Coat</item>
-        <item>Full Coat</item>
-    </string-array>
 
-
-    <string-array name="cloth_type">
-        <item>Boski</item>
-        <item>Cotton</item>
-        <item>Paper Cotton</item>
-        <item>karandi fabric</item>
-    </string-array>
 
 </resources>

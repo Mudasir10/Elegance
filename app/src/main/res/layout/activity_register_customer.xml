@@ -126,102 +126,119 @@
                 android:orientation="vertical">
 
                 <EditText
+                    android:id="@+id/act_reg_etlength"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Length"
                     android:imeOptions="actionDone" />
 
                 <EditText
+                    android:id="@+id/act_reg_etsleeves"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Sleeves"
                     android:imeOptions="actionDone" />
 
                 <EditText
+                    android:id="@+id/act_reg_etshoulder"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Shoulder"
                     android:imeOptions="actionDone" />
 
                 <EditText
+                    android:id="@+id/act_reg_etcoler"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="coler"
                     android:imeOptions="actionDone" />
 
                 <EditText
+                    android:id="@+id/act_reg_etchest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Chest"
                     android:imeOptions="actionDone" />
 
                 <EditText
+                    android:id="@+id/act_reg_etstomach"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Stomach"
                     android:imeOptions="actionDone" />
 
                 <EditText
+                    android:id="@+id/act_reg_ethipsize"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="hip Size"
                     android:imeOptions="actionDone" />
 
                 <EditText
+                    android:id="@+id/act_reg_etarms"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Arms"
                     android:imeOptions="actionDone" />
 
                 <EditText
+                    android:id="@+id/act_reg_etwrist"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Wrist"
                     android:imeOptions="actionDone" />
 
                 <EditText
+                    android:id="@+id/act_reg_etloosingchest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Loosing Chest"
                     android:imeOptions="actionDone" />
 
                 <EditText
+                    android:id="@+id/act_reg_etloosingstomach"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Loosing Stomach"
                     android:imeOptions="actionDone" />
 
                 <EditText
+                    android:id="@+id/act_reg_etloosinghip"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Loosing hip"
                     android:imeOptions="actionDone" />
 
                 <EditText
+                    android:id="@+id/act_reg_etpentlength"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Pent Length"
                     android:imeOptions="actionDone" />
 
                 <EditText
+                    android:id="@+id/act_reg_etpentbottom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Pent Bottom"
                     android:imeOptions="actionDone" />
 
                 <EditText
+                    android:id="@+id/act_reg_etwaist"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Waist"
                     android:imeOptions="actionDone" />
 
                 <EditText
+                    android:id="@+id/act_reg_etthigh"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Thigh"
                     android:imeOptions="actionDone" />
 
                 <EditText
+                    android:id="@+id/act_reg_etdescription"
                     android:gravity="top|start"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
