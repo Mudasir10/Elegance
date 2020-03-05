@@ -3,25 +3,34 @@ package com.nanodevs.elegance.Pojo;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ClothStitch {
+public class ClothOrder {
 
     private long customerSerial;
     private String customerName;
     private String customerContact;
-    private String suitType;
+    private String customerMeasurements;
+    private String suitDescription;
+
     private String clothType;
     private String stitchType;
-    private String clothQuantity;
+    private String suitType;
+    private String suitQuantity;
+
+    private String orderDate;
+    private String expectedDate;
     private boolean suitStatus;
     private long suitAdvancePayment;
-    private long suitRemainingPayment;
+    private long suitAdvanceRemainingPayment;
+    private long balance;
+    private long remainingBalance;
 
 
-    public ClothStitch() {
+
+    public ClothOrder() {
     }
 
 
-    public Map<String,Object> toClothStitchMap(){
+   /* public Map<String,Object> toClothStitchMap(){
 
         HashMap<String,Object> result=new HashMap<>();
         result.put("customerSerial",customerSerial);
@@ -33,16 +42,16 @@ public class ClothStitch {
         result.put("suitStatus",suitStatus);
         result.put("suitAdvancePayment",suitAdvancePayment);
         result.put("suitRemainingPayment",suitRemainingPayment);
-        result.put("clothQuantity",clothQuantity);
+        result.put("clothQuantity",suitQuantity);
 
         return result;
     }
 
 
-    public ClothStitch(long customerSerial, String customerName, String customerContact,
-                       String suitType, String clothType, String stitchType,
-                       String clothQuantity, boolean suitStatus, long suitAdvancePayment,
-                       long suitRemainingPayment) {
+    public ClothOrder(long customerSerial, String customerName, String customerContact,
+                      String suitType, String clothType, String stitchType,
+                      String clothQuantity, boolean suitStatus, long suitAdvancePayment,
+                      long suitRemainingPayment) {
 
         this.customerSerial = customerSerial;
         this.customerName = customerName;
@@ -50,7 +59,7 @@ public class ClothStitch {
         this.suitType = suitType;
         this.clothType = clothType;
         this.stitchType = stitchType;
-        this.clothQuantity = clothQuantity;
+        this.suitQuantity = clothQuantity;
         this.suitStatus = suitStatus;
         this.suitAdvancePayment = suitAdvancePayment;
         this.suitRemainingPayment = suitRemainingPayment;
@@ -105,11 +114,11 @@ public class ClothStitch {
     }
 
     public String getClothQuantity() {
-        return clothQuantity;
+        return suitQuantity;
     }
 
     public void setClothQuantity(String clothQuantity) {
-        this.clothQuantity = clothQuantity;
+        this.suitQuantity = clothQuantity;
     }
 
     public boolean isSuitStatus() {
@@ -134,5 +143,5 @@ public class ClothStitch {
 
     public void setSuitRemainingPayment(long suitRemainingPayment) {
         this.suitRemainingPayment = suitRemainingPayment;
-    }
+    }*/
 }

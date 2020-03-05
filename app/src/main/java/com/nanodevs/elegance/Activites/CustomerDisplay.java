@@ -2,7 +2,9 @@ package com.nanodevs.elegance.Activites;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +22,25 @@ public class CustomerDisplay extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         init();
 
+        findViewById(R.id.placeStitchOrderBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(CustomerDisplay.this, StitchCloth.class);
+                intent.putExtra("customerUid",tvid.getText().toString() );
+                intent.putExtra("customerName",tvname.getText().toString());
+                intent.putExtra("customerContactNumber",tvphone.getText().toString());
+                intent.putExtra("customerMeasurementsDetails",tvmeasurements.getText().toString());
+                intent.putExtra("customerSuitDetails",tvdes.getText().toString());
+
+                startActivity(intent);
+
+
+            }
+        });
+
+
+
     }
 
     private void init() {
@@ -32,7 +53,7 @@ public class CustomerDisplay extends AppCompatActivity {
 
         if (getIntent()!=null){
 
-            tvid.setText(String.valueOf(getIntent().getLongExtra("customerId", 0)) );
+            tvid.setText(String.valueOf(getIntent().getLongExtra("customerId", 0)));
             tvname.setText(String.valueOf(getIntent().getStringExtra("cus_name")));
             tvphone.setText(String.valueOf(getIntent().getStringExtra("cus_phone")));
             tvmeasurements.setText(String.valueOf(getIntent().getStringExtra("cus_measurements")));

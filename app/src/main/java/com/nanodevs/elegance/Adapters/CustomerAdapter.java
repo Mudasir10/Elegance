@@ -46,7 +46,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.viewHo
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, final int position) {
 
-        holder.CusId.setText("Customer Id : " + customerList.get(position).getCustomerSerial());
+        holder.CusId.setText("Customer ID : " + customerList.get(position).getCustomerSerial());
         holder.CusName.setText("Customer Name : " + customerList.get(position).getCustomerName());
         holder.CusPhone.setText("Customer Phone : " + customerList.get(position).getCustomerContact());
 
@@ -55,7 +55,6 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.viewHo
             public void onClick(View v) {
 
                 Intent intent=new Intent(context, CustomerDisplay.class);
-                intent.putExtra("cus_id",customerList.get(position).getCustomerSerial());
                 intent.putExtra("customerId", customerList.get(position).getCustomerSerial());
                 intent.putExtra("cus_name",customerList.get(position).getCustomerName());
                 intent.putExtra("cus_phone",customerList.get(position).getCustomerContact());
