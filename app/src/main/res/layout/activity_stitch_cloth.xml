@@ -1,450 +1,451 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activites.StitchCloth">
 
-    <LinearLayout
-        android:id="@+id/linearLayoutClothDisplay"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_margin="5dp"
-        android:orientation="horizontal">
-
-        <com.mikhaellopez.circularimageview.CircularImageView
-            android:id="@+id/circularImage"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginStart="9dp"
-            android:layout_marginTop="9dp"
-            android:src="@drawable/boss"
-            app:civ_border_width="1dp"
-            app:civ_shadow="true"
-            app:civ_shadow_color="#8BC34A"
-            app:civ_shadow_radius="0" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="9dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginEnd="9dp"
-            android:orientation="vertical">
-
-
-            <TextView
-                android:id="@+id/customerClothSerialNo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:text="@string/customer_map_no"
-                android:textColor="@android:color/black"
-                android:textSize="19sp" />
-
-
-            <TextView
-                android:id="@+id/customerClothDisplayName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
-                android:singleLine="true"
-                android:text="@string/customer_name"
-                android:textColor="@android:color/black"
-                android:textSize="19sp" />
-
-
-            <TextView
-                android:id="@+id/customerClothDisplayContactNo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
-                android:singleLine="true"
-                android:text="@string/contact_no"
-                android:textColor="@android:color/black"
-                android:textSize="19sp" />
-
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/suitTypeLinearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayoutClothDisplay"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:orientation="horizontal">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="2dp"
-            android:text="@string/suit_type"
-            android:textColor="@android:color/black"
-            android:textSize="19sp"
-            android:textStyle="bold"
-
-            />
-
-
-        <Spinner
-            android:layout_marginTop="2dp"
-            android:id="@+id/suitSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginStart="20dp"
-
-            />
-
-
-    </LinearLayout>
-
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nestedScrollViewLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/suitTypeLinearLayout"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp">
-
-
-        <LinearLayout
-            android:id="@+id/ClothTypeLinearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="2dp"
-                    android:text="@string/boski"
-                    android:textColor="@android:color/black"
-                    android:textSize="19sp"
-                    android:textStyle="bold"
-
-                    />
-
-                <EditText
-                    android:id="@+id/boskiQtyEditText"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:enabled="false"
-                    android:hint="@string/cloth_quantity"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:padding="8dp"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textColorHint="@android:color/black" />
-
-                <Button
-                    android:id="@+id/boskDecrementButton"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="1dp"
-                    android:background="@drawable/ic_neg1" />
-
-                <Button
-                    android:id="@+id/boskiIncrementButton"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="22dp"
-                    android:background="@drawable/ic_pos1" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal">
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="2dp"
-                    android:text="@string/cotton"
-                    android:textColor="@android:color/black"
-                    android:textSize="19sp"
-                    android:textStyle="bold"
-
-                    />
-
-                <EditText
-                    android:id="@+id/cottonQtyEditText"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:enabled="false"
-                    android:hint="@string/cloth_quantity"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:padding="8dp"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textColorHint="@android:color/black" />
-
-                <Button
-                    android:id="@+id/cottonDecrementButton"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="1dp"
-                    android:layout_marginStart="30dp"
-                    android:background="@drawable/ic_neg1" />
-
-                <Button
-                    android:id="@+id/cottonIncrementButton"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="20dp"
-                    android:background="@drawable/ic_pos1" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal">
-
-
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="2dp"
-                    android:text="@string/khaadi"
-                    android:textColor="@android:color/black"
-                    android:textSize="19sp"
-                    android:textStyle="bold"
-
-                    />
-
-                <EditText
-                    android:id="@+id/khaadiQtyEditText"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="13dp"
-                    android:enabled="false"
-                    android:hint="@string/cloth_quantity"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:padding="8dp"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textColorHint="@android:color/black" />
-
-                <Button
-                    android:id="@+id/khaadiDecrementButton"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="1dp"
-                    android:layout_marginStart="30dp"
-                    android:background="@drawable/ic_neg1" />
-
-                <Button
-                    android:id="@+id/khaadiIncrementButton"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="21dp"
-                    android:background="@drawable/ic_pos1" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal">
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="2dp"
-                    android:text="@string/karandi"
-                    android:textColor="@android:color/black"
-                    android:textSize="19sp"
-                    android:textStyle="bold"
-
-                    />
-
-                <EditText
-                    android:id="@+id/karandiQtyEditText"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:enabled="false"
-                    android:hint="@string/cloth_quantity"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:padding="8dp"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textColorHint="@android:color/black" />
-
-                <Button
-                    android:id="@+id/karandiDecrementButton"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="1dp"
-                    android:layout_marginStart="30dp"
-                    android:background="@drawable/ic_neg1" />
-
-                <Button
-                    android:id="@+id/karandiIncrementButton"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="21dp"
-                    android:background="@drawable/ic_pos1" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal">
-
-
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="2dp"
-                    android:text="@string/lilan"
-                    android:textColor="@android:color/black"
-                    android:textSize="19sp"
-                    android:textStyle="bold"
-
-                    />
-
-                <EditText
-                    android:id="@+id/lilanQtyEditText"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="31dp"
-                    android:enabled="false"
-                    android:hint="@string/cloth_quantity"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:padding="8dp"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textColorHint="@android:color/black" />
-
-                <Button
-                    android:id="@+id/lilanDecrementButton"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="28dp"
-                    android:background="@drawable/ic_neg1" />
-
-                <Button
-                    android:id="@+id/lilanIncrementButton"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="17dp"
-                    android:background="@drawable/ic_pos1" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal">
-
-
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="2dp"
-                    android:text="@string/washing_wear"
-                    android:textColor="@android:color/black"
-                    android:textSize="19sp"
-                    android:textStyle="bold"
-
-                    />
-
-                <EditText
-                    android:id="@+id/wWearQtyEditText"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="6.1dp"
-                    android:enabled="false"
-                    android:hint="@string/cloth_quantity"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:padding="8dp"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/black"
-                    android:textColorHint="@android:color/black" />
-
-                <Button
-                    android:id="@+id/wWearDecrementButton"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="25dp"
-                    android:background="@drawable/ic_neg1" />
-
-                <Button
-                    android:id="@+id/wWearIncrementButton"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="20dp"
-                    android:background="@drawable/ic_pos1" />
-
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
-
-    <Button
-        android:id="@+id/addItemToCartBtn"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/nestedScrollViewLayout"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/round_button"
-        android:drawableEnd="@drawable/ic_add_cart"
-        android:text="@string/add_to_cart"
-        android:textColor="@android:color/white" />
-
-
-</RelativeLayout>
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       >
+
+       <LinearLayout
+           android:id="@+id/linearLayoutClothDisplay"
+           android:layout_width="match_parent"
+           android:layout_height="105dp"
+           android:layout_margin="5dp"
+           android:orientation="horizontal">
+
+           <com.mikhaellopez.circularimageview.CircularImageView
+               android:id="@+id/circularImage"
+               android:layout_width="80dp"
+               android:layout_height="80dp"
+               android:layout_marginStart="9dp"
+               android:layout_marginTop="9dp"
+               android:src="@drawable/boss"
+               app:civ_border_width="1dp"
+               app:civ_shadow="true"
+               app:civ_shadow_color="#8BC34A"
+               app:civ_shadow_radius="0" />
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:layout_marginStart="9dp"
+               android:layout_marginTop="9dp"
+               android:layout_marginEnd="9dp"
+               android:orientation="vertical">
+
+
+               <TextView
+                   android:id="@+id/customerClothSerialNo"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:singleLine="true"
+                   android:text="@string/customer_map_no"
+                   android:textColor="@android:color/black"
+                   android:textSize="19sp" />
+
+
+               <TextView
+                   android:id="@+id/customerClothDisplayName"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="7dp"
+                   android:singleLine="true"
+                   android:text="@string/customer_name"
+                   android:textColor="@android:color/black"
+                   android:textSize="19sp" />
+
+
+               <TextView
+                   android:id="@+id/customerClothDisplayContactNo"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="7dp"
+                   android:singleLine="true"
+                   android:text="@string/contact_no"
+                   android:textColor="@android:color/black"
+                   android:textSize="19sp" />
+
+
+           </LinearLayout>
+
+       </LinearLayout>
+
+       <LinearLayout
+           android:id="@+id/suitTypeLinearLayout"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_below="@+id/linearLayoutClothDisplay"
+            android:layout_margin="10dp"
+           android:orientation="horizontal">
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginStart="5dp"
+               android:layout_marginTop="2dp"
+               android:text="@string/suit_type"
+               android:textColor="@android:color/black"
+               android:textSize="19sp"
+               android:textStyle="bold"
+
+               />
+
+
+           <Spinner
+               android:layout_marginTop="2dp"
+               android:id="@+id/suitSpinner"
+               android:layout_width="match_parent"
+               android:layout_height="30dp"
+               android:layout_marginStart="20dp"
+
+               />
+
+
+       </LinearLayout>
+
+
+           <LinearLayout
+               android:id="@+id/ClothTypeLinearLayout"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_below="@+id/suitTypeLinearLayout"
+               android:orientation="vertical"
+               android:layout_margin="10dp">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:orientation="horizontal">
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="10dp"
+                       android:layout_marginTop="2dp"
+                       android:text="@string/boski"
+                       android:textColor="@android:color/black"
+                       android:textSize="19sp"
+                       android:textStyle="bold"
+
+                       />
+
+                   <EditText
+                       android:id="@+id/boskiQtyEditText"
+                       android:layout_width="120dp"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="24dp"
+                       android:enabled="false"
+                       android:hint="@string/cloth_quantity"
+                       android:inputType="number"
+                       android:maxLength="2"
+                       android:padding="8dp"
+                       android:textAlignment="center"
+                       android:textSize="18sp"
+                       android:textColor="#FF0000"
+                       android:textColorHint="@android:color/black" />
+
+                   <Button
+                       android:id="@+id/boskiDecrementButton"
+                       android:layout_width="40dp"
+                       android:layout_height="40dp"
+                       android:layout_marginStart="30dp"
+                       android:layout_marginTop="1dp"
+                       android:background="@drawable/ic_neg1" />
+
+                   <Button
+                       android:id="@+id/boskiIncrementButton"
+                       android:layout_width="40dp"
+                       android:layout_height="40dp"
+                       android:layout_marginStart="22dp"
+                       android:background="@drawable/ic_pos1" />
+
+
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_marginTop="15dp"
+                   android:orientation="horizontal">
+
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="10dp"
+                       android:layout_marginTop="2dp"
+                       android:text="@string/cotton"
+                       android:textColor="@android:color/black"
+                       android:textSize="19sp"
+                       android:textStyle="bold"
+
+                       />
+
+                   <EditText
+                       android:id="@+id/cottonQtyEditText"
+                       android:layout_width="120dp"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="15dp"
+                       android:enabled="false"
+                       android:hint="@string/cloth_quantity"
+                       android:inputType="number"
+                       android:maxLength="2"
+                       android:padding="8dp"
+                       android:textAlignment="center"
+                       android:textColor="#FF0000"
+                       android:textColorHint="@android:color/black" />
+
+                   <Button
+                       android:id="@+id/cottonDecrementButton"
+                       android:layout_width="40dp"
+                       android:layout_height="40dp"
+                       android:layout_marginTop="1dp"
+                       android:layout_marginStart="30dp"
+                       android:background="@drawable/ic_neg1" />
+
+                   <Button
+                       android:id="@+id/cottonIncrementButton"
+                       android:layout_width="40dp"
+                       android:layout_height="40dp"
+                       android:layout_marginStart="20dp"
+                       android:background="@drawable/ic_pos1" />
+
+
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_marginTop="15dp"
+                   android:orientation="horizontal">
+
+
+                   <TextView
+
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="10dp"
+                       android:layout_marginTop="2dp"
+                       android:text="@string/khaadi"
+                       android:textColor="@android:color/black"
+                       android:textSize="19sp"
+                       android:textStyle="bold"
+
+                       />
+
+                   <EditText
+                       android:id="@+id/khaadiQtyEditText"
+                       android:layout_width="120dp"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="13dp"
+                       android:enabled="false"
+                       android:hint="@string/cloth_quantity"
+                       android:inputType="number"
+                       android:maxLength="2"
+                       android:padding="8dp"
+                       android:textAlignment="center"
+                       android:textColor="#FF0000"
+                       android:textColorHint="@android:color/black" />
+
+                   <Button
+                       android:id="@+id/khaadiDecrementButton"
+                       android:layout_width="40dp"
+                       android:layout_height="40dp"
+                       android:layout_marginTop="1dp"
+                       android:layout_marginStart="30dp"
+                       android:background="@drawable/ic_neg1" />
+
+                   <Button
+                       android:id="@+id/khaadiIncrementButton"
+                       android:layout_width="40dp"
+                       android:layout_height="40dp"
+                       android:layout_marginStart="21dp"
+                       android:background="@drawable/ic_pos1" />
+
+
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_marginTop="15dp"
+                   android:orientation="horizontal">
+
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="10dp"
+                       android:layout_marginTop="2dp"
+                       android:text="@string/karandi"
+                       android:textColor="@android:color/black"
+                       android:textSize="19sp"
+                       android:textStyle="bold"
+
+                       />
+
+                   <EditText
+                       android:id="@+id/karandiQtyEditText"
+                       android:layout_width="120dp"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="6dp"
+                       android:enabled="false"
+                       android:hint="@string/cloth_quantity"
+                       android:inputType="number"
+                       android:maxLength="2"
+                       android:padding="8dp"
+                       android:textAlignment="center"
+                       android:textColor="#FF0000"
+                       android:textColorHint="@android:color/black" />
+
+                   <Button
+                       android:id="@+id/karandiDecrementButton"
+                       android:layout_width="40dp"
+                       android:layout_height="40dp"
+                       android:layout_marginTop="1dp"
+                       android:layout_marginStart="30dp"
+                       android:background="@drawable/ic_neg1" />
+
+                   <Button
+                       android:id="@+id/karandiIncrementButton"
+                       android:layout_width="40dp"
+                       android:layout_height="40dp"
+                       android:layout_marginStart="21dp"
+                       android:background="@drawable/ic_pos1" />
+
+
+               </LinearLayout>
+
+               <LinearLayout
+
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_marginTop="15dp"
+                   android:orientation="horizontal">
+
+
+                   <TextView
+
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="10dp"
+                       android:layout_marginTop="2dp"
+                       android:text="@string/lilan"
+                       android:textColor="@android:color/black"
+                       android:textSize="19sp"
+                       android:textStyle="bold"
+
+                       />
+
+                   <EditText
+                       android:id="@+id/lilanQtyEditText"
+                       android:layout_width="120dp"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="31dp"
+                       android:enabled="false"
+                       android:hint="@string/cloth_quantity"
+                       android:inputType="number"
+                       android:maxLength="2"
+                       android:padding="8dp"
+                       android:textAlignment="center"
+                       android:textColor="#FF0000"
+                       android:textColorHint="@android:color/black" />
+
+                   <Button
+                       android:id="@+id/lilanDecrementButton"
+                       android:layout_width="40dp"
+                       android:layout_height="40dp"
+                       android:layout_marginStart="28dp"
+                       android:background="@drawable/ic_neg1" />
+
+                   <Button
+                       android:id="@+id/lilanIncrementButton"
+                       android:layout_width="40dp"
+                       android:layout_height="40dp"
+                       android:layout_marginStart="17dp"
+                       android:background="@drawable/ic_pos1" />
+
+
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_marginTop="15dp"
+                   android:orientation="horizontal">
+
+
+                   <TextView
+
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="10dp"
+                       android:layout_marginTop="2dp"
+                       android:text="@string/washing_wear"
+                       android:textColor="@android:color/black"
+                       android:textSize="19sp"
+                       android:textStyle="bold"
+
+                       />
+
+                   <EditText
+                       android:id="@+id/wWearQtyEditText"
+                       android:layout_width="120dp"
+                       android:layout_height="wrap_content"
+                       android:layout_marginStart="6.1dp"
+                       android:enabled="false"
+                       android:hint="@string/cloth_quantity"
+                       android:inputType="number"
+                       android:maxLength="2"
+                       android:padding="8dp"
+                       android:textAlignment="center"
+                       android:textColor="#FF0000"
+                       android:textColorHint="@android:color/black" />
+
+                   <Button
+                       android:id="@+id/wWearDecrementButton"
+                       android:layout_width="40dp"
+                       android:layout_height="40dp"
+                       android:layout_marginStart="25dp"
+                       android:background="@drawable/ic_neg1" />
+
+                   <Button
+                       android:id="@+id/wWearIncrementButton"
+                       android:layout_width="40dp"
+                       android:layout_height="40dp"
+                       android:layout_marginStart="20dp"
+                       android:background="@drawable/ic_pos1" />
+
+
+               </LinearLayout>
+
+
+           </LinearLayout>
+
+
+
+       <Button
+           android:id="@+id/addItemToCartBtn"
+           android:layout_width="120dp"
+           android:layout_height="wrap_content"
+           android:layout_below="@id/ClothTypeLinearLayout"
+           android:layout_centerHorizontal="true"
+           android:layout_marginStart="10dp"
+           android:layout_marginTop="10dp"
+           android:background="@drawable/round_button"
+           android:drawableEnd="@drawable/ic_add_cart"
+           android:text="@string/add_to_cart"
+           android:textColor="@android:color/white" />
+
+
+
+
+   </RelativeLayout>
+
+
+</androidx.core.widget.NestedScrollView>
