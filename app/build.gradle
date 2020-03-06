@@ -39,6 +39,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:19.2.0'
 
     implementation 'com.mikhaellopez:circularimageview:3.2.0'
+    implementation 'com.nex3z:notification-badge:1.0.2'
 
 
 }

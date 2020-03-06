@@ -7,8 +7,6 @@
         android:icon="@drawable/ic_clothcart"
         android:title="@string/add_cloth_order"
         app:actionLayout="@layout/badge_menu"
-        app:showAsAction="ifRoom|collapseActionView" />
-
-
+        app:showAsAction="always" />
 
 </menu>

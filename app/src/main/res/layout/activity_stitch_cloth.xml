@@ -80,7 +80,7 @@
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:layout_below="@+id/linearLayoutClothDisplay"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
            android:orientation="horizontal">
 
            <TextView
@@ -115,9 +115,10 @@
                android:layout_height="wrap_content"
                android:layout_below="@+id/suitTypeLinearLayout"
                android:orientation="vertical"
-               android:layout_margin="10dp">
+               android:layout_margin="5dp">
 
                <LinearLayout
+                   android:id="@+id/boskiLayout"
                    android:layout_width="match_parent"
                    android:layout_height="match_parent"
                    android:orientation="horizontal">
@@ -168,6 +169,7 @@
                </LinearLayout>
 
                <LinearLayout
+                   android:id="@+id/cottonLayout"
                    android:layout_width="match_parent"
                    android:layout_height="match_parent"
                    android:layout_marginTop="15dp"
@@ -219,6 +221,7 @@
                </LinearLayout>
 
                <LinearLayout
+                   android:id="@+id/khaadiLayout"
                    android:layout_width="match_parent"
                    android:layout_height="match_parent"
                    android:layout_marginTop="15dp"
@@ -271,6 +274,7 @@
                </LinearLayout>
 
                <LinearLayout
+                   android:id="@+id/karandiLayout"
                    android:layout_width="match_parent"
                    android:layout_height="match_parent"
                    android:layout_marginTop="15dp"
@@ -322,7 +326,7 @@
                </LinearLayout>
 
                <LinearLayout
-
+                   android:id="@+id/lilanLayout"
                    android:layout_width="match_parent"
                    android:layout_height="match_parent"
                    android:layout_marginTop="15dp"
@@ -374,6 +378,7 @@
                </LinearLayout>
 
                <LinearLayout
+                   android:id="@+id/wWearLayout"
                    android:layout_width="match_parent"
                    android:layout_height="match_parent"
                    android:layout_marginTop="15dp"

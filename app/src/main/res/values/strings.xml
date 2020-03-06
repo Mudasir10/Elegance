@@ -37,6 +37,7 @@
     <string name="add_to_cart">Add To Cart</string>
     <string name="counter">Counter</string>
     <string name="add_cloth_order">Add Cloth Order</string>
+    <string name="place_order">Place Order</string>
 
 
 </resources>
