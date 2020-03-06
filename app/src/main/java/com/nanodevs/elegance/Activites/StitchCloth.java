@@ -6,6 +6,7 @@ import androidx.core.view.MenuItemCompat;
 
 import android.os.Bundle;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,11 +21,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.internal.service.Common;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.nanodevs.elegance.Pojo.Cart;
 import com.nanodevs.elegance.R;
 import com.nex3z.notificationbadge.NotificationBadge;
 
@@ -34,10 +38,13 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.sql.CommonDataSource;
 
 public class StitchCloth extends AppCompatActivity {
+    private  DatabaseReference cartRef = FirebaseDatabase.getInstance().getReference("Cart");
 
     private Button boskiPlusBtn, boksiMinusBtn;
     private Button cottonPlusBtn, cottonMinusBtn;
@@ -48,27 +55,27 @@ public class StitchCloth extends AppCompatActivity {
     private EditText boskiEditText, cottonEditText, karandiEditText, khaadiEditText, lilanEditText, wWearEditText;
     private Button addToCartBtn;
 
-    private long mCartItemCount =0;
+    private long mCartItemCount=0 ;
     private long boskiQty = 0, cottonQty = 0, karandiQty = 0, khaadiQty = 0, lilanQty = 0, wWearQty = 0;
     private NotificationBadge badge;
     private Spinner suitSpinner;
     private TextView clothOrderCustomerSerialNo, clothOrderCustomerName, clothOrderCustomerContact;
 
     private LinearLayout bLayout,cLayout,kaLayout,khLayout,lLayout,wlayout;
+    private int globalSpinnerPosition;
 
-
-    private  DatabaseReference cartRef = FirebaseDatabase.getInstance().getReference("ClothOrderDetails");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stitch_cloth);
         initComponents();
         handleButtonListener();
+        updateCartCount();
 
         suitSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                globalSpinnerPosition = position;
               String itemName= parent.getItemAtPosition(position).toString();
               if(itemName.equals("Kurta")) {
                   clearFields();
@@ -136,9 +143,7 @@ public class StitchCloth extends AppCompatActivity {
 
             }
         });
-
         if (getIntent() != null) {
-
             clothOrderCustomerSerialNo.setText(String.valueOf(getIntent().getStringExtra("customerUid")));
             clothOrderCustomerName.setText(String.valueOf(getIntent().getStringExtra("customerName")));
             clothOrderCustomerContact.setText(String.valueOf(getIntent().getStringExtra("customerContactNumber")));
@@ -217,7 +222,6 @@ public class StitchCloth extends AppCompatActivity {
             public void onClick(View v) {
                 karandiQty++;
                 karandiEditText.setText(String.valueOf(karandiQty));
-
             }
         });
 
@@ -303,14 +307,10 @@ public class StitchCloth extends AppCompatActivity {
         addToCartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCartItemCount=boskiQty+ cottonQty + karandiQty + khaadiQty + lilanQty + wWearQty;
 
-               if(mCartItemCount==0)
-                   Toast.makeText(StitchCloth.this, "Please select items to add in cart", Toast.LENGTH_SHORT).show();
-               else{
-                   saveCartItemsData();
-                   updateCartCount();
-               }
+                updateCartCount();
+                saveCartItemsData();
+                clearFields();
 
             }
         });
@@ -320,6 +320,23 @@ public class StitchCloth extends AppCompatActivity {
 
     private void saveCartItemsData() {
 
+        String suitTypeName=suitSpinner.getItemAtPosition(globalSpinnerPosition).toString();
+        if(boskiQty==0&&cottonQty==0&&
+        khaadiQty==0&&karandiQty==0&&lilanQty==0
+                &&wWearQty==0){
+            Toast.makeText(this, "Please select items to add to cart", Toast.LENGTH_SHORT).show();
+        }else{
+            Cart itemCart = new Cart(boskiQty,cottonQty,khaadiQty,karandiQty,lilanQty,wWearQty);
+            Map<String, Object> childUpdates = new HashMap<>();
+            childUpdates.put(cartRef.push().getKey()+"/"+suitTypeName,itemCart.toCartMap());
+            cartRef.updateChildren(childUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    Toast.makeText(StitchCloth.this, "Added", Toast.LENGTH_SHORT).show();
+                    updateCartCount();
+                }
+            });
+            }
 
     }
 
@@ -374,7 +391,6 @@ public class StitchCloth extends AppCompatActivity {
 
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -384,12 +400,48 @@ public class StitchCloth extends AppCompatActivity {
         badge = actionView.findViewById(R.id.badge);
 
 
+        actionView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              if(mCartItemCount==0)
+                  Toast.makeText(StitchCloth.this, "Cart is Empty", Toast.LENGTH_SHORT).show();
+              else {
+
+              }
+            }
+        });
+
+        badge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mCartItemCount==0)   Toast.makeText(StitchCloth.this, "Cart is Empty", Toast.LENGTH_SHORT).show();
+                else
+                    cartRef.removeValue();
+            }
+
+        });
+
+
 
         return true;
 
     }
 
+
     private void updateCartCount() {
+
+        cartRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mCartItemCount=dataSnapshot.getChildrenCount();
+                Log.d("MYTag", "onDataChange: "+mCartItemCount);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         if(badge==null) return;
         runOnUiThread(new Runnable() {
@@ -399,20 +451,8 @@ public class StitchCloth extends AppCompatActivity {
                     badge.setVisibility(View.INVISIBLE);
                 else{
                     badge.setVisibility(View.VISIBLE);
-                    cartRef.child(String.valueOf(clothOrderCustomerSerialNo)).child(getDateTime()).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                           mCartItemCount=dataSnapshot.getChildrenCount();
-                            badge.setText(String.valueOf(mCartItemCount));
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
+                    badge.setText(String.valueOf(mCartItemCount));
+                    Log.d("MYTag", "run: "+mCartItemCount);
                 }
             }
         });
@@ -423,9 +463,7 @@ public class StitchCloth extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (item.getItemId() == R.id.cartMenuActionBar) {
-            Toast.makeText(this, "Cart Clicked", Toast.LENGTH_SHORT).show();
-            return true;
+        if (item.getItemId() == R.id.badge) {
         }
         return super.onOptionsItemSelected(item);
     }
