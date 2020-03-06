@@ -9,23 +9,19 @@ public class Customer  {
     private long customerSerial;
     private String customerName;
     private String customerContact;
-    private String customerMeasurements;
-    private String suitDescription;
-
-
 
 
     public Customer() {
+
     }
 
-    public Customer(long customerSerial, String customerName, String customerContact,
-                    String customerMeasurements, String suitDescription) {
+    public Customer(long customerSerial, String customerName, String customerContact
+                    ) {
 
         this.customerSerial = customerSerial;
         this.customerName = customerName;
         this.customerContact = customerContact;
-        this.customerMeasurements = customerMeasurements;
-        this.suitDescription = suitDescription;
+
     }
 
 
@@ -36,9 +32,6 @@ public class Customer  {
         result.put("customerSerial",customerSerial);
         result.put("customerName",customerName);
         result.put("customerContact",customerContact);
-        result.put("customerMeasurements",customerMeasurements);
-        result.put("suitDescription",suitDescription);
-
         return result;
     }
 
@@ -56,13 +49,7 @@ public class Customer  {
         return customerContact;
     }
 
-    public String getCustomerMeasurements() {
-        return customerMeasurements;
-    }
 
-    public String getSuitDescription() {
-        return suitDescription;
-    }
 
 
     public void setCustomerSerial(long customerSerial) {
@@ -77,11 +64,5 @@ public class Customer  {
         this.customerContact = customerContact;
     }
 
-    public void setCustomerMeasurements(String customerMeasurements) {
-        this.customerMeasurements = customerMeasurements;
-    }
 
-    public void setSuitDescription(String suitDescription) {
-        this.suitDescription = suitDescription;
-    }
 }

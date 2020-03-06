@@ -1,9 +1,13 @@
 package com.nanodevs.elegance.Activites;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,7 +25,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.nanodevs.elegance.Pojo.Customer;
+import com.nanodevs.elegance.Pojo.Measurements;
 import com.nanodevs.elegance.R;
 
 import java.util.HashMap;
@@ -32,11 +38,11 @@ import static android.view.View.GONE;
 public class RegisterCustomerActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private DatabaseReference cusRef = FirebaseDatabase.getInstance().getReference("Customer");
-    private TextView customerName, customerContact, customerSerialNo;
+    private DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Measurements");
+    private EditText customerName, customerContact, customerSerialNo;
 
     private Spinner spinner;
 
-    private Button btnSaveCustomer;
     private long count;
     String SelectedCategory;
 
@@ -50,6 +56,7 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
         setContentView(R.layout.activity_register_customer);
 
         initComponents();
+        getSupportActionBar().setTitle("Add New Customer");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
@@ -68,7 +75,8 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
                 if (count < 1) {
                     count = 1;
                     customerSerialNo.setText(String.valueOf(count));
-                } else {
+                }
+                else{
                     count = count + 1;
                     customerSerialNo.setText(String.valueOf(count));
                 }
@@ -110,7 +118,7 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
         customerContact = findViewById(R.id.customerNumber);
         customerSerialNo = findViewById(R.id.customerSerialNo);
 
-        btnSaveCustomer = findViewById(R.id.btnSaveCustomer);
+
 
         spinner = findViewById(R.id.spinnerCategory);
 
@@ -121,66 +129,328 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
         spinner.setOnItemSelectedListener(this);
 
 
-        btnSaveCustomer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    }
+
+    private boolean isOnline() {
+        try {
+            return Runtime.getRuntime().exec("/system/bin/ping -c 1 8.8.8.8").waitFor() == 0; //  "8.8.8.8" is the server to ping
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
 
-            }
-        });
+
+
+    private void UploadDataForSuitCategory(){
+
+       String length=etLenght.getText().toString();
+       String Sleeves=etSleeves.getText().toString();
+       String shoulder= etShoulder.getText().toString();
+       String coler= etcolr.getText().toString();
+       String chest = etchest.getText().toString();
+       String stomachSize= etstomachSize.getText().toString();
+       String HipSize= ethipSize.getText().toString();
+       String armsSize= etarms.getText().toString();
+       String wristSize= etwrist.getText().toString();
+       String loosinHip= etloosinghip.getText().toString();
+       String loosingChest= etloosingchest.getText().toString();
+       String loosingStomach= etloosingstomach.getText().toString();
+       String des= etDescription.getText().toString();
+       String pentLength= etpentlength.getText().toString();
+       String pentBottom= etpentbottom.getText().toString();
+
+        Measurements measurements=new Measurements();
+        measurements.SetMeasurementsForSuit(length,Sleeves,shoulder,coler,chest,stomachSize,armsSize,wristSize,loosingChest,loosingStomach
+        ,des,HipSize,loosinHip,pentLength,pentBottom);
+
+        Map<String,Object> data= measurements.SuitToMap();
+        saveCustomerData(customerSerialNo.getText().toString(),customerName.getText().toString(),customerContact.getText().toString(),data,SelectedCategory);
 
     }
 
 
-  /*  private void saveCustomerData(String customerSerialNo, String customerName, String customerContact,
-                                  String customerDescription, String customerMeasurement) {
 
 
-        Customer customer = new Customer(Long.parseLong(customerSerialNo), customerName, customerContact,
-                customerMeasurement, customerDescription);
+    private void uploadDataForKurtaCategory() {
+
+        String length= etLenght.getText().toString();
+        String sleeve=  etSleeves.getText().toString();
+        String shoulder=  etShoulder.getText().toString();
+        String colr=  etcolr.getText().toString();
+        String chest= etchest.getText().toString();
+        String stomachsize=  etstomachSize.getText().toString();
+        String hipsize=  ethipSize.getText().toString();
+        String arms=  etarms.getText().toString();
+        String wrist= etwrist.getText().toString();
+        String loosingchest= etloosingchest.getText().toString();
+        String loosingstomach= etloosingstomach.getText().toString();
+        String loosinghip= etloosinghip.getText().toString();
+        String pentLenght= etpentlength.getText().toString();
+        String pentbottom= etpentbottom.getText().toString();
+        String desciption= etDescription.getText().toString();
+
+        Measurements measurements=new Measurements();
+        measurements.SetMeasurementsForKurta(length,sleeve,shoulder,colr,chest,stomachsize,hipsize,
+                arms,wrist,loosingchest,loosingstomach,loosinghip,pentLenght,pentbottom,desciption);
+
+        Map<String,Object> data= measurements.KurtatoMap();
+        saveCustomerData(customerSerialNo.getText().toString(),customerName.getText().toString(),customerContact.getText().toString(),data,SelectedCategory);
+
+
+    }
+
+
+    private void saveCustomerData(String customerSerialNo, String customerName, String customerContact,
+                               Map<String, Object> measurements, String SelectedCategory) {
+
+
+        Customer customer = new Customer(Long.parseLong(customerSerialNo), customerName, customerContact);
 
         Map<String, Object> postValues = customer.toCustomerMap();
-        Map<String, Object> childUpdates = new HashMap<>();
+        final Map<String, Object> childUpdates = new HashMap<>();
         childUpdates.put(cusRef.push().getKey(), postValues);
 
-        cusRef.updateChildren(childUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
+        Map<String,Object> data=new HashMap<>();
+        data.put(customerSerialNo+"/"+SelectedCategory,measurements);
+
+        databaseReference.updateChildren(data).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
 
-                if (task.isSuccessful()) {
-                    clearFields();
-                    Toast.makeText(RegisterCustomerActivity.this, "Customer Added SuccessFully ", Toast.LENGTH_SHORT).show();
-                } else
-                    Toast.makeText(RegisterCustomerActivity.this, "Task Failed", Toast.LENGTH_SHORT).show();
-            }
+                if (task.isSuccessful()){
+                    cusRef.updateChildren(childUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
 
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(RegisterCustomerActivity.this, "Task Failed : " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            if (task.isSuccessful()) {
+                                finish();
+                                Toast.makeText(RegisterCustomerActivity.this, "Customer Added SuccessFully ", Toast.LENGTH_SHORT).show();
+                            } else
+                                Toast.makeText(RegisterCustomerActivity.this, "Task Failed", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(RegisterCustomerActivity.this, "Task Failed : " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                }
+                else{
+                    Toast.makeText(RegisterCustomerActivity.this, "Failed To Upload", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
 
+
+
     }
 
-*/
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
 
-   /* private void clearFields() {
-        customerName.setText("");
-        customerContact.setText("");
+        getMenuInflater().inflate(R.menu.reg_cus_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
-    }*/
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
+        if (item.getItemId()==R.id.btndoneSaveCustomer){
+
+            AlertDialog.Builder builder=new AlertDialog.Builder(this);
+            builder.setTitle("Confirmation Message");
+            builder.setMessage("Are You Sure You Want to Save This Measurements");
+            builder.setCancelable(false);
+            builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    if (isOnline()){
+
+                        if (SelectedCategory.equals("Kurta")) {
+                            uploadDataForKurtaCategory();
+                            dialog.dismiss();
+                        } else if (SelectedCategory.equals("Shirt")) {
+                            uploadDataForShirtCategory();
+                            dialog.dismiss();
+                        } else if (SelectedCategory.equals("Suit")) {
+                            UploadDataForSuitCategory();
+                            dialog.dismiss();
+                        } else if (SelectedCategory.equals("Saffari Coat")) {
+                            UploadDataForSaffariCoat();
+                            dialog.dismiss();
+                        } else if (SelectedCategory.equals("Three Piece")) {
+                            UploadDataForThreePiece();
+                            dialog.dismiss();
+                        } else if (SelectedCategory.equals("Pant")) {
+                            UploadDataForPant();
+                            dialog.dismiss();
+                        } else if (SelectedCategory.equals("Waist Coat")) {
+                            UPloadDataForWaistCoat();
+                            dialog.dismiss();
+                        }
+
+                    }
+                    else{
+                        Toast.makeText(RegisterCustomerActivity.this, "Can not Save Customer Without Internet", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+            builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    dialog.cancel();
+                }
+            });
+
+            builder.create();
+            builder.show();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void UPloadDataForWaistCoat() {
+
+       String len= etLenght.getText().toString();
+       String shoulder=  etShoulder.getText().toString();
+       String colr=  etcolr.getText().toString();
+       String chest=  etchest.getText().toString();
+       String stomachSize= etstomachSize.getText().toString();
+       String loosinChest= etloosingchest.getText().toString();
+       String loosinstomach= etloosingstomach.getText().toString();
+       String des=  etDescription.getText().toString();
+
+        Measurements measurements = new Measurements();
+        measurements.SetMeasurementsForWaistCoat(len,shoulder,colr,chest,stomachSize,loosinChest,loosinstomach,des);
+
+        Map<String, Object> data = measurements.WaistCoattToMap();
+        saveCustomerData(customerSerialNo.getText().toString(), customerName.getText().toString(), customerContact.getText().toString(), data, SelectedCategory);
+
+
+
+
+
+    }
+
+    private void UploadDataForPant() {
+
+
+      String waist= etwaist.getText().toString();
+      String thigh= etthigh.getText().toString();
+      String hipSize= ethipSize.getText().toString();
+      String des= etDescription.getText().toString();
+      String pentLength = etpentlength.getText().toString();
+      String pentBottom= etpentbottom.getText().toString();
+
+        Measurements measurements = new Measurements();
+        measurements.SetMeasurementsForPant(thigh,waist,hipSize,des,pentLength,pentBottom);
+        Map<String, Object> data = measurements.PanttToMap();
+        saveCustomerData(customerSerialNo.getText().toString(), customerName.getText().toString(), customerContact.getText().toString(), data, SelectedCategory);
+
+
+
+
+
+
+    }
+
+    private void UploadDataForThreePiece() {
+
+
+       String len= etLenght.getText().toString();
+      String sel=  etSleeves.getText().toString();
+      String shoulder=  etShoulder.getText().toString();
+       String colr= etcolr.getText().toString();
+       String chest=  etchest.getText().toString();
+       String stomach= etstomachSize.getText().toString();
+       String hipSize= ethipSize.getText().toString();
+       String wristSize= etwrist.getText().toString();
+       String pentLength= etpentlength.getText().toString();
+       String pentBottom= etpentbottom.getText().toString();
+        String thigh = etthigh.getText().toString();
+       String waist= etwaist.getText().toString();
+       String des= etDescription.getText().toString();
+       String arms =etarms.getText().toString();
+
+
+        Measurements measurements = new Measurements();
+        measurements.SetMeasurementsForThreePiece(len,sel,shoulder,colr,chest,stomach,hipSize,wristSize,pentLength,pentBottom,thigh,waist,des,arms);
+
+        Map<String, Object> data = measurements.ThreePiecetToMap();
+        saveCustomerData(customerSerialNo.getText().toString(), customerName.getText().toString(), customerContact.getText().toString(), data, SelectedCategory);
+
+
+
+    }
+
+    private void UploadDataForSaffariCoat() {
+
+        //showing EditText
+
+        String len = etLenght.getText().toString();
+        String slev = etSleeves.getText().toString();
+        String shoulder = etShoulder.getText().toString();
+        String colr = etcolr.getText().toString();
+        String chest = etchest.getText().toString();
+        String stomachSize = etstomachSize.getText().toString();
+        String hipSize = ethipSize.getText().toString();
+        String wrist = etwrist.getText().toString();
+        String pentLength = etpentlength.getText().toString();
+        String pentBottom = etpentbottom.getText().toString();
+        String thigh = etthigh.getText().toString();
+        String waist = etwaist.getText().toString();
+        String des = etDescription.getText().toString();
+        String arms=etarms.getText().toString();
+
+
+        Measurements measurements = new Measurements();
+        measurements.SetMeasurementsForSaffariCoat(len, slev, shoulder, colr, chest, stomachSize, hipSize, wrist, pentLength, pentBottom, thigh, waist, des,arms);
+
+        Map<String, Object> data = measurements.SaffariCoatToMap();
+        saveCustomerData(customerSerialNo.getText().toString(), customerName.getText().toString(), customerContact.getText().toString(), data, SelectedCategory);
+
+
+
+    }
+
+    private void uploadDataForShirtCategory() {
+
+       String len= etLenght.getText().toString();
+       String Sleeves= etSleeves.getText().toString();
+       String shoulder= etShoulder.getText().toString();
+       String colr= etcolr.getText().toString();
+       String chest= etchest.getText().toString();
+       String stomachSize= etstomachSize.getText().toString();
+       String arms= etarms.getText().toString();
+       String wrist= etwrist.getText().toString();
+       String loosingChest= etloosingchest.getText().toString();
+       String loosingstomach= etloosingstomach.getText().toString();
+       String des= etDescription.getText().toString();
+
+        Measurements measurements=new Measurements();
+        measurements.SetMeasurementsForShirt(len,Sleeves,shoulder,colr,chest,stomachSize,arms,wrist,loosingChest,loosingstomach,des);
+
+        Map<String,Object> data= measurements.ShirttoMap();
+        saveCustomerData(customerSerialNo.getText().toString(),customerName.getText().toString(),customerContact.getText().toString(),data,SelectedCategory);
+
+    }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
         SelectedCategory = parent.getItemAtPosition(position).toString();
 
         if (SelectedCategory.equals("Kurta")){
 
             // Show these Text View
+            etLenght.setHint(" Kameez lenght");
             etLenght.setVisibility(View.VISIBLE);
             etSleeves.setVisibility(View.VISIBLE);
             etShoulder.setVisibility(View.VISIBLE);
@@ -193,8 +463,13 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
             etloosingchest.setVisibility(View.VISIBLE);
             etloosingstomach.setVisibility(View.VISIBLE);
             etloosinghip.setVisibility(View.VISIBLE);
+
+            etpentlength.setHint("Shalwar Length");
             etpentlength.setVisibility(View.VISIBLE);
+
+            etpentbottom.setHint("Shalwar bottom ");
             etpentbottom.setVisibility(View.VISIBLE);
+
             etDescription.setVisibility(View.VISIBLE);
 
             // hide these TextBoxes
@@ -204,6 +479,7 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
         else if(SelectedCategory.equals(("Shirt"))){
 
             // showText Views
+            etLenght.setHint("Shirt Lenght");
             etLenght.setVisibility(View.VISIBLE);
             etSleeves.setVisibility(View.VISIBLE);
             etShoulder.setVisibility(View.VISIBLE);
@@ -239,14 +515,13 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
             etstomachSize.setVisibility(View.VISIBLE);
             ethipSize.setVisibility(View.VISIBLE);
             etwrist.setVisibility(View.VISIBLE);
-
+            etarms.setVisibility(View.VISIBLE);
             etpentlength.setHint("pent Length");
             etpentlength.setVisibility(View.VISIBLE);
 
             etpentbottom.setHint("pent Bottom");
             etpentbottom.setVisibility(View.VISIBLE);
             etthigh.setVisibility(View.VISIBLE);
-            ethipSize.setVisibility(View.VISIBLE);
             etwaist.setVisibility(View.VISIBLE);
             etDescription.setVisibility(View.VISIBLE);
 
@@ -323,7 +598,6 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
             etcolr.setVisibility(View.VISIBLE);
             etchest.setVisibility(View.VISIBLE);
             etstomachSize.setVisibility(View.VISIBLE);
-            ethipSize.setVisibility(View.VISIBLE);
             etwrist.setVisibility(View.VISIBLE);
 
             etpentlength.setHint("pent Length");
@@ -335,6 +609,7 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
             ethipSize.setVisibility(View.VISIBLE);
             etwaist.setVisibility(View.VISIBLE);
             etDescription.setVisibility(View.VISIBLE);
+            etarms.setVisibility(View.VISIBLE);
 
             //hiding EditText
 
@@ -369,7 +644,6 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
             // hiding the Edit Text
             etwaist.setVisibility(GONE);
             etthigh.setVisibility(GONE);
-
 
         }
 

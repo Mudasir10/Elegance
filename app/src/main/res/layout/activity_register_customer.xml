@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -21,17 +21,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="4dp"
             android:text="@string/customer_register"
-            android:textColor="@color/colorPrimaryDark"
             android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHorizontal_bias="0.053"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
+
             android:id="@+id/customerSerialNo"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
@@ -47,12 +47,12 @@
 
 
         <EditText
+            android:imeOptions="actionNext"
             android:layout_margin="10dp"
             android:id="@+id/customerName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
-            android:textColorHint="@color/colorAccent"
             android:hint="@string/customer_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.555"
@@ -60,12 +60,12 @@
             app:layout_constraintTop_toBottomOf="@+id/customerSerialNo" />
 
         <EditText
+            android:imeOptions="actionDone"
             android:id="@+id/customerNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:hint="@string/contact_no"
-            android:textColorHint="@color/colorAccent"
             android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.555"
@@ -73,19 +73,6 @@
             app:layout_constraintTop_toBottomOf="@+id/customerName" />
 
 
-        <Button
-            android:id="@+id/btnSaveCustomer"
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/round_button"
-            android:drawableEnd="@drawable/ic_save"
-            android:text="@string/save_customer"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.96"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nestedScrollView" />
         <TextView
 
             android:textSize="15dp"
@@ -116,7 +103,7 @@
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:scrollbars="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -138,12 +125,13 @@
                     android:imeOptions="actionNext" />
 
                 <EditText
+                    android:imeOptions="actionNext"
                     android:inputType="numberDecimal"
                     android:id="@+id/act_reg_etsleeves"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Sleeves"
-                    android:imeOptions="actionDone" />
+                     />
 
                 <EditText
                     android:inputType="numberDecimal"
@@ -151,7 +139,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Shoulder"
-                    android:imeOptions="actionDone" />
+                    android:imeOptions="actionNext" />
 
                 <EditText
                     android:inputType="numberDecimal"
@@ -159,7 +147,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="coler"
-                    android:imeOptions="actionDone" />
+                    android:imeOptions="actionNext" />
 
                 <EditText
                     android:inputType="numberDecimal"
@@ -167,15 +155,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Chest"
-                    android:imeOptions="actionDone" />
+                    android:imeOptions="actionNext" />
 
                 <EditText
-                    android:inputType="numberDecimal"
                     android:id="@+id/act_reg_etstomach"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Stomach"
-                    android:imeOptions="actionDone" />
+                    android:imeOptions="actionNext"
+                    android:inputType="numberDecimal" />
 
                 <EditText
                     android:inputType="numberDecimal"
@@ -183,7 +171,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="hip Size"
-                    android:imeOptions="actionDone" />
+                    android:imeOptions="actionNext" />
 
                 <EditText
                     android:inputType="numberDecimal"
@@ -191,7 +179,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Arms"
-                    android:imeOptions="actionDone" />
+                    android:imeOptions="actionNext" />
 
                 <EditText
                     android:inputType="numberDecimal"
@@ -199,7 +187,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Wrist"
-                    android:imeOptions="actionDone" />
+                    android:imeOptions="actionNext" />
 
                 <EditText
                     android:inputType="numberDecimal"
@@ -207,7 +195,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Loosing Chest"
-                    android:imeOptions="actionDone" />
+                    android:imeOptions="actionNext" />
 
                 <EditText
                     android:inputType="numberDecimal"
@@ -215,7 +203,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Loosing Stomach"
-                    android:imeOptions="actionDone" />
+                    android:imeOptions="actionNext" />
 
                 <EditText
                     android:inputType="numberDecimal"
@@ -223,7 +211,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Loosing hip"
-                    android:imeOptions="actionDone" />
+                    android:imeOptions="actionNext" />
 
                 <EditText
                     android:inputType="numberDecimal"
@@ -231,7 +219,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Pent Length"
-                    android:imeOptions="actionDone" />
+                    android:imeOptions="actionNext" />
 
                 <EditText
                     android:inputType="numberDecimal"
@@ -239,7 +227,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Pent Bottom"
-                    android:imeOptions="actionDone" />
+                    android:imeOptions="actionNext" />
 
                 <EditText
                     android:inputType="numberDecimal"
@@ -247,7 +235,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Waist"
-                    android:imeOptions="actionDone" />
+                    android:imeOptions="actionNext" />
 
                 <EditText
                     android:inputType="numberDecimal"
@@ -255,9 +243,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Thigh"
-                    android:imeOptions="actionDone" />
+                    android:imeOptions="actionNext" />
 
                 <EditText
+
                     android:inputType="text"
                     android:id="@+id/act_reg_etdescription"
                     android:gravity="top|start"
@@ -278,7 +267,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
 
 
 

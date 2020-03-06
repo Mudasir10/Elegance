@@ -30,8 +30,6 @@ public class CustomerDisplay extends AppCompatActivity {
                 intent.putExtra("customerUid",tvid.getText().toString() );
                 intent.putExtra("customerName",tvname.getText().toString());
                 intent.putExtra("customerContactNumber",tvphone.getText().toString());
-                intent.putExtra("customerMeasurementsDetails",tvmeasurements.getText().toString());
-                intent.putExtra("customerSuitDetails",tvdes.getText().toString());
 
                 startActivity(intent);
 
@@ -56,8 +54,6 @@ public class CustomerDisplay extends AppCompatActivity {
             tvid.setText(String.valueOf(getIntent().getLongExtra("customerId", 0)));
             tvname.setText(String.valueOf(getIntent().getStringExtra("cus_name")));
             tvphone.setText(String.valueOf(getIntent().getStringExtra("cus_phone")));
-            tvmeasurements.setText(String.valueOf(getIntent().getStringExtra("cus_measurements")));
-            tvdes.setText(String.valueOf(getIntent().getStringExtra("suit_des")));
 
         }
 

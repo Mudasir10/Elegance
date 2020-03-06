@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nanodevs.elegance.Activites.CustomerDisplay;
+import com.nanodevs.elegance.Activites.UpdateMeasurements;
 import com.nanodevs.elegance.Pojo.Customer;
 import com.nanodevs.elegance.R;
 
@@ -57,9 +59,21 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.viewHo
                 intent.putExtra("customerId", customerList.get(position).getCustomerSerial());
                 intent.putExtra("cus_name",customerList.get(position).getCustomerName());
                 intent.putExtra("cus_phone",customerList.get(position).getCustomerContact());
-                intent.putExtra("cus_measurements",customerList.get(position).getCustomerMeasurements());
-                intent.putExtra("suit_des",customerList.get(position).getSuitDescription());
                 context.startActivity(intent);
+
+            }
+        });
+
+        holder.imageButtonUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(context, UpdateMeasurements.class);
+                intent.putExtra("customerId", customerList.get(position).getCustomerSerial());
+                intent.putExtra("cus_name",customerList.get(position).getCustomerName());
+                intent.putExtra("cus_phone",customerList.get(position).getCustomerContact());
+                context.startActivity(intent);
+
 
             }
         });
@@ -112,6 +126,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.viewHo
     class viewHolder extends RecyclerView.ViewHolder {
 
        private TextView CusId, CusName, CusPhone;
+       ImageButton imageButtonUpdate;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
@@ -119,8 +134,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.viewHo
             CusId = itemView.findViewById(R.id.customerDispId);
             CusName = itemView.findViewById(R.id.customerDispName);
             CusPhone = itemView.findViewById(R.id.customerDispContact);
-
-
+            imageButtonUpdate=itemView.findViewById(R.id.updateMeasurement);
 
         }
     }
