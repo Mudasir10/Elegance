@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
@@ -14,7 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.nanodevs.elegance.Activites.CustomerDisplay;
+import com.nanodevs.elegance.Activites.StitchCloth;
 import com.nanodevs.elegance.Activites.UpdateMeasurements;
 import com.nanodevs.elegance.Pojo.Customer;
 import com.nanodevs.elegance.R;
@@ -48,21 +49,9 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.viewHo
     public void onBindViewHolder(@NonNull viewHolder holder, final int position) {
 
         holder.CusId.setText("Customer ID : " + customerList.get(position).getCustomerSerial());
-        holder.CusName.setText("Customer Name : " + customerList.get(position).getCustomerName());
-        holder.CusPhone.setText("Customer Phone : " + customerList.get(position).getCustomerContact());
+        holder.CusName.setText("Name : " + customerList.get(position).getCustomerName());
+        holder.CusPhone.setText("Phone : " + customerList.get(position).getCustomerContact());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent=new Intent(context, CustomerDisplay.class);
-                intent.putExtra("customerId", customerList.get(position).getCustomerSerial());
-                intent.putExtra("cus_name",customerList.get(position).getCustomerName());
-                intent.putExtra("cus_phone",customerList.get(position).getCustomerContact());
-                context.startActivity(intent);
-
-            }
-        });
 
         holder.imageButtonUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +66,19 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.viewHo
 
             }
         });
+
+        holder.placeStitchOrderBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, StitchCloth.class);
+                intent.putExtra("customerId",String.valueOf(customerList.get(position).getCustomerSerial()) );
+                intent.putExtra("cus_name",customerList.get(position).getCustomerName());
+                intent.putExtra("cus_phone",customerList.get(position).getCustomerContact());
+                context.startActivity(intent);
+
+            }
+        });
+
 
 
     }
@@ -126,7 +128,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.viewHo
     class viewHolder extends RecyclerView.ViewHolder {
 
        private TextView CusId, CusName, CusPhone;
-       ImageButton imageButtonUpdate;
+       Button imageButtonUpdate,placeStitchOrderBtn;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
@@ -135,6 +137,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.viewHo
             CusName = itemView.findViewById(R.id.customerDispName);
             CusPhone = itemView.findViewById(R.id.customerDispContact);
             imageButtonUpdate=itemView.findViewById(R.id.updateMeasurement);
+            placeStitchOrderBtn=itemView.findViewById(R.id.callStitchOrder);
 
         }
     }

@@ -44,7 +44,7 @@ import java.util.Map;
 import javax.sql.CommonDataSource;
 
 public class StitchCloth extends AppCompatActivity {
-    private  DatabaseReference cartRef = FirebaseDatabase.getInstance().getReference("Cart");
+    private DatabaseReference cartRef = FirebaseDatabase.getInstance().getReference("Cart");
 
     private Button boskiPlusBtn, boksiMinusBtn;
     private Button cottonPlusBtn, cottonMinusBtn;
@@ -55,14 +55,15 @@ public class StitchCloth extends AppCompatActivity {
     private EditText boskiEditText, cottonEditText, karandiEditText, khaadiEditText, lilanEditText, wWearEditText;
     private Button addToCartBtn;
 
-    private long mCartItemCount=0 ;
+    private long mCartItemCount = 0;
     private long boskiQty = 0, cottonQty = 0, karandiQty = 0, khaadiQty = 0, lilanQty = 0, wWearQty = 0;
     private NotificationBadge badge;
     private Spinner suitSpinner;
     private TextView clothOrderCustomerSerialNo, clothOrderCustomerName, clothOrderCustomerContact;
 
-    private LinearLayout bLayout,cLayout,kaLayout,khLayout,lLayout,wlayout;
+    private LinearLayout bLayout, cLayout, kaLayout, khLayout, lLayout, wlayout;
     private int globalSpinnerPosition;
+    private String key=cartRef.push().getKey();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,64 +77,64 @@ public class StitchCloth extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 globalSpinnerPosition = position;
-              String itemName= parent.getItemAtPosition(position).toString();
-              if(itemName.equals("Kurta")) {
-                  clearFields();
-                  cLayout.setVisibility(View.VISIBLE);
-                  bLayout.setVisibility(View.VISIBLE);
-                  kaLayout.setVisibility(View.VISIBLE);
-                  khLayout.setVisibility(View.VISIBLE);
-                  lLayout.setVisibility(View.VISIBLE);
-                  wlayout.setVisibility(View.VISIBLE);
-              }else if (itemName.equals("Shirt")){
-                  cLayout.setVisibility(View.VISIBLE);
-                  bLayout.setVisibility(View.VISIBLE);
-                  kaLayout.setVisibility(View.VISIBLE);
-                  khLayout.setVisibility(View.VISIBLE);
-                  lLayout.setVisibility(View.VISIBLE);
-                  wlayout.setVisibility(View.VISIBLE);
-                  clearFields();
-              }else if (itemName.equals("Suit")){
-                  cLayout.setVisibility(View.VISIBLE);
-                  cLayout.setVisibility(View.VISIBLE);
-                  bLayout.setVisibility(View.VISIBLE);
-                  kaLayout.setVisibility(View.VISIBLE);
-                  lLayout.setVisibility(View.VISIBLE);
-                  wlayout.setVisibility(View.VISIBLE);
-                  clearFields();
-              }else if (itemName.equals("Saffari Coat")){
-                  cLayout.setVisibility(View.GONE);
-                  bLayout.setVisibility(View.GONE);
-                  kaLayout.setVisibility(View.GONE);
-                  khLayout.setVisibility(View.GONE);
-                  lLayout.setVisibility(View.GONE);
-                  clearFields();
-              }else if (itemName.equals("Three Piece")){
-                  bLayout.setVisibility(View.GONE);
-                  kaLayout.setVisibility(View.GONE);
-                  lLayout.setVisibility(View.GONE);
-                  cLayout.setVisibility(View.VISIBLE);
-                  khLayout.setVisibility(View.VISIBLE);
-                  wlayout.setVisibility(View.VISIBLE);
-                  clearFields();
-              }else if (itemName.equals("Pant")){
-                  bLayout.setVisibility(View.GONE);
-                  kaLayout.setVisibility(View.GONE);
-                  lLayout.setVisibility(View.GONE);
-                  cLayout.setVisibility(View.VISIBLE);
-                  khLayout.setVisibility(View.VISIBLE);
-                  wlayout.setVisibility(View.VISIBLE);
-                  clearFields();
-              }else if (itemName.equals("Waist Coat")){
-                  bLayout.setVisibility(View.GONE);
-                  kaLayout.setVisibility(View.GONE);
-                  lLayout.setVisibility(View.GONE);
-                  cLayout.setVisibility(View.VISIBLE);
-                  khLayout.setVisibility(View.VISIBLE);
-                  wlayout.setVisibility(View.VISIBLE);
-                  clearFields();
-              }else
-                  Toast.makeText(StitchCloth.this, "InValid Input !", Toast.LENGTH_SHORT).show();
+                String itemName = parent.getItemAtPosition(position).toString();
+                if (itemName.equals("Kurta")) {
+                    clearFields();
+                    cLayout.setVisibility(View.VISIBLE);
+                    bLayout.setVisibility(View.VISIBLE);
+                    kaLayout.setVisibility(View.VISIBLE);
+                    khLayout.setVisibility(View.VISIBLE);
+                    lLayout.setVisibility(View.VISIBLE);
+                    wlayout.setVisibility(View.VISIBLE);
+                } else if (itemName.equals("Shirt")) {
+                    cLayout.setVisibility(View.VISIBLE);
+                    bLayout.setVisibility(View.VISIBLE);
+                    kaLayout.setVisibility(View.VISIBLE);
+                    khLayout.setVisibility(View.VISIBLE);
+                    lLayout.setVisibility(View.VISIBLE);
+                    wlayout.setVisibility(View.VISIBLE);
+                    clearFields();
+                } else if (itemName.equals("Suit")) {
+                    cLayout.setVisibility(View.VISIBLE);
+                    cLayout.setVisibility(View.VISIBLE);
+                    bLayout.setVisibility(View.VISIBLE);
+                    kaLayout.setVisibility(View.VISIBLE);
+                    lLayout.setVisibility(View.VISIBLE);
+                    wlayout.setVisibility(View.VISIBLE);
+                    clearFields();
+                } else if (itemName.equals("Saffari Coat")) {
+                    cLayout.setVisibility(View.GONE);
+                    bLayout.setVisibility(View.GONE);
+                    kaLayout.setVisibility(View.GONE);
+                    khLayout.setVisibility(View.GONE);
+                    lLayout.setVisibility(View.GONE);
+                    clearFields();
+                } else if (itemName.equals("Three Piece")) {
+                    bLayout.setVisibility(View.GONE);
+                    kaLayout.setVisibility(View.GONE);
+                    lLayout.setVisibility(View.GONE);
+                    cLayout.setVisibility(View.VISIBLE);
+                    khLayout.setVisibility(View.VISIBLE);
+                    wlayout.setVisibility(View.VISIBLE);
+                    clearFields();
+                } else if (itemName.equals("Pant")) {
+                    bLayout.setVisibility(View.GONE);
+                    kaLayout.setVisibility(View.GONE);
+                    lLayout.setVisibility(View.GONE);
+                    cLayout.setVisibility(View.VISIBLE);
+                    khLayout.setVisibility(View.VISIBLE);
+                    wlayout.setVisibility(View.VISIBLE);
+                    clearFields();
+                } else if (itemName.equals("Waist Coat")) {
+                    bLayout.setVisibility(View.GONE);
+                    kaLayout.setVisibility(View.GONE);
+                    lLayout.setVisibility(View.GONE);
+                    cLayout.setVisibility(View.VISIBLE);
+                    khLayout.setVisibility(View.VISIBLE);
+                    wlayout.setVisibility(View.VISIBLE);
+                    clearFields();
+                } else
+                    Toast.makeText(StitchCloth.this, "InValid Input !", Toast.LENGTH_SHORT).show();
 
 
             }
@@ -144,9 +145,10 @@ public class StitchCloth extends AppCompatActivity {
             }
         });
         if (getIntent() != null) {
-            clothOrderCustomerSerialNo.setText(String.valueOf(getIntent().getStringExtra("customerUid")));
-            clothOrderCustomerName.setText(String.valueOf(getIntent().getStringExtra("customerName")));
-            clothOrderCustomerContact.setText(String.valueOf(getIntent().getStringExtra("customerContactNumber")));
+
+           clothOrderCustomerSerialNo.setText(String.valueOf(getIntent().getStringExtra("customerId")));
+            clothOrderCustomerName.setText(getIntent().getStringExtra("cus_name"));
+            clothOrderCustomerContact.setText(String.valueOf(getIntent().getStringExtra("cus_phone")));
 
         }
 
@@ -303,7 +305,6 @@ public class StitchCloth extends AppCompatActivity {
             }
         });
 
-
         addToCartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -315,20 +316,20 @@ public class StitchCloth extends AppCompatActivity {
             }
         });
 
-
     }
 
     private void saveCartItemsData() {
-
-        String suitTypeName=suitSpinner.getItemAtPosition(globalSpinnerPosition).toString();
-        if(boskiQty==0&&cottonQty==0&&
-        khaadiQty==0&&karandiQty==0&&lilanQty==0
-                &&wWearQty==0){
+        String suitTypeName = suitSpinner.getItemAtPosition(globalSpinnerPosition).toString();
+        if (boskiQty == 0 && cottonQty == 0 &&
+                khaadiQty == 0 && karandiQty == 0 && lilanQty == 0
+                && wWearQty == 0) {
             Toast.makeText(this, "Please select items to add to cart", Toast.LENGTH_SHORT).show();
-        }else{
-            Cart itemCart = new Cart(boskiQty,cottonQty,khaadiQty,karandiQty,lilanQty,wWearQty);
+        }else {
+            Cart itemCart = new Cart(boskiQty, cottonQty, khaadiQty, karandiQty, lilanQty, wWearQty);
             Map<String, Object> childUpdates = new HashMap<>();
-            childUpdates.put(cartRef.push().getKey()+"/"+suitTypeName,itemCart.toCartMap());
+
+            childUpdates.put(clothOrderCustomerSerialNo.getText()+ "/"+ key+ "/"+suitTypeName, itemCart.toCartMap());
+
             cartRef.updateChildren(childUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
@@ -336,7 +337,7 @@ public class StitchCloth extends AppCompatActivity {
                     updateCartCount();
                 }
             });
-            }
+        }
 
     }
 
@@ -394,33 +395,33 @@ public class StitchCloth extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-       getMenuInflater().inflate(R.menu.cart_menu, menu);
+        getMenuInflater().inflate(R.menu.cart_menu, menu);
 
         View actionView = menu.findItem(R.id.cartMenuActionBar).getActionView();
         badge = actionView.findViewById(R.id.badge);
 
-
         actionView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              if(mCartItemCount==0)
-                  Toast.makeText(StitchCloth.this, "Cart is Empty", Toast.LENGTH_SHORT).show();
-              else {
+                if (mCartItemCount == 0)
+                    Toast.makeText(StitchCloth.this, "Cart is Empty", Toast.LENGTH_SHORT).show();
+                else {
 
-              }
+                }
             }
         });
 
         badge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mCartItemCount==0)   Toast.makeText(StitchCloth.this, "Cart is Empty", Toast.LENGTH_SHORT).show();
+                if (mCartItemCount == 0)
+                    Toast.makeText(StitchCloth.this, "Cart is Empty", Toast.LENGTH_SHORT).show();
                 else
-                    cartRef.removeValue();
+                cartRef.child(String.valueOf(clothOrderCustomerSerialNo.getText())).removeValue();
+
             }
 
         });
-
 
 
         return true;
@@ -430,11 +431,11 @@ public class StitchCloth extends AppCompatActivity {
 
     private void updateCartCount() {
 
-        cartRef.addValueEventListener(new ValueEventListener() {
+        cartRef.child(String.valueOf(clothOrderCustomerSerialNo.getText())).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                mCartItemCount=dataSnapshot.getChildrenCount();
-                Log.d("MYTag", "onDataChange: "+mCartItemCount);
+                mCartItemCount = dataSnapshot.getChildrenCount();
+                Log.d("MYTag", "onDataChange: " + mCartItemCount);
             }
 
             @Override
@@ -442,17 +443,16 @@ public class StitchCloth extends AppCompatActivity {
 
             }
         });
-
-        if(badge==null) return;
+        if (badge == null) return;
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if(mCartItemCount==0)
+                if (mCartItemCount == 0)
                     badge.setVisibility(View.INVISIBLE);
-                else{
+                else {
                     badge.setVisibility(View.VISIBLE);
                     badge.setText(String.valueOf(mCartItemCount));
-                    Log.d("MYTag", "run: "+mCartItemCount);
+                    Log.d("MYTag", "run: " + mCartItemCount);
                 }
             }
         });
