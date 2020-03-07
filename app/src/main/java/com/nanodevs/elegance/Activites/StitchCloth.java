@@ -350,6 +350,7 @@ public class StitchCloth extends AppCompatActivity {
         lilanPlusBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 lilanQty++;
                 lilanEditText.setText(String.valueOf(lilanQty));
 

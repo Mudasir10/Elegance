@@ -116,7 +116,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etlength"
-                    android:hint="Length"
+                    android:hint="Length        لمبائی"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -133,7 +133,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etsleeves"
-                    android:hint="Sleeves"
+                    android:hint="Sleeves       آستین"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -149,7 +149,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etshoulder"
-                    android:hint="Shoulder"
+                    android:hint="Shoulder      کندھا"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -166,7 +166,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etcoler"
-                    android:hint="coler"
+                    android:hint="coler     کالر"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -183,7 +183,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etchest"
-                    android:hint="Chest"
+                    android:hint="Chest     سینہ"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -199,7 +199,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etstomach"
-                    android:hint="Stomach"
+                    android:hint="Stomach       پیٹ"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -215,7 +215,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_ethipsize"
-                    android:hint="hip Size"
+                    android:hint="hip Size      ہپ"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -231,7 +231,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etarms"
-                    android:hint="Arms"
+                    android:hint="Arms      بازو"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -248,7 +248,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etwrist"
-                    android:hint="Wrist"
+                    android:hint="Wrist     کلائی"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -264,7 +264,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etloosingchest"
-                    android:hint="Loosing Chest"
+                    android:hint="Loosing Chest     سینے کا ڈھیلا"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -281,7 +281,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etloosingstomach"
-                    android:hint="Loosing Stomach"
+                    android:hint="Loosing Stomach       پیٹ ڈھیلا"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -298,7 +298,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etloosinghip"
-                    android:hint="Loosing hip"
+                    android:hint="Loosing hip       ڈھیلے ہپ"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -317,7 +317,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etpentlength"
-                    android:hint="Pent Length"
+                    android:hint="Pent Length       شلوار کی لمبائی"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -333,7 +333,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etpentbottom"
-                    android:hint="Pent Bottom"
+                    android:hint="Pent Bottom       شلوار نیچے"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -350,7 +350,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etwaist"
-                    android:hint="Waist"
+                    android:hint="Waist     کمر"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -367,7 +367,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etthigh"
-                    android:hint="Thigh"
+                    android:hint="Thigh     ران"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -385,7 +385,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etdescription"
-                    android:hint="Description :"
+                    android:hint="Description :     تفصیل"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
