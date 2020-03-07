@@ -42,6 +42,7 @@
     <string name="discount">Discount</string>
     <string name="advance_payment">Advance Payment</string>
     <string name="balance">Balance</string>
+    <string name="delete_order">Delete Order</string>
 
 
 </resources>
