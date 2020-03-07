@@ -116,13 +116,14 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/act_reg_etlength"
                     android:hint="Length"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <EditText
                         android:inputType="numberDecimal"
-                        android:id="@+id/act_reg_etlength"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:imeOptions="actionNext" />
@@ -132,6 +133,7 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/act_reg_etsleeves"
                     android:hint="Sleeves"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -139,7 +141,7 @@
                     <EditText
                         android:imeOptions="actionNext"
                         android:inputType="numberDecimal"
-                        android:id="@+id/act_reg_etsleeves"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -147,13 +149,14 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/act_reg_etshoulder"
                     android:hint="Shoulder"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <EditText
                         android:inputType="numberDecimal"
-                        android:id="@+id/act_reg_etshoulder"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:imeOptions="actionNext" />
@@ -163,13 +166,14 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/act_reg_etcoler"
                     android:hint="coler"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <EditText
                         android:inputType="numberDecimal"
-                        android:id="@+id/act_reg_etcoler"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:imeOptions="actionNext" />
@@ -179,13 +183,14 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/act_reg_etchest"
                     android:hint="Chest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <EditText
                         android:inputType="numberDecimal"
-                        android:id="@+id/act_reg_etchest"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:imeOptions="actionNext" />
@@ -194,12 +199,13 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/act_reg_etstomach"
                     android:hint="Stomach"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/act_reg_etstomach"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:imeOptions="actionNext"
@@ -209,13 +215,14 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/act_reg_ethipsize"
                     android:hint="hip Size"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <EditText
                         android:inputType="numberDecimal"
-                        android:id="@+id/act_reg_ethipsize"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:imeOptions="actionNext" />
@@ -224,13 +231,14 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/act_reg_etarms"
                     android:hint="Arms"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <EditText
                         android:inputType="numberDecimal"
-                        android:id="@+id/act_reg_etarms"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:imeOptions="actionNext" />
@@ -240,13 +248,14 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/act_reg_etwrist"
                     android:hint="Wrist"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <EditText
                         android:inputType="numberDecimal"
-                        android:id="@+id/act_reg_etwrist"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:imeOptions="actionNext" />
@@ -255,13 +264,14 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/act_reg_etloosingchest"
                     android:hint="Loosing Chest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <EditText
                         android:inputType="numberDecimal"
-                        android:id="@+id/act_reg_etloosingchest"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:imeOptions="actionNext" />
@@ -271,13 +281,14 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/act_reg_etloosingstomach"
                     android:hint="Loosing Stomach"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <EditText
                         android:inputType="numberDecimal"
-                        android:id="@+id/act_reg_etloosingstomach"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:imeOptions="actionNext" />
@@ -287,13 +298,14 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/act_reg_etloosinghip"
                     android:hint="Loosing hip"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <EditText
                         android:inputType="numberDecimal"
-                        android:id="@+id/act_reg_etloosinghip"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:imeOptions="actionNext" />
@@ -305,13 +317,14 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/act_reg_etpentlength"
                     android:hint="Pent Length"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <EditText
                         android:inputType="numberDecimal"
-                        android:id="@+id/act_reg_etpentlength"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:imeOptions="actionNext" />
@@ -320,13 +333,14 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/act_reg_etpentbottom"
                     android:hint="Pent Bottom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <EditText
                         android:inputType="numberDecimal"
-                        android:id="@+id/act_reg_etpentbottom"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:imeOptions="actionNext" />
@@ -336,13 +350,14 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/act_reg_etwaist"
                     android:hint="Waist"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <EditText
                         android:inputType="numberDecimal"
-                        android:id="@+id/act_reg_etwaist"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:imeOptions="actionNext" />
@@ -352,13 +367,14 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/act_reg_etthigh"
                     android:hint="Thigh"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <EditText
                         android:inputType="numberDecimal"
-                        android:id="@+id/act_reg_etthigh"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
 
@@ -369,13 +385,14 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/act_reg_etdescription"
                     android:hint="Description :"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <EditText
                         android:inputType="text"
-                        android:id="@+id/act_reg_etdescription"
+
                         android:gravity="top|start"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
