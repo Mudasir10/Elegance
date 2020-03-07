@@ -39,7 +39,7 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
     String SelectedCategory;
 
-    EditText etLenght, etShoulder, etSleeves, etcolr, etchest, etstomachSize, ethipSize, etarms, etwrist, etloosingchest, etloosingstomach,
+    private  EditText etLenght, etShoulder, etSleeves, etcolr, etchest, etstomachSize, ethipSize, etarms, etwrist, etloosingchest, etloosingstomach,
             etloosinghip, etpentlength, etpentbottom, etwaist, etthigh, etDescription;
 
     @Override
