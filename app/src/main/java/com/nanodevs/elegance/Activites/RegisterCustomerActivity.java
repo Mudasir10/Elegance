@@ -647,7 +647,6 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
 
         }
 
-
     }
 
     @Override

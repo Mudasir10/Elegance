@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,10 +38,10 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
     private DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Measurements");
     private Spinner spinner;
 
-    String SelectedCategory;
-
-    private  EditText etLenght, etShoulder, etSleeves, etcolr, etchest, etstomachSize, ethipSize, etarms, etwrist, etloosingchest, etloosingstomach,
+    private String SelectedCategory;
+    private TextInputLayout etLenght, etShoulder, etSleeves, etcolr, etchest, etstomachSize, ethipSize, etarms, etwrist, etloosingchest, etloosingstomach,
             etloosinghip, etpentlength, etpentbottom, etwaist, etthigh, etDescription;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,14 +140,14 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
     private void UpdateDataForWaistCoatCategory() {
 
-        String len= etLenght.getText().toString();
-        String shoulder=  etShoulder.getText().toString();
-        String colr=  etcolr.getText().toString();
-        String chest=  etchest.getText().toString();
-        String stomachSize= etstomachSize.getText().toString();
-        String loosinChest= etloosingchest.getText().toString();
-        String loosinstomach= etloosingstomach.getText().toString();
-        String des=  etDescription.getText().toString();
+        String len= etLenght.getEditText().getText().toString();
+        String shoulder=  etShoulder.getEditText().getText().toString();
+        String colr=  etcolr.getEditText().getText().toString();
+        String chest=  etchest.getEditText().getText().toString();
+        String stomachSize= etstomachSize.getEditText().getText().toString();
+        String loosinChest= etloosingchest.getEditText().getText().toString();
+        String loosinstomach= etloosingstomach.getEditText().getText().toString();
+        String des=  etDescription.getEditText().getText().toString();
 
         Measurements measurements = new Measurements();
         measurements.SetMeasurementsForWaistCoat(len,shoulder,colr,chest,stomachSize,loosinChest,loosinstomach,des);
@@ -157,12 +158,12 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
     private void UpdateDataForPantCategory() {
 
-        String waist= etwaist.getText().toString();
-        String thigh= etthigh.getText().toString();
-        String hipSize= ethipSize.getText().toString();
-        String des= etDescription.getText().toString();
-        String pentLength = etpentlength.getText().toString();
-        String pentBottom= etpentbottom.getText().toString();
+        String waist= etwaist.getEditText().getText().toString();
+        String thigh= etthigh.getEditText().getText().toString();
+        String hipSize= ethipSize.getEditText().getText().toString();
+        String des= etDescription.getEditText().getText().toString();
+        String pentLength = etpentlength.getEditText().getText().toString();
+        String pentBottom= etpentbottom.getEditText().getText().toString();
 
         Measurements measurements = new Measurements();
         measurements.SetMeasurementsForPant(thigh,waist,hipSize,des,pentLength,pentBottom);
@@ -173,20 +174,20 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
     private void UpdateDataForThreePieceCategory() {
 
-        String len= etLenght.getText().toString();
-        String sel=  etSleeves.getText().toString();
-        String shoulder=  etShoulder.getText().toString();
-        String colr= etcolr.getText().toString();
-        String chest=  etchest.getText().toString();
-        String stomach= etstomachSize.getText().toString();
-        String hipSize= ethipSize.getText().toString();
-        String wristSize= etwrist.getText().toString();
-        String pentLength= etpentlength.getText().toString();
-        String pentBottom= etpentbottom.getText().toString();
-        String thigh = etthigh.getText().toString();
-        String waist= etwaist.getText().toString();
-        String des= etDescription.getText().toString();
-        String arms =etarms.getText().toString();
+        String len= etLenght.getEditText().getText().toString();
+        String sel=  etSleeves.getEditText().getText().toString();
+        String shoulder=  etShoulder.getEditText().getText().toString();
+        String colr= etcolr.getEditText().getText().toString();
+        String chest=  etchest.getEditText().getText().toString();
+        String stomach= etstomachSize.getEditText().getText().toString();
+        String hipSize= ethipSize.getEditText().getText().toString();
+        String wristSize= etwrist.getEditText().getText().toString();
+        String pentLength= etpentlength.getEditText().getText().toString();
+        String pentBottom= etpentbottom.getEditText().getText().toString();
+        String thigh = etthigh.getEditText().getText().toString();
+        String waist= etwaist.getEditText().getText().toString();
+        String des= etDescription.getEditText().getText().toString();
+        String arms =etarms.getEditText().getText().toString();
 
 
         Measurements measurements = new Measurements();
@@ -200,20 +201,20 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
     private void UpdateDataForSaffariCoatCategory() {
 
-        String len = etLenght.getText().toString();
-        String slev = etSleeves.getText().toString();
-        String shoulder = etShoulder.getText().toString();
-        String colr = etcolr.getText().toString();
-        String chest = etchest.getText().toString();
-        String stomachSize = etstomachSize.getText().toString();
-        String hipSize = ethipSize.getText().toString();
-        String wrist = etwrist.getText().toString();
-        String pentLength = etpentlength.getText().toString();
-        String pentBottom = etpentbottom.getText().toString();
-        String thigh = etthigh.getText().toString();
-        String waist = etwaist.getText().toString();
-        String des = etDescription.getText().toString();
-        String arms =etarms.getText().toString();
+        String len = etLenght.getEditText().getText().toString();
+        String slev = etSleeves.getEditText().getText().toString();
+        String shoulder = etShoulder.getEditText().getText().toString();
+        String colr = etcolr.getEditText().getText().toString();
+        String chest = etchest.getEditText().getText().toString();
+        String stomachSize = etstomachSize.getEditText().getText().toString();
+        String hipSize = ethipSize.getEditText().getText().toString();
+        String wrist = etwrist.getEditText().getText().toString();
+        String pentLength = etpentlength.getEditText().getText().toString();
+        String pentBottom = etpentbottom.getEditText().getText().toString();
+        String thigh = etthigh.getEditText().getText().toString();
+        String waist = etwaist.getEditText().getText().toString();
+        String des = etDescription.getEditText().getText().toString();
+        String arms =etarms.getEditText().getText().toString();
 
 
         Measurements measurements = new Measurements();
@@ -225,21 +226,21 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
     private void UpdateDataForSuitCategory() {
 
-        String length=etLenght.getText().toString();
-        String Sleeves=etSleeves.getText().toString();
-        String shoulder= etShoulder.getText().toString();
-        String coler= etcolr.getText().toString();
-        String chest = etchest.getText().toString();
-        String stomachSize= etstomachSize.getText().toString();
-        String HipSize= ethipSize.getText().toString();
-        String armsSize= etarms.getText().toString();
-        String wristSize= etwrist.getText().toString();
-        String loosinHip= etloosinghip.getText().toString();
-        String loosingChest= etloosingchest.getText().toString();
-        String loosingStomach= etloosingstomach.getText().toString();
-        String des= etDescription.getText().toString();
-        String pentLength= etpentlength.getText().toString();
-        String pentBottom= etpentbottom.getText().toString();
+        String length=etLenght.getEditText().getText().toString();
+        String Sleeves=etSleeves.getEditText().getText().toString();
+        String shoulder= etShoulder.getEditText().getText().toString();
+        String coler= etcolr.getEditText().getText().toString();
+        String chest = etchest.getEditText().getText().toString();
+        String stomachSize= etstomachSize.getEditText().getText().toString();
+        String HipSize= ethipSize.getEditText().getText().toString();
+        String armsSize= etarms.getEditText().getText().toString();
+        String wristSize= etwrist.getEditText().getText().toString();
+        String loosinHip= etloosinghip.getEditText().getText().toString();
+        String loosingChest= etloosingchest.getEditText().getText().toString();
+        String loosingStomach= etloosingstomach.getEditText().getText().toString();
+        String des= etDescription.getEditText().getText().toString();
+        String pentLength= etpentlength.getEditText().getText().toString();
+        String pentBottom= etpentbottom.getEditText().getText().toString();
 
         Measurements measurements=new Measurements();
         measurements.SetMeasurementsForSuit(length,Sleeves,shoulder,coler,chest,stomachSize,armsSize,wristSize,loosingChest,
@@ -263,17 +264,17 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
     private void UpdateDataForShirtCategory() {
 
-        String len= etLenght.getText().toString();
-        String Sleeves= etSleeves.getText().toString();
-        String shoulder= etShoulder.getText().toString();
-        String colr= etcolr.getText().toString();
-        String chest= etchest.getText().toString();
-        String stomachSize= etstomachSize.getText().toString();
-        String arms= etarms.getText().toString();
-        String wrist= etwrist.getText().toString();
-        String loosingChest= etloosingchest.getText().toString();
-        String loosingstomach= etloosingstomach.getText().toString();
-        String des= etDescription.getText().toString();
+        String len= etLenght.getEditText().getText().toString();
+        String Sleeves= etSleeves.getEditText().getText().toString();
+        String shoulder= etShoulder.getEditText().getText().toString();
+        String colr= etcolr.getEditText().getText().toString();
+        String chest= etchest.getEditText().getText().toString();
+        String stomachSize= etstomachSize.getEditText().getText().toString();
+        String arms= etarms.getEditText().getText().toString();
+        String wrist= etwrist.getEditText().getText().toString();
+        String loosingChest= etloosingchest.getEditText().getText().toString();
+        String loosingstomach= etloosingstomach.getEditText().getText().toString();
+        String des= etDescription.getEditText().getText().toString();
 
         Measurements measurements=new Measurements();
         measurements.SetMeasurementsForShirt(len,Sleeves,shoulder,colr,chest,stomachSize,arms,wrist,loosingChest,loosingstomach,des);
@@ -286,21 +287,21 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
     private void UpdateDataForKurtaCategory() {
 
-        String length= etLenght.getText().toString();
-        String sleeve=  etSleeves.getText().toString();
-        String shoulder=  etShoulder.getText().toString();
-        String colr=  etcolr.getText().toString();
-        String chest= etchest.getText().toString();
-        String stomachsize=  etstomachSize.getText().toString();
-        String hipsize=  ethipSize.getText().toString();
-        String arms=  etarms.getText().toString();
-        String wrist= etwrist.getText().toString();
-        String loosingchest= etloosingchest.getText().toString();
-        String loosingstomach= etloosingstomach.getText().toString();
-        String loosinghip= etloosinghip.getText().toString();
-        String pentLenght= etpentlength.getText().toString();
-        String pentbottom= etpentbottom.getText().toString();
-        String desciption= etDescription.getText().toString();
+        String length= etLenght.getEditText().getText().toString();
+        String sleeve=  etSleeves.getEditText().getText().toString();
+        String shoulder=  etShoulder.getEditText().getText().toString();
+        String colr=  etcolr.getEditText().getText().toString();
+        String chest= etchest.getEditText().getText().toString();
+        String stomachsize=  etstomachSize.getEditText().getText().toString();
+        String hipsize=  ethipSize.getEditText().getText().toString();
+        String arms=  etarms.getEditText().getText().toString();
+        String wrist= etwrist.getEditText().getText().toString();
+        String loosingchest= etloosingchest.getEditText().getText().toString();
+        String loosingstomach= etloosingstomach.getEditText().getText().toString();
+        String loosinghip= etloosinghip.getEditText().getText().toString();
+        String pentLenght= etpentlength.getEditText().getText().toString();
+        String pentbottom= etpentbottom.getEditText().getText().toString();
+        String desciption= etDescription.getEditText().getText().toString();
 
         Measurements measurements=new Measurements();
         measurements.SetMeasurementsForKurta(length,sleeve,shoulder,colr,chest,stomachsize,hipsize,
@@ -444,40 +445,40 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
                         String desciption=dataSnapshot.child("des").getValue().toString();
 
                         // Show these Text View
-                        etLenght.setText(length);
-                        etSleeves.setText(sleeve);
-                        etShoulder.setText(shoulder);
-                        etcolr.setText(colr);
-                        etchest.setText(chest);
-                        etstomachSize.setText(stomachsize);
-                        ethipSize.setText(hipsize);
-                        etarms.setText(arms);
-                        etwrist.setText(wristSize);
-                        etloosingchest.setText(loosingchest);
-                        etloosingstomach.setText(loosingstomach);
-                        etloosinghip.setText(loosinghip);
-                        etpentlength.setText(pentLenght);
-                        etpentbottom.setText(pentbottom);
-                        etDescription.setText(desciption);
+                        etLenght.getEditText().setText(length);
+                        etSleeves.getEditText().setText(sleeve);
+                        etShoulder.getEditText().setText(shoulder);
+                        etcolr.getEditText().setText(colr);
+                        etchest.getEditText().setText(chest);
+                        etstomachSize.getEditText().setText(stomachsize);
+                        ethipSize.getEditText().setText(hipsize);
+                        etarms.getEditText().setText(arms);
+                        etwrist.getEditText().setText(wristSize);
+                        etloosingchest.getEditText().setText(loosingchest);
+                        etloosingstomach.getEditText().setText(loosingstomach);
+                        etloosinghip.getEditText().setText(loosinghip);
+                        etpentlength.getEditText().setText(pentLenght);
+                        etpentbottom.getEditText().setText(pentbottom);
+                        etDescription.getEditText().setText(desciption);
 
                     }
                     else{
 
-                        etLenght.setText("");
-                        etSleeves.setText("");
-                        etShoulder.setText("");
-                        etcolr.setText("");
-                        etchest.setText("");
-                        etstomachSize.setText("");
-                        ethipSize.setText("");
-                        etarms.setText("");
-                        etwrist.setText("");
-                        etloosingchest.setText("");
-                        etloosingstomach.setText("");
-                        etloosinghip.setText("");
-                        etpentlength.setText("");
-                        etpentbottom.setText("");
-                        etDescription.setText("");
+                        etLenght.getEditText().setText("");
+                        etSleeves.getEditText().setText("");
+                        etShoulder.getEditText().setText("");
+                        etcolr.getEditText().setText("");
+                        etchest.getEditText().setText("");
+                        etstomachSize.getEditText().setText("");
+                        ethipSize.getEditText().setText("");
+                        etarms.getEditText().setText("");
+                        etwrist.getEditText().setText("");
+                        etloosingchest.getEditText().setText("");
+                        etloosingstomach.getEditText().setText("");
+                        etloosinghip.getEditText().setText("");
+                        etpentlength.getEditText().setText("");
+                        etpentbottom.getEditText().setText("");
+                        etDescription.getEditText().setText("");
 
                     }
 
@@ -537,31 +538,31 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
                         String loosingStomach=dataSnapshot.child("loosingStomach").getValue().toString();
                         String description=dataSnapshot.child("des").getValue().toString();
 
-                        etLenght.setText(length);
-                        etSleeves.setText(Sleeves);
-                        etShoulder.setText(shoulder);
-                        etcolr.setText(colr);
-                        etchest.setText(chest);
-                        etstomachSize.setText(stomachSize);
-                        etarms.setText(armsSize);
-                        etwrist.setText(wrist);
-                        etloosingchest.setText(loosingChest);
-                        etloosingstomach.setText(loosingStomach);
-                        etDescription.setText(description);
+                        etLenght.getEditText().setText(length);
+                        etSleeves.getEditText().setText(Sleeves);
+                        etShoulder.getEditText().setText(shoulder);
+                        etcolr.getEditText().setText(colr);
+                        etchest.getEditText().setText(chest);
+                        etstomachSize.getEditText().setText(stomachSize);
+                        etarms.getEditText().setText(armsSize);
+                        etwrist.getEditText().setText(wrist);
+                        etloosingchest.getEditText().setText(loosingChest);
+                        etloosingstomach.getEditText().setText(loosingStomach);
+                        etDescription.getEditText().setText(description);
 
                     }
                     else{
-                        etLenght.setText("");
-                        etSleeves.setText("");
-                        etShoulder.setText("");
-                        etcolr.setText("");
-                        etchest.setText("");
-                        etstomachSize.setText("");
-                        etarms.setText("");
-                        etwrist.setText("");
-                        etloosingchest.setText("");
-                        etloosingstomach.setText("");
-                        etDescription.setText("");
+                        etLenght.getEditText().setText("");
+                        etSleeves.getEditText().setText("");
+                        etShoulder.getEditText().setText("");
+                        etcolr.getEditText().setText("");
+                        etchest.getEditText().setText("");
+                        etstomachSize.getEditText().setText("");
+                        etarms.getEditText().setText("");
+                        etwrist.getEditText().setText("");
+                        etloosingchest.getEditText().setText("");
+                        etloosingstomach.getEditText().setText("");
+                        etDescription.getEditText().setText("");
                     }
 
 
@@ -629,37 +630,37 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
                         String wristSize = dataSnapshot.child("wristSize").getValue().toString();
 
 
-                        etLenght.setText(length);
-                        etSleeves.setText(Slev);
-                        etShoulder.setText(shoulder);
-                        etcolr.setText(colr);
-                        etchest.setText(chest);
-                        etstomachSize.setText(stomachSize);
-                        ethipSize.setText(hipSize);
-                        etwrist.setText(wristSize);
-                        etpentlength.setText(pantLength);
-                        etpentbottom.setText(pantBottom);
-                        etarms.setText(arms);
-                        etthigh.setText(thigh);
-                        etwaist.setText(waist);
-                        etDescription.setText(des);
+                        etLenght.getEditText().setText(length);
+                        etSleeves.getEditText().setText(Slev);
+                        etShoulder.getEditText().setText(shoulder);
+                        etcolr.getEditText().setText(colr);
+                        etchest.getEditText().setText(chest);
+                        etstomachSize.getEditText().setText(stomachSize);
+                        ethipSize.getEditText().setText(hipSize);
+                        etwrist.getEditText().setText(wristSize);
+                        etpentlength.getEditText().setText(pantLength);
+                        etpentbottom.getEditText().setText(pantBottom);
+                        etarms.getEditText().setText(arms);
+                        etthigh.getEditText().setText(thigh);
+                        etwaist.getEditText().setText(waist);
+                        etDescription.getEditText().setText(des);
                     }
                     else{
 
-                        etLenght.setText("");
-                        etSleeves.setText("");
-                        etShoulder.setText("");
-                        etcolr.setText("");
-                        etchest.setText("");
-                        etstomachSize.setText("");
-                        ethipSize.setText("");
-                        etarms.setText("");
-                        etwrist.setText("");
-                        etpentlength.setText("");
-                        etpentbottom.setText("");
-                        etthigh.setText("");
-                        etwaist.setText("");
-                        etDescription.setText("");
+                        etLenght.getEditText().setText("");
+                        etSleeves.getEditText().setText("");
+                        etShoulder.getEditText().setText("");
+                        etcolr.getEditText().setText("");
+                        etchest.getEditText().setText("");
+                        etstomachSize.getEditText().setText("");
+                        ethipSize.getEditText().setText("");
+                        etarms.getEditText().setText("");
+                        etwrist.getEditText().setText("");
+                        etpentlength.getEditText().setText("");
+                        etpentbottom.getEditText().setText("");
+                        etthigh.getEditText().setText("");
+                        etwaist.getEditText().setText("");
+                        etDescription.getEditText().setText("");
 
                     }
 
@@ -720,27 +721,27 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
                         String stomachSize=dataSnapshot.child("stomachSize").getValue().toString();
 
 
-                        etLenght.setText(length);
-                        etShoulder.setText(shoulder);
-                        etcolr.setText(coler);
-                        etchest.setText(chest);
-                        etstomachSize.setText(stomachSize);
-                        etloosingchest.setText(loosingChest);
-                        etloosingstomach.setText(loosingStomach);
-                        etDescription.setText(des);
+                        etLenght.getEditText().setText(length);
+                        etShoulder.getEditText().setText(shoulder);
+                        etcolr.getEditText().setText(coler);
+                        etchest.getEditText().setText(chest);
+                        etstomachSize.getEditText().setText(stomachSize);
+                        etloosingchest.getEditText().setText(loosingChest);
+                        etloosingstomach.getEditText().setText(loosingStomach);
+                        etDescription.getEditText().setText(des);
 
 
                     }
                     else{
 
-                        etLenght.setText("");
-                        etShoulder.setText("");
-                        etcolr.setText("");
-                        etchest.setText("");
-                        etstomachSize.setText("");
-                        etloosingchest.setText("");
-                        etloosingstomach.setText("");
-                        etDescription.setText("");
+                        etLenght.getEditText().setText("");
+                        etShoulder.getEditText().setText("");
+                        etcolr.getEditText().setText("");
+                        etchest.getEditText().setText("");
+                        etstomachSize.getEditText().setText("");
+                        etloosingchest.getEditText().setText("");
+                        etloosingstomach.getEditText().setText("");
+                        etDescription.getEditText().setText("");
 
 
                     }
@@ -799,22 +800,22 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
                         String waist=dataSnapshot.child("waist").getValue().toString();
 
 
-                        etwaist.setText(waist);
-                        etthigh.setText(thigh);
-                        ethipSize.setText(hipSize);
-                        etDescription.setText(des);
-                        etpentlength.setText(pantLenght);
-                        etpentbottom.setText(pantBottom);
+                        etwaist.getEditText().setText(waist);
+                        etthigh.getEditText().setText(thigh);
+                        ethipSize.getEditText().setText(hipSize);
+                        etDescription.getEditText().setText(des);
+                        etpentlength.getEditText().setText(pantLenght);
+                        etpentbottom.getEditText().setText(pantBottom);
 
 
                     }
                     else{
-                        etwaist.setText("");
-                        etthigh.setText("");
-                        ethipSize.setText("");
-                        etDescription.setText("");
-                        etpentlength.setText("");
-                        etpentbottom.setText("");
+                        etwaist.getEditText().setText("");
+                        etthigh.getEditText().setText("");
+                        ethipSize.getEditText().setText("");
+                        etDescription.getEditText().setText("");
+                        etpentlength.getEditText().setText("");
+                        etpentbottom.getEditText().setText("");
 
                     }
 
@@ -880,40 +881,40 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
                        String wristSize=dataSnapshot.child("wristSize").getValue().toString();
 
 
-                        etLenght.setText(length);
-                        etSleeves.setText(Slev);
-                        etShoulder.setText(shoulder);
-                        etcolr.setText(coler);
-                        etchest.setText(chest);
-                        etstomachSize.setText(stomachSize);
-                        ethipSize.setText(hipSize);
-                        etwrist.setText(wristSize);
-                        etpentlength.setText(pantLength);
-                        etpentbottom.setText(pantBottom);
-                        etthigh.setText(thigh);
-                        etarms.setText(arms);
-                        etwaist.setText(waist);
-                        etDescription.setText(des);
+                        etLenght.getEditText().setText(length);
+                        etSleeves.getEditText().setText(Slev);
+                        etShoulder.getEditText().setText(shoulder);
+                        etcolr.getEditText().setText(coler);
+                        etchest.getEditText().setText(chest);
+                        etstomachSize.getEditText().setText(stomachSize);
+                        ethipSize.getEditText().setText(hipSize);
+                        etwrist.getEditText().setText(wristSize);
+                        etpentlength.getEditText().setText(pantLength);
+                        etpentbottom.getEditText().setText(pantBottom);
+                        etthigh.getEditText().setText(thigh);
+                        etarms.getEditText().setText(arms);
+                        etwaist.getEditText().setText(waist);
+                        etDescription.getEditText().setText(des);
 
 
                     }
                     else{
 
-                        etLenght.setText("");
-                        etarms.setText("");
-                        etSleeves.setText("");
-                        etShoulder.setText("");
-                        etcolr.setText("");
-                        etchest.setText("");
-                        etstomachSize.setText("");
-                        ethipSize.setText("");
-                        etwrist.setText("");
-                        etpentlength.setText("");
-                        etpentbottom.setText("");
-                        etthigh.setText("");
-                        ethipSize.setText("");
-                        etwaist.setText("");
-                        etDescription.setText("");
+                        etLenght.getEditText().setText("");
+                        etarms.getEditText().setText("");
+                        etSleeves.getEditText().setText("");
+                        etShoulder.getEditText().setText("");
+                        etcolr.getEditText().setText("");
+                        etchest.getEditText().setText("");
+                        etstomachSize.getEditText().setText("");
+                        ethipSize.getEditText().setText("");
+                        etwrist.getEditText().setText("");
+                        etpentlength.getEditText().setText("");
+                        etpentbottom.getEditText().setText("");
+                        etthigh.getEditText().setText("");
+                        ethipSize.getEditText().setText("");
+                        etwaist.getEditText().setText("");
+                        etDescription.getEditText().setText("");
 
                     }
 
@@ -981,40 +982,40 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
                      String wrsitSize=dataSnapshot.child("wristSize").getValue().toString();
 
 
-                        etLenght.setText(length);
-                        etSleeves.setText(Sleeves);
-                        etShoulder.setText(shoulder);
-                        etcolr.setText(coler);
-                        etchest.setText(chest);
-                        etstomachSize.setText(stomachSize);
-                        ethipSize.setText(hipSize);
-                        etarms.setText(armSize);
-                        etwrist.setText(wrsitSize);
-                        etloosinghip.setText(loosingHip);
-                        etloosingchest.setText(loosingChest);
-                        etloosingstomach.setText(loosingStomach);
-                        etDescription.setText(des);
-                        etpentlength.setText(pantLength);
-                        etpentbottom.setText(pantBottom);
+                        etLenght.getEditText().setText(length);
+                        etSleeves.getEditText().setText(Sleeves);
+                        etShoulder.getEditText().setText(shoulder);
+                        etcolr.getEditText().setText(coler);
+                        etchest.getEditText().setText(chest);
+                        etstomachSize.getEditText().setText(stomachSize);
+                        ethipSize.getEditText().setText(hipSize);
+                        etarms.getEditText().setText(armSize);
+                        etwrist.getEditText().setText(wrsitSize);
+                        etloosinghip.getEditText().setText(loosingHip);
+                        etloosingchest.getEditText().setText(loosingChest);
+                        etloosingstomach.getEditText().setText(loosingStomach);
+                        etDescription.getEditText().setText(des);
+                        etpentlength.getEditText().setText(pantLength);
+                        etpentbottom.getEditText().setText(pantBottom);
 
                     }
                     else{
 
-                        etLenght.setText("");
-                        etSleeves.setText("");
-                        etShoulder.setText("");
-                        etcolr.setText("");
-                        etchest.setText("");
-                        etstomachSize.setText("");
-                        ethipSize.setText("");
-                        etarms.setText("");
-                        etwrist.setText("");
-                        etloosinghip.setText("");
-                        etloosingchest.setText("");
-                        etloosingstomach.setText("");
-                        etDescription.setText("");
-                        etpentlength.setText("");
-                        etpentbottom.setText("");
+                        etLenght.getEditText().setText("");
+                        etSleeves.getEditText().setText("");
+                        etShoulder.getEditText().setText("");
+                        etcolr.getEditText().setText("");
+                        etchest.getEditText().setText("");
+                        etstomachSize.getEditText().setText("");
+                        ethipSize.getEditText().setText("");
+                        etarms.getEditText().setText("");
+                        etwrist.getEditText().setText("");
+                        etloosinghip.getEditText().setText("");
+                        etloosingchest.getEditText().setText("");
+                        etloosingstomach.getEditText().setText("");
+                        etDescription.getEditText().setText("");
+                        etpentlength.getEditText().setText("");
+                        etpentbottom.getEditText().setText("");
 
                     }
 
