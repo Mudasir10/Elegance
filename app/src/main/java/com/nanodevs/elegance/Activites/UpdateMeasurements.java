@@ -42,6 +42,7 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
     private TextInputLayout etLenght, etShoulder, etSleeves, etcolr, etchest, etstomachSize, ethipSize, etarms, etwrist, etloosingchest, etloosingstomach,
             etloosinghip, etpentlength, etpentbottom, etwaist, etthigh, etDescription;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
