@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
+
+    <TextView
+        android:id="@+id/suitTypeCartItemList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="2dp"
+        android:text="@string/suit_type"
+        android:textColor="@android:color/black"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        />
+
+    <View
+        android:id="@+id/viewLine"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_margin="5dp"
+        android:background="@android:color/black"
+        android:layout_below="@+id/suitTypeCartItemList"/>
+
+
+    <LinearLayout
+        android:id="@+id/boskiTypeLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/viewLine"
+        android:orientation="vertical"
+        android:layout_margin="5dp">
+
+
+        <LinearLayout
+            android:id="@+id/ClothTypeLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/boskiTypeLinearLayout"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:id="@+id/boskiCartLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/boski"
+                    android:textColor="@android:color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+                    />
+
+
+                <Button
+                    android:id="@+id/boskiDecrementButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/ic_neg1" />
+
+
+
+                <EditText
+                    android:id="@+id/boskiQtyEditText"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:enabled="false"
+                    android:hint="@string/cloth_quantity"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:padding="8dp"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textColor="#FF0000"
+                    android:textColorHint="@android:color/black" />
+
+
+                <Button
+                    android:id="@+id/boskiIncrementButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/ic_pos1" />
+
+                <Button
+                    android:id="@+id/boskiItemDeleteBtn"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="25dp"
+                    android:background="@drawable/ic_delete" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cottonCartLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/cotton"
+                    android:textColor="@android:color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+
+                    />
+
+
+                <Button
+                    android:id="@+id/cottonDecrementButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="19dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/ic_neg1" />
+
+
+
+                <EditText
+                    android:id="@+id/cottonQtyEditText"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:enabled="false"
+                    android:hint="@string/cloth_quantity"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:padding="8dp"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textColor="#FF0000"
+                    android:textColorHint="@android:color/black" />
+
+
+                <Button
+                    android:id="@+id/cottonIncrementButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/ic_pos1" />
+
+                <Button
+                    android:id="@+id/cottonItemDeleteBtn"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="25dp"
+                    android:background="@drawable/ic_delete" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/khaadiCartLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/khaadi"
+                    android:textColor="@android:color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+
+                    />
+
+
+                <Button
+                    android:id="@+id/khaadiDecrementButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="17.5dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/ic_neg1" />
+
+
+
+                <EditText
+                    android:id="@+id/khaadiQtyEditText"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:enabled="false"
+                    android:hint="@string/cloth_quantity"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:padding="8dp"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textColor="#FF0000"
+                    android:textColorHint="@android:color/black" />
+
+
+                <Button
+                    android:id="@+id/khaadiIncrementButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/ic_pos1" />
+
+                <Button
+                    android:id="@+id/khaadiItemDeleteBtn"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="25dp"
+                    android:background="@drawable/ic_delete" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/karandiCartLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/karandi"
+                    android:textColor="@android:color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+
+                    />
+
+
+                <Button
+                    android:id="@+id/karandiDecrementButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/ic_neg1" />
+
+
+
+                <EditText
+                    android:id="@+id/karandiQtyEditText"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:enabled="false"
+                    android:hint="@string/cloth_quantity"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:padding="8dp"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textColor="#FF0000"
+                    android:textColorHint="@android:color/black" />
+
+
+                <Button
+                    android:id="@+id/karandiIncrementButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/ic_pos1" />
+
+                <Button
+                    android:id="@+id/karandiItemDeleteBtn"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="25dp"
+                    android:background="@drawable/ic_delete" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/lilanCartLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/lilan"
+                    android:textColor="@android:color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+
+                    />
+
+
+                <Button
+                    android:id="@+id/lilanDecrementButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="34dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/ic_neg1" />
+
+
+
+                <EditText
+                    android:id="@+id/lilanQtyEditText"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:enabled="false"
+                    android:hint="@string/cloth_quantity"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:padding="8dp"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textColor="#FF0000"
+                    android:textColorHint="@android:color/black" />
+
+
+                <Button
+                    android:id="@+id/lilanIncrementButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/ic_pos1" />
+
+                <Button
+                    android:id="@+id/lilanItemDeleteBtn"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="25dp"
+                    android:background="@drawable/ic_delete" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/wWearCartLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/washing_wear"
+                    android:textColor="@android:color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+
+                    />
+
+
+                <Button
+                    android:id="@+id/wWearDecrementButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/ic_neg1" />
+
+
+
+                <EditText
+                    android:id="@+id/wWearQtyEditText"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:enabled="false"
+                    android:hint="@string/cloth_quantity"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:padding="8dp"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textColor="#FF0000"
+                    android:textColorHint="@android:color/black" />
+
+
+                <Button
+                    android:id="@+id/wWearIncrementButton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/ic_pos1" />
+
+                <Button
+                    android:id="@+id/wWearItemDeleteBtn"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="25dp"
+                    android:background="@drawable/ic_delete" />
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

@@ -38,6 +38,10 @@
     <string name="counter">Counter</string>
     <string name="add_cloth_order">Add Cloth Order</string>
     <string name="place_order">Place Order</string>
+    <string name="total_calculations">Total Calculations</string>
+    <string name="discount">Discount</string>
+    <string name="advance_payment">Advance Payment</string>
+    <string name="balance">Balance</string>
 
 
 </resources>

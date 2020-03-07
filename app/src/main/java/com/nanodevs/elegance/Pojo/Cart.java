@@ -12,14 +12,16 @@ public class Cart {
     private long karandiQty;
     private long lilanQty;
     private long wWearQty;
+    private String suitType;
 
-    public Cart( long boskiQty, long cottonQty, long khaadiQty, long karandiQty, long lilanQty, long wWearQty) {
+    public Cart( long boskiQty, long cottonQty, long khaadiQty, long karandiQty, long lilanQty, long wWearQty,String suitType) {
         this.boskiQty = boskiQty;
         this.cottonQty = cottonQty;
         this.khaadiQty = khaadiQty;
         this.karandiQty = karandiQty;
         this.lilanQty = lilanQty;
         this.wWearQty = wWearQty;
+        this.suitType=suitType;
     }
 
     public Cart() {
@@ -34,6 +36,7 @@ public class Cart {
         result.put("karandiQty",karandiQty);
         result.put("lilanQty",lilanQty);
         result.put("wWearQty",wWearQty);
+        result.put("suitType",suitType);
 
         return result;
     }
@@ -86,5 +89,14 @@ public class Cart {
 
     public void setwWearQty(long wWearQty) {
         this.wWearQty = wWearQty;
+    }
+
+
+    public String getSuitType() {
+        return suitType;
+    }
+
+    public void setSuitType(String suitType) {
+        this.suitType = suitType;
     }
 }
