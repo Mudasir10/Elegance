@@ -12,11 +12,9 @@ public class Customer  {
 
 
     public Customer() {
-
     }
 
-    public Customer(long customerSerial, String customerName, String customerContact
-                    ) {
+    public Customer(long customerSerial, String customerName, String customerContact) {
 
         this.customerSerial = customerSerial;
         this.customerName = customerName;
@@ -24,17 +22,14 @@ public class Customer  {
 
     }
 
+    public Map<String, Object> toCustomerMap() {
 
-
-    public Map<String,Object> toCustomerMap(){
-
-        HashMap<String,Object> result=new HashMap<>();
-        result.put("customerSerial",customerSerial);
-        result.put("customerName",customerName);
-        result.put("customerContact",customerContact);
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("customerSerial", customerSerial);
+        result.put("customerName", customerName);
+        result.put("customerContact", customerContact);
         return result;
     }
-
 
 
     public long getCustomerSerial() {
@@ -48,8 +43,6 @@ public class Customer  {
     public String getCustomerContact() {
         return customerContact;
     }
-
-
 
 
     public void setCustomerSerial(long customerSerial) {

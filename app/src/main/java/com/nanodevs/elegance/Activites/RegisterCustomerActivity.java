@@ -161,12 +161,23 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
        String pentLength= etpentlength.getText().toString();
        String pentBottom= etpentbottom.getText().toString();
 
-        Measurements measurements=new Measurements();
-        measurements.SetMeasurementsForSuit(length,Sleeves,shoulder,coler,chest,stomachSize,armsSize,wristSize,loosingChest,loosingStomach
-        ,des,HipSize,loosinHip,pentLength,pentBottom);
+       if (!length.isEmpty() && !Sleeves.isEmpty() && !shoulder.isEmpty() && !coler.isEmpty() && !chest.isEmpty() && !stomachSize.isEmpty()
+         && !HipSize.isEmpty() && !armsSize.isEmpty() && !wristSize.isEmpty() && !loosinHip.isEmpty() && !loosingChest.isEmpty()
+         && !loosingStomach.isEmpty() && !des.isEmpty() && !pentLength.isEmpty() && !pentBottom.isEmpty()){
 
-        Map<String,Object> data= measurements.SuitToMap();
-        saveCustomerData(customerSerialNo.getText().toString(),customerName.getText().toString(),customerContact.getText().toString(),data,SelectedCategory);
+           Measurements measurements=new Measurements();
+           measurements.SetMeasurementsForSuit(length,Sleeves,shoulder,coler,chest,stomachSize,armsSize,wristSize,loosingChest,loosingStomach
+                   ,des,HipSize,loosinHip,pentLength,pentBottom);
+
+           Map<String,Object> data= measurements.SuitToMap();
+           saveCustomerData(customerSerialNo.getText().toString(),customerName.getText().toString(),customerContact.getText().toString(),data,SelectedCategory);
+
+
+       }
+       else{
+           Toast.makeText(this, "Please Fill Measurements Properly", Toast.LENGTH_SHORT).show();
+       }
+
 
     }
 
@@ -191,12 +202,24 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
         String pentbottom= etpentbottom.getText().toString();
         String desciption= etDescription.getText().toString();
 
-        Measurements measurements=new Measurements();
-        measurements.SetMeasurementsForKurta(length,sleeve,shoulder,colr,chest,stomachsize,hipsize,
-                arms,wrist,loosingchest,loosingstomach,loosinghip,pentLenght,pentbottom,desciption);
+        if (!length.isEmpty() && !sleeve.isEmpty() && !shoulder.isEmpty() && !colr.isEmpty() && !chest.isEmpty() && !stomachsize.isEmpty()
+        && !hipsize.isEmpty() && !arms.isEmpty() && !wrist.isEmpty() && !loosingchest.isEmpty() && !loosinghip.isEmpty() && !pentLenght.isEmpty()
+        && !pentbottom.isEmpty() && !desciption.isEmpty()){
 
-        Map<String,Object> data= measurements.KurtatoMap();
-        saveCustomerData(customerSerialNo.getText().toString(),customerName.getText().toString(),customerContact.getText().toString(),data,SelectedCategory);
+
+            Measurements measurements=new Measurements();
+            measurements.SetMeasurementsForKurta(length,sleeve,shoulder,colr,chest,stomachsize,hipsize,
+                    arms,wrist,loosingchest,loosingstomach,loosinghip,pentLenght,pentbottom,desciption);
+
+            Map<String,Object> data= measurements.KurtatoMap();
+            saveCustomerData(customerSerialNo.getText().toString(),customerName.getText().toString(),customerContact.getText().toString(),data,SelectedCategory);
+
+
+        }
+        else{
+            Toast.makeText(this, "Please Fill Measurements Properly", Toast.LENGTH_SHORT).show();
+        }
+
 
 
     }
@@ -328,13 +351,19 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
        String loosinstomach= etloosingstomach.getText().toString();
        String des=  etDescription.getText().toString();
 
-        Measurements measurements = new Measurements();
-        measurements.SetMeasurementsForWaistCoat(len,shoulder,colr,chest,stomachSize,loosinChest,loosinstomach,des);
+       if (!len.isEmpty() && !shoulder.isEmpty() && !colr.isEmpty() && !chest.isEmpty() && !stomachSize.isEmpty() && !loosinChest.isEmpty()
+          && !loosinstomach.isEmpty() && !des.isEmpty()){
 
-        Map<String, Object> data = measurements.WaistCoattToMap();
-        saveCustomerData(customerSerialNo.getText().toString(), customerName.getText().toString(), customerContact.getText().toString(), data, SelectedCategory);
+           Measurements measurements = new Measurements();
+           measurements.SetMeasurementsForWaistCoat(len,shoulder,colr,chest,stomachSize,loosinChest,loosinstomach,des);
 
+           Map<String, Object> data = measurements.WaistCoattToMap();
+           saveCustomerData(customerSerialNo.getText().toString(), customerName.getText().toString(), customerContact.getText().toString(), data, SelectedCategory);
 
+       }
+       else{
+           Toast.makeText(this, "Please Fill All the Information Properly.", Toast.LENGTH_SHORT).show();
+       }
 
 
 
@@ -350,14 +379,21 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
       String pentLength = etpentlength.getText().toString();
       String pentBottom= etpentbottom.getText().toString();
 
-        Measurements measurements = new Measurements();
-        measurements.SetMeasurementsForPant(thigh,waist,hipSize,des,pentLength,pentBottom);
-        Map<String, Object> data = measurements.PanttToMap();
-        saveCustomerData(customerSerialNo.getText().toString(), customerName.getText().toString(), customerContact.getText().toString(), data, SelectedCategory);
 
 
+      if (!waist.isEmpty() && !thigh.isEmpty() && !hipSize.isEmpty() && !des.isEmpty() && !pentLength.isEmpty() && !pentBottom.isEmpty()){
+
+          Measurements measurements = new Measurements();
+          measurements.SetMeasurementsForPant(thigh,waist,hipSize,des,pentLength,pentBottom);
+          Map<String, Object> data = measurements.PanttToMap();
+
+          saveCustomerData(customerSerialNo.getText().toString(), customerName.getText().toString(), customerContact.getText().toString(), data, SelectedCategory);
 
 
+      }
+      else{
+          Toast.makeText(this, "Please Fill All The Information Peroperly.", Toast.LENGTH_SHORT).show();
+      }
 
 
     }
@@ -381,11 +417,21 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
        String arms =etarms.getText().toString();
 
 
-        Measurements measurements = new Measurements();
-        measurements.SetMeasurementsForThreePiece(len,sel,shoulder,colr,chest,stomach,hipSize,wristSize,pentLength,pentBottom,thigh,waist,des,arms);
+       if (!len.isEmpty() && !sel.isEmpty() && !shoulder.isEmpty() && !colr.isEmpty() && !chest.isEmpty() && !stomach.isEmpty() && !hipSize.isEmpty()
+        && !wristSize.isEmpty() && !pentLength.isEmpty() && !pentBottom.isEmpty() && !thigh.isEmpty() && !waist.isEmpty() && !des.isEmpty()
+        && !arms.isEmpty()){
 
-        Map<String, Object> data = measurements.ThreePiecetToMap();
-        saveCustomerData(customerSerialNo.getText().toString(), customerName.getText().toString(), customerContact.getText().toString(), data, SelectedCategory);
+           Measurements measurements = new Measurements();
+           measurements.SetMeasurementsForThreePiece(len,sel,shoulder,colr,chest,stomach,hipSize,wristSize,pentLength,pentBottom,thigh,waist,des,arms);
+
+           Map<String, Object> data = measurements.ThreePiecetToMap();
+           saveCustomerData(customerSerialNo.getText().toString(), customerName.getText().toString(), customerContact.getText().toString(), data, SelectedCategory);
+
+
+       }
+       else{
+           Toast.makeText(this, "Please Fill All The Information Properly.", Toast.LENGTH_SHORT).show();
+       }
 
 
 
@@ -411,11 +457,23 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
         String arms=etarms.getText().toString();
 
 
-        Measurements measurements = new Measurements();
-        measurements.SetMeasurementsForSaffariCoat(len, slev, shoulder, colr, chest, stomachSize, hipSize, wrist, pentLength, pentBottom, thigh, waist, des,arms);
+        if (!len.isEmpty() && !slev.isEmpty() && !shoulder.isEmpty() && !colr.isEmpty() && !chest.isEmpty() && !stomachSize.isEmpty() && !hipSize.isEmpty()
+         && !wrist.isEmpty() && !pentLength.isEmpty() && !pentBottom.isEmpty() && !thigh.isEmpty() && !waist.isEmpty() && !des.isEmpty()
+         && !arms.isEmpty()){
 
-        Map<String, Object> data = measurements.SaffariCoatToMap();
-        saveCustomerData(customerSerialNo.getText().toString(), customerName.getText().toString(), customerContact.getText().toString(), data, SelectedCategory);
+            Measurements measurements = new Measurements();
+            measurements.SetMeasurementsForSaffariCoat(len, slev, shoulder, colr, chest, stomachSize, hipSize, wrist, pentLength, pentBottom, thigh, waist, des,arms);
+
+            Map<String, Object> data = measurements.SaffariCoatToMap();
+            saveCustomerData(customerSerialNo.getText().toString(), customerName.getText().toString(), customerContact.getText().toString(), data, SelectedCategory);
+
+        }
+        else{
+
+            Toast.makeText(this, "Please Fill All The Information Properly.", Toast.LENGTH_SHORT).show();
+
+        }
+
 
 
 
@@ -435,11 +493,21 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
        String loosingstomach= etloosingstomach.getText().toString();
        String des= etDescription.getText().toString();
 
-        Measurements measurements=new Measurements();
-        measurements.SetMeasurementsForShirt(len,Sleeves,shoulder,colr,chest,stomachSize,arms,wrist,loosingChest,loosingstomach,des);
+       if (!len.isEmpty() && !Sleeves.isEmpty() && !shoulder.isEmpty() && !colr.isEmpty() && !chest.isEmpty() && !stomachSize.isEmpty()
+        && !arms.isEmpty() && !wrist.isEmpty() && !loosingChest.isEmpty() && !loosingstomach.isEmpty() && !des.isEmpty()){
 
-        Map<String,Object> data= measurements.ShirttoMap();
-        saveCustomerData(customerSerialNo.getText().toString(),customerName.getText().toString(),customerContact.getText().toString(),data,SelectedCategory);
+           Measurements measurements=new Measurements();
+           measurements.SetMeasurementsForShirt(len,Sleeves,shoulder,colr,chest,stomachSize,arms,wrist,loosingChest,loosingstomach,des);
+
+           Map<String,Object> data= measurements.ShirttoMap();
+           saveCustomerData(customerSerialNo.getText().toString(),customerName.getText().toString(),customerContact.getText().toString(),data,SelectedCategory);
+
+
+       }
+       else{
+           Toast.makeText(this, "Please Fill Measurements Properly", Toast.LENGTH_SHORT).show();
+       }
+
 
     }
 
@@ -516,10 +584,10 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
             ethipSize.setVisibility(View.VISIBLE);
             etwrist.setVisibility(View.VISIBLE);
             etarms.setVisibility(View.VISIBLE);
-            etpentlength.setHint("pent Length");
+            etpentlength.setHint("pant Length");
             etpentlength.setVisibility(View.VISIBLE);
 
-            etpentbottom.setHint("pent Bottom");
+            etpentbottom.setHint("pant Bottom");
             etpentbottom.setVisibility(View.VISIBLE);
             etthigh.setVisibility(View.VISIBLE);
             etwaist.setVisibility(View.VISIBLE);
@@ -538,6 +606,7 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
         else if(SelectedCategory.equals(("Waist Coat"))){
 
             //showing editText
+            etLenght.setHint("Waist Coat Length");
             etLenght.setVisibility(View.VISIBLE);
             etShoulder.setVisibility(View.VISIBLE);
             etcolr.setVisibility(View.VISIBLE);

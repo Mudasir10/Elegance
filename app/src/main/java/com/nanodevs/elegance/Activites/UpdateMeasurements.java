@@ -42,7 +42,6 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
     private TextInputLayout etLenght, etShoulder, etSleeves, etcolr, etchest, etstomachSize, ethipSize, etarms, etwrist, etloosingchest, etloosingstomach,
             etloosinghip, etpentlength, etpentbottom, etwaist, etthigh, etDescription;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -397,6 +396,7 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
         if (SelectedCategory.equals("Kurta")){
 
             // Show these Text View
+            etLenght.setHint("Kameez Length     لمبائی");
             etLenght.setVisibility(View.VISIBLE);
             etSleeves.setVisibility(View.VISIBLE);
             etShoulder.setVisibility(View.VISIBLE);
@@ -411,8 +411,10 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
             etloosinghip.setVisibility(View.VISIBLE);
 
 
+            etpentlength.setHint("Shalwar Length        شلوار کی لمبائی");
             etpentlength.setVisibility(View.VISIBLE);
 
+            etpentbottom.setHint("Shalwar Bottom        شلوار نیچے");
             etpentbottom.setVisibility(View.VISIBLE);
 
             etDescription.setVisibility(View.VISIBLE);
@@ -499,6 +501,7 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
             // showText Views
 
+            etLenght.setHint("Shirt Lenght      لمبائی");
             etLenght.setVisibility(View.VISIBLE);
             etSleeves.setVisibility(View.VISIBLE);
             etShoulder.setVisibility(View.VISIBLE);
@@ -583,6 +586,7 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
             //showing EditText
 
+            etLenght.setHint("Coat Lenght       لمبائی");
             etLenght.setVisibility(View.VISIBLE);
             etSleeves.setVisibility(View.VISIBLE);
             etShoulder.setVisibility(View.VISIBLE);
@@ -591,7 +595,11 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
             etstomachSize.setVisibility(View.VISIBLE);
             ethipSize.setVisibility(View.VISIBLE);
             etwrist.setVisibility(View.VISIBLE);
+
+            etpentlength.setHint("pant Length");
             etpentlength.setVisibility(View.VISIBLE);
+
+            etpentbottom.setHint("pant Bottom");
             etpentbottom.setVisibility(View.VISIBLE);
             etthigh.setVisibility(View.VISIBLE);
             etarms.setVisibility(View.VISIBLE);
@@ -682,6 +690,7 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
         else if(SelectedCategory.equals(("Waist Coat"))){
 
             //showing editText
+            etLenght.setHint("Waist Coat Length");
             etLenght.setVisibility(View.VISIBLE);
             etShoulder.setVisibility(View.VISIBLE);
             etcolr.setVisibility(View.VISIBLE);
@@ -768,9 +777,12 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
             etthigh.setVisibility(View.VISIBLE);
             ethipSize.setVisibility(View.VISIBLE);
             etDescription.setVisibility(View.VISIBLE);
-            etpentlength.setVisibility(View.VISIBLE);
-            etpentbottom.setVisibility(View.VISIBLE);
 
+            etpentlength.setHint("Pant Lenght");
+            etpentlength.setVisibility(View.VISIBLE);
+
+            etpentbottom.setHint("Pant Bottom");
+            etpentbottom.setVisibility(View.VISIBLE);
 
 
             // hiding the Text Views
@@ -836,6 +848,7 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
             //showing EditText
 
+            etLenght.setHint("Saffari Coat Lenght");
             etLenght.setVisibility(View.VISIBLE);
             etSleeves.setVisibility(View.VISIBLE);
             etShoulder.setVisibility(View.VISIBLE);
@@ -844,7 +857,11 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
             etstomachSize.setVisibility(View.VISIBLE);
             ethipSize.setVisibility(View.VISIBLE);
             etwrist.setVisibility(View.VISIBLE);
+
+            etpentlength.setHint("pant Length");
             etpentlength.setVisibility(View.VISIBLE);
+
+            etpentbottom.setHint("pant Bottom");
             etpentbottom.setVisibility(View.VISIBLE);
             etthigh.setVisibility(View.VISIBLE);
 
@@ -937,6 +954,7 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
             //showing EditText
 
+            etLenght.setHint("Kameez Lenght");
             etLenght.setVisibility(View.VISIBLE);
             etSleeves.setVisibility(View.VISIBLE);
             etShoulder.setVisibility(View.VISIBLE);
@@ -950,7 +968,11 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
             etloosingchest.setVisibility(View.VISIBLE);
             etloosingstomach.setVisibility(View.VISIBLE);
             etDescription.setVisibility(View.VISIBLE);
+
+            etpentlength.setHint("Shalwar Lenght");
             etpentlength.setVisibility(View.VISIBLE);
+
+            etpentbottom.setHint("Shalwar Bottom");
             etpentbottom.setVisibility(View.VISIBLE);
 
             // hiding the Edit Text
