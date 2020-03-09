@@ -121,16 +121,22 @@ public class CartActivity extends AppCompatActivity {
 
     private void calculateResult() throws NumberFormatException {
         Editable editableValue1 =calculationEditText.getEditText().getText();
-        int sum=0;
+        long sum=0;
         String temp;
         if (editableValue1 != null){
-            String calue = editableValue1.toString().replaceAll("\\s","+");
-
-            for (int i = 0; i < calue.length(); i++){
-                temp=String.valueOf(calue.charAt(i));
-                sum+=Integer.parseInt(temp);
+            String[] value=editableValue1.toString().split("\\s|\\n");
+            if(value.length==0){
+                calculationEditText.getEditText().setText("0");
+                totalSumEditText.getEditText().setText("0");
+            }else{
+                String[] calue = value;
+                for (String s : calue) {
+                    temp = String.valueOf(s);
+                    sum += Long.parseLong(temp);
+                }
+                totalSumEditText.getEditText().setText(String.valueOf((sum)));
             }
-           totalSumEditText.getEditText().setText(String.valueOf((sum)));
+
         }
 
     }
