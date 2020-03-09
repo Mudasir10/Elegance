@@ -66,7 +66,6 @@ public class CartActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-
                     }
                 });}}).start();
 
@@ -77,7 +76,7 @@ public class CartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
-        if (getIntent() != null) {
+        if(getIntent() != null) {
             serialNo= getIntent().getStringExtra("cusId");
             customerName= getIntent().getStringExtra("cusName");
             contactNo =getIntent().getStringExtra("cusPhone");
@@ -101,7 +100,11 @@ public class CartActivity extends AppCompatActivity {
 
         TextWatcher textWatcher = new TextWatcher() {
             public void afterTextChanged(Editable s) {
+
+
                 calculateResult();
+
+
             }
             public void beforeTextChanged(CharSequence s, int start, int count, int after){}
             public void onTextChanged(CharSequence s, int start, int before, int count){}
@@ -113,16 +116,21 @@ public class CartActivity extends AppCompatActivity {
 
     private void calculateResult() throws NumberFormatException {
         Editable editableValue1 =calculationEditText.getEditText().getText();
-
+        int sum=0;
+        String temp;
         if (editableValue1 != null){
             String calue = editableValue1.toString();
-            calue.replaceAll("\\s+", "");
-            totalSumEditText.getEditText().setText(calue);
+
+            for (int i = 0; i < calue.length(); i++){
+                temp=String.valueOf(calue.charAt(i));
+                sum+=Integer.parseInt(temp);
+            }
+           totalSumEditText.getEditText().setText(String.valueOf((sum)));
         }
 
     }
 
-    private String getDateTime() {
+    private String getDate() {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
         return dateFormat.format(date);

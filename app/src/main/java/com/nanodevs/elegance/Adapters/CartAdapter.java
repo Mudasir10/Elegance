@@ -99,7 +99,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewHolder> {
             @Override
             public void onClick(View v) {
                  AlertDialog.Builder builder=new AlertDialog.Builder(context).setTitle("Confirmation Dialog ")
-                        .setMessage("Are You Sure You Want to Delete "+holder.suitTypeTextView.getText().toString()+" Suit Order ? ")
+                        .setMessage("Are you sure you want to delete "+holder.suitTypeTextView.getText().toString()+" suit order ? ")
                         .setIcon(R.drawable.ic_delete)
                         .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                             @Override

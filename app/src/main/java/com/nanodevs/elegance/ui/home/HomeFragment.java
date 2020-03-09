@@ -20,19 +20,11 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.nanodevs.elegance.Adapters.CustomerAdapter;
-import com.nanodevs.elegance.MainActivity;
 import com.nanodevs.elegance.Pojo.Customer;
 import com.nanodevs.elegance.R;
 import com.nanodevs.elegance.classes.InternetConnection;
-import com.nanodevs.elegance.ui.slideshow.SlideshowViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
@@ -57,8 +49,8 @@ public class HomeFragment extends Fragment {
                 @Override
                 public void onChanged(List<Customer> customers) {
 
-                        customerAdapter = new CustomerAdapter(customers, getContext());
-                        recyclerView.setAdapter(customerAdapter);
+                    customerAdapter = new CustomerAdapter(customers, getContext());
+                    recyclerView.setAdapter(customerAdapter);
 
 
                 }
@@ -79,12 +71,9 @@ public class HomeFragment extends Fragment {
     }
 
     private void init(View root) {
-
         recyclerView = root.findViewById(R.id.recyclerViewCustomers);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
-
-
 
     }
 
@@ -94,39 +83,38 @@ public class HomeFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
         // Inflate the menu; this adds items to the action bar if it is present.
         inflater.inflate(R.menu.main, menu);
-        MenuItem  searchItem = menu.findItem(R.id.action_search);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) searchItem.getActionView();
 
         searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
 
 
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    return false;
-                }
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
 
-                @Override
-                public boolean onQueryTextChange(String newText) {
+            @Override
+            public boolean onQueryTextChange(String newText) {
 
-                    if (InternetConnection.checkConnection(getContext())){
+                if (InternetConnection.checkConnection(getContext())) {
 
-                        if (recyclerView.getAdapter()!=null) {
-                            customerAdapter.getFilter().filter(newText);
-                            Toast.makeText(getContext(), "Searching Items", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(getContext(), " No Data!!", Toast.LENGTH_SHORT).show();
-                        }
-
-
-                    }
-                    else{
-                        Toast.makeText(getContext(), "Enable Internet To Search Items", Toast.LENGTH_SHORT).show();
+                    if (recyclerView.getAdapter() != null) {
+                        customerAdapter.getFilter().filter(newText);
+                        Toast.makeText(getContext(), "Searching Items", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getContext(), " No Data!!", Toast.LENGTH_SHORT).show();
                     }
 
-                    return false;
+
+                } else {
+                    Toast.makeText(getContext(), "Enable Internet To Search Items", Toast.LENGTH_SHORT).show();
                 }
-            });
+
+                return false;
+            }
+        });
 
     }
 

@@ -427,8 +427,9 @@ public class StitchCloth extends AppCompatActivity {
     }
 
     private void deleteCartOrder() {
+
         AlertDialog.Builder builder=new AlertDialog.Builder(StitchCloth.this).setTitle("Confirmation Dialog ")
-                .setMessage("Are You Sure You Want to Delete "+globalItemName+" Suit Order ? ")
+                .setMessage("Are you sure you want to delete "+globalItemName+" suit order ? ")
                 .setIcon(R.drawable.ic_delete)
                 .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
@@ -454,6 +455,8 @@ public class StitchCloth extends AppCompatActivity {
 
                                 });
                         dialog.dismiss();
+
+
                     }
                 })
                 .setNegativeButton("NO", new DialogInterface.OnClickListener() {
