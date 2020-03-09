@@ -76,7 +76,6 @@ public class CartActivity extends AppCompatActivity {
             customerName= getIntent().getStringExtra("cusName");
             contactNo =getIntent().getStringExtra("cusPhone");
 
-
         }
 
         cCartList =new ArrayList<>();

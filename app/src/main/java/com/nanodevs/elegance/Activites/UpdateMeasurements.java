@@ -52,7 +52,6 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
         init();
 
-
     }
 
     @Override
@@ -374,7 +373,6 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
         }
 
-
         spinner = findViewById(R.id.spinnerCategory);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(UpdateMeasurements.this,
@@ -396,7 +394,7 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
         if (SelectedCategory.equals("Kurta")){
 
             // Show these Text View
-            etLenght.setHint("Kameez Length     لمبائی");
+            etLenght.setHint("Kameez Length     قمیض کی لمبائی");
             etLenght.setVisibility(View.VISIBLE);
             etSleeves.setVisibility(View.VISIBLE);
             etShoulder.setVisibility(View.VISIBLE);
@@ -501,7 +499,7 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
             // showText Views
 
-            etLenght.setHint("Shirt Lenght      لمبائی");
+            etLenght.setHint("Shirt Lenght      شرٹ کی لمبائی");
             etLenght.setVisibility(View.VISIBLE);
             etSleeves.setVisibility(View.VISIBLE);
             etShoulder.setVisibility(View.VISIBLE);
@@ -586,7 +584,7 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
             //showing EditText
 
-            etLenght.setHint("Coat Lenght       لمبائی");
+            etLenght.setHint("Coat Lenght       کوٹ کی لمبائی");
             etLenght.setVisibility(View.VISIBLE);
             etSleeves.setVisibility(View.VISIBLE);
             etShoulder.setVisibility(View.VISIBLE);
@@ -596,10 +594,10 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
             ethipSize.setVisibility(View.VISIBLE);
             etwrist.setVisibility(View.VISIBLE);
 
-            etpentlength.setHint("pant Length");
+            etpentlength.setHint("pant Length       پینٹ لمبائی");
             etpentlength.setVisibility(View.VISIBLE);
 
-            etpentbottom.setHint("pant Bottom");
+            etpentbottom.setHint("pant Bottom       پینٹ نیچے");
             etpentbottom.setVisibility(View.VISIBLE);
             etthigh.setVisibility(View.VISIBLE);
             etarms.setVisibility(View.VISIBLE);
@@ -690,7 +688,7 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
         else if(SelectedCategory.equals(("Waist Coat"))){
 
             //showing editText
-            etLenght.setHint("Waist Coat Length");
+            etLenght.setHint("Waist Coat Length     کمر کوٹ کی لمبائی");
             etLenght.setVisibility(View.VISIBLE);
             etShoulder.setVisibility(View.VISIBLE);
             etcolr.setVisibility(View.VISIBLE);
@@ -778,10 +776,10 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
             ethipSize.setVisibility(View.VISIBLE);
             etDescription.setVisibility(View.VISIBLE);
 
-            etpentlength.setHint("Pant Lenght");
+            etpentlength.setHint("Pant Lenght       پینٹ لمبائی");
             etpentlength.setVisibility(View.VISIBLE);
 
-            etpentbottom.setHint("Pant Bottom");
+            etpentbottom.setHint("Pant Bottom       پینٹ نیچے");
             etpentbottom.setVisibility(View.VISIBLE);
 
 
@@ -848,7 +846,7 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
             //showing EditText
 
-            etLenght.setHint("Saffari Coat Lenght");
+            etLenght.setHint("Saffari Coat Lenght       سفاری کوٹ کی لمبائی");
             etLenght.setVisibility(View.VISIBLE);
             etSleeves.setVisibility(View.VISIBLE);
             etShoulder.setVisibility(View.VISIBLE);
@@ -858,10 +856,10 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
             ethipSize.setVisibility(View.VISIBLE);
             etwrist.setVisibility(View.VISIBLE);
 
-            etpentlength.setHint("pant Length");
+            etpentlength.setHint("pant Length       پینٹ لمبائی");
             etpentlength.setVisibility(View.VISIBLE);
 
-            etpentbottom.setHint("pant Bottom");
+            etpentbottom.setHint("pant Bottom       پینٹ نیچے");
             etpentbottom.setVisibility(View.VISIBLE);
             etthigh.setVisibility(View.VISIBLE);
 
@@ -954,7 +952,7 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
             //showing EditText
 
-            etLenght.setHint("Kameez Lenght");
+            etLenght.setHint("Kameez Lenght     قمیض کی لمبائی");
             etLenght.setVisibility(View.VISIBLE);
             etSleeves.setVisibility(View.VISIBLE);
             etShoulder.setVisibility(View.VISIBLE);
@@ -969,10 +967,10 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
             etloosingstomach.setVisibility(View.VISIBLE);
             etDescription.setVisibility(View.VISIBLE);
 
-            etpentlength.setHint("Shalwar Lenght");
+            etpentlength.setHint("Shalwar Lenght        سلور لمبائی");
             etpentlength.setVisibility(View.VISIBLE);
 
-            etpentbottom.setHint("Shalwar Bottom");
+            etpentbottom.setHint("Shalwar Bottom        شلوار نیچے");
             etpentbottom.setVisibility(View.VISIBLE);
 
             // hiding the Edit Text

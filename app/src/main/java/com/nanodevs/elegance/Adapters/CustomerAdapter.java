@@ -36,7 +36,6 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.viewHo
     }
 
 
-
     @NonNull
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -103,12 +102,13 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.viewHo
                 filteredList.addAll(customerListFull);
             } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
-
                 for (Customer item : customerListFull) {
-                    if (item.getCustomerName().toLowerCase().contains(filterPattern)) {
+                    if (item.getCustomerName().toLowerCase().contains(filterPattern) ||
+                            item.getCustomerContact().toLowerCase().contains(filterPattern)) {
                         filteredList.add(item);
                     }
                 }
+
             }
 
             FilterResults results = new FilterResults();

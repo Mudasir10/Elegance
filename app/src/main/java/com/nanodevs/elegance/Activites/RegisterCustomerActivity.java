@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -46,7 +47,7 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
     private long count;
     String SelectedCategory;
 
-    EditText etLenght, etShoulder, etSleeves, etcolr, etchest, etstomachSize, ethipSize, etarms, etwrist, etloosingchest, etloosingstomach,
+    TextInputLayout etLenght, etShoulder, etSleeves, etcolr, etchest, etstomachSize, ethipSize, etarms, etwrist, etloosingchest, etloosingstomach,
             etloosinghip, etpentlength, etpentbottom, etwaist, etthigh, etDescription;
 
 
@@ -145,21 +146,21 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
 
     private void UploadDataForSuitCategory(){
 
-       String length=etLenght.getText().toString();
-       String Sleeves=etSleeves.getText().toString();
-       String shoulder= etShoulder.getText().toString();
-       String coler= etcolr.getText().toString();
-       String chest = etchest.getText().toString();
-       String stomachSize= etstomachSize.getText().toString();
-       String HipSize= ethipSize.getText().toString();
-       String armsSize= etarms.getText().toString();
-       String wristSize= etwrist.getText().toString();
-       String loosinHip= etloosinghip.getText().toString();
-       String loosingChest= etloosingchest.getText().toString();
-       String loosingStomach= etloosingstomach.getText().toString();
-       String des= etDescription.getText().toString();
-       String pentLength= etpentlength.getText().toString();
-       String pentBottom= etpentbottom.getText().toString();
+       String length=etLenght.getEditText().getText().toString();
+       String Sleeves=etSleeves.getEditText().getText().toString();
+       String shoulder= etShoulder.getEditText().getText().toString();
+       String coler= etcolr.getEditText().getText().toString();
+       String chest = etchest.getEditText().getText().toString();
+       String stomachSize= etstomachSize.getEditText().getText().toString();
+       String HipSize= ethipSize.getEditText().getText().toString();
+       String armsSize= etarms.getEditText().getText().toString();
+       String wristSize= etwrist.getEditText().getText().toString();
+       String loosinHip= etloosinghip.getEditText().getText().toString();
+       String loosingChest= etloosingchest.getEditText().getText().toString();
+       String loosingStomach= etloosingstomach.getEditText().getText().toString();
+       String des= etDescription.getEditText().getText().toString();
+       String pentLength= etpentlength.getEditText().getText().toString();
+       String pentBottom= etpentbottom.getEditText().getText().toString();
 
        if (!length.isEmpty() && !Sleeves.isEmpty() && !shoulder.isEmpty() && !coler.isEmpty() && !chest.isEmpty() && !stomachSize.isEmpty()
          && !HipSize.isEmpty() && !armsSize.isEmpty() && !wristSize.isEmpty() && !loosinHip.isEmpty() && !loosingChest.isEmpty()
@@ -186,21 +187,21 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
 
     private void uploadDataForKurtaCategory() {
 
-        String length= etLenght.getText().toString();
-        String sleeve=  etSleeves.getText().toString();
-        String shoulder=  etShoulder.getText().toString();
-        String colr=  etcolr.getText().toString();
-        String chest= etchest.getText().toString();
-        String stomachsize=  etstomachSize.getText().toString();
-        String hipsize=  ethipSize.getText().toString();
-        String arms=  etarms.getText().toString();
-        String wrist= etwrist.getText().toString();
-        String loosingchest= etloosingchest.getText().toString();
-        String loosingstomach= etloosingstomach.getText().toString();
-        String loosinghip= etloosinghip.getText().toString();
-        String pentLenght= etpentlength.getText().toString();
-        String pentbottom= etpentbottom.getText().toString();
-        String desciption= etDescription.getText().toString();
+        String length= etLenght.getEditText().getText().toString();
+        String sleeve=  etSleeves.getEditText().getText().toString();
+        String shoulder=  etShoulder.getEditText().getText().toString();
+        String colr=  etcolr.getEditText().getText().toString();
+        String chest= etchest.getEditText().getText().toString();
+        String stomachsize=  etstomachSize.getEditText().getText().toString();
+        String hipsize=  ethipSize.getEditText().getText().toString();
+        String arms=  etarms.getEditText().getText().toString();
+        String wrist= etwrist.getEditText().getText().toString();
+        String loosingchest= etloosingchest.getEditText().getText().toString();
+        String loosingstomach= etloosingstomach.getEditText().getText().toString();
+        String loosinghip= etloosinghip.getEditText().getText().toString();
+        String pentLenght= etpentlength.getEditText().getText().toString();
+        String pentbottom= etpentbottom.getEditText().getText().toString();
+        String desciption= etDescription.getEditText().getText().toString();
 
         if (!length.isEmpty() && !sleeve.isEmpty() && !shoulder.isEmpty() && !colr.isEmpty() && !chest.isEmpty() && !stomachsize.isEmpty()
         && !hipsize.isEmpty() && !arms.isEmpty() && !wrist.isEmpty() && !loosingchest.isEmpty() && !loosinghip.isEmpty() && !pentLenght.isEmpty()
@@ -342,14 +343,14 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
 
     private void UPloadDataForWaistCoat() {
 
-       String len= etLenght.getText().toString();
-       String shoulder=  etShoulder.getText().toString();
-       String colr=  etcolr.getText().toString();
-       String chest=  etchest.getText().toString();
-       String stomachSize= etstomachSize.getText().toString();
-       String loosinChest= etloosingchest.getText().toString();
-       String loosinstomach= etloosingstomach.getText().toString();
-       String des=  etDescription.getText().toString();
+       String len= etLenght.getEditText().getText().toString();
+       String shoulder=  etShoulder.getEditText().getText().toString();
+       String colr=  etcolr.getEditText().getText().toString();
+       String chest=  etchest.getEditText().getText().toString();
+       String stomachSize= etstomachSize.getEditText().getText().toString();
+       String loosinChest= etloosingchest.getEditText().getText().toString();
+       String loosinstomach= etloosingstomach.getEditText().getText().toString();
+       String des=  etDescription.getEditText().getText().toString();
 
        if (!len.isEmpty() && !shoulder.isEmpty() && !colr.isEmpty() && !chest.isEmpty() && !stomachSize.isEmpty() && !loosinChest.isEmpty()
           && !loosinstomach.isEmpty() && !des.isEmpty()){
@@ -372,12 +373,12 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
     private void UploadDataForPant() {
 
 
-      String waist= etwaist.getText().toString();
-      String thigh= etthigh.getText().toString();
-      String hipSize= ethipSize.getText().toString();
-      String des= etDescription.getText().toString();
-      String pentLength = etpentlength.getText().toString();
-      String pentBottom= etpentbottom.getText().toString();
+      String waist= etwaist.getEditText().getText().toString();
+      String thigh= etthigh.getEditText().getText().toString();
+      String hipSize= ethipSize.getEditText().getText().toString();
+      String des= etDescription.getEditText().getText().toString();
+      String pentLength = etpentlength.getEditText().getText().toString();
+      String pentBottom= etpentbottom.getEditText().getText().toString();
 
 
 
@@ -401,20 +402,20 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
     private void UploadDataForThreePiece() {
 
 
-       String len= etLenght.getText().toString();
-      String sel=  etSleeves.getText().toString();
-      String shoulder=  etShoulder.getText().toString();
-       String colr= etcolr.getText().toString();
-       String chest=  etchest.getText().toString();
-       String stomach= etstomachSize.getText().toString();
-       String hipSize= ethipSize.getText().toString();
-       String wristSize= etwrist.getText().toString();
-       String pentLength= etpentlength.getText().toString();
-       String pentBottom= etpentbottom.getText().toString();
-        String thigh = etthigh.getText().toString();
-       String waist= etwaist.getText().toString();
-       String des= etDescription.getText().toString();
-       String arms =etarms.getText().toString();
+       String len= etLenght.getEditText().getText().toString();
+      String sel=  etSleeves.getEditText().getText().toString();
+      String shoulder=  etShoulder.getEditText().getText().toString();
+       String colr= etcolr.getEditText().getText().toString();
+       String chest=  etchest.getEditText().getText().toString();
+       String stomach= etstomachSize.getEditText().getText().toString();
+       String hipSize= ethipSize.getEditText().getText().toString();
+       String wristSize= etwrist.getEditText().getText().toString();
+       String pentLength= etpentlength.getEditText().getText().toString();
+       String pentBottom= etpentbottom.getEditText().getText().toString();
+        String thigh = etthigh.getEditText().getText().toString();
+       String waist= etwaist.getEditText().getText().toString();
+       String des= etDescription.getEditText().getText().toString();
+       String arms =etarms.getEditText().getText().toString();
 
 
        if (!len.isEmpty() && !sel.isEmpty() && !shoulder.isEmpty() && !colr.isEmpty() && !chest.isEmpty() && !stomach.isEmpty() && !hipSize.isEmpty()
@@ -441,20 +442,20 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
 
         //showing EditText
 
-        String len = etLenght.getText().toString();
-        String slev = etSleeves.getText().toString();
-        String shoulder = etShoulder.getText().toString();
-        String colr = etcolr.getText().toString();
-        String chest = etchest.getText().toString();
-        String stomachSize = etstomachSize.getText().toString();
-        String hipSize = ethipSize.getText().toString();
-        String wrist = etwrist.getText().toString();
-        String pentLength = etpentlength.getText().toString();
-        String pentBottom = etpentbottom.getText().toString();
-        String thigh = etthigh.getText().toString();
-        String waist = etwaist.getText().toString();
-        String des = etDescription.getText().toString();
-        String arms=etarms.getText().toString();
+        String len = etLenght.getEditText().getText().toString();
+        String slev = etSleeves.getEditText().getText().toString();
+        String shoulder = etShoulder.getEditText().getText().toString();
+        String colr = etcolr.getEditText().getText().toString();
+        String chest = etchest.getEditText().getText().toString();
+        String stomachSize = etstomachSize.getEditText().getText().toString();
+        String hipSize = ethipSize.getEditText().getText().toString();
+        String wrist = etwrist.getEditText().getText().toString();
+        String pentLength = etpentlength.getEditText().getText().toString();
+        String pentBottom = etpentbottom.getEditText().getText().toString();
+        String thigh = etthigh.getEditText().getText().toString();
+        String waist = etwaist.getEditText().getText().toString();
+        String des = etDescription.getEditText().getText().toString();
+        String arms=etarms.getEditText().getText().toString();
 
 
         if (!len.isEmpty() && !slev.isEmpty() && !shoulder.isEmpty() && !colr.isEmpty() && !chest.isEmpty() && !stomachSize.isEmpty() && !hipSize.isEmpty()
@@ -481,17 +482,17 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
 
     private void uploadDataForShirtCategory() {
 
-       String len= etLenght.getText().toString();
-       String Sleeves= etSleeves.getText().toString();
-       String shoulder= etShoulder.getText().toString();
-       String colr= etcolr.getText().toString();
-       String chest= etchest.getText().toString();
-       String stomachSize= etstomachSize.getText().toString();
-       String arms= etarms.getText().toString();
-       String wrist= etwrist.getText().toString();
-       String loosingChest= etloosingchest.getText().toString();
-       String loosingstomach= etloosingstomach.getText().toString();
-       String des= etDescription.getText().toString();
+       String len= etLenght.getEditText().getText().toString();
+       String Sleeves= etSleeves.getEditText().getText().toString();
+       String shoulder= etShoulder.getEditText().getText().toString();
+       String colr= etcolr.getEditText().getText().toString();
+       String chest= etchest.getEditText().getText().toString();
+       String stomachSize= etstomachSize.getEditText().getText().toString();
+       String arms= etarms.getEditText().getText().toString();
+       String wrist= etwrist.getEditText().getText().toString();
+       String loosingChest= etloosingchest.getEditText().getText().toString();
+       String loosingstomach= etloosingstomach.getEditText().getText().toString();
+       String des= etDescription.getEditText().getText().toString();
 
        if (!len.isEmpty() && !Sleeves.isEmpty() && !shoulder.isEmpty() && !colr.isEmpty() && !chest.isEmpty() && !stomachSize.isEmpty()
         && !arms.isEmpty() && !wrist.isEmpty() && !loosingChest.isEmpty() && !loosingstomach.isEmpty() && !des.isEmpty()){
@@ -518,7 +519,7 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
         if (SelectedCategory.equals("Kurta")){
 
             // Show these Text View
-            etLenght.setHint(" Kameez lenght");
+            etLenght.setHint(" Kameez lenght        قمیض کی لمبائی");
             etLenght.setVisibility(View.VISIBLE);
             etSleeves.setVisibility(View.VISIBLE);
             etShoulder.setVisibility(View.VISIBLE);
@@ -532,10 +533,10 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
             etloosingstomach.setVisibility(View.VISIBLE);
             etloosinghip.setVisibility(View.VISIBLE);
 
-            etpentlength.setHint("Shalwar Length");
+            etpentlength.setHint("Shalwar Length        شلوار کی لمبائی");
             etpentlength.setVisibility(View.VISIBLE);
 
-            etpentbottom.setHint("Shalwar bottom ");
+            etpentbottom.setHint("Shalwar bottom        شلوار نیچے");
             etpentbottom.setVisibility(View.VISIBLE);
 
             etDescription.setVisibility(View.VISIBLE);
@@ -547,7 +548,7 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
         else if(SelectedCategory.equals(("Shirt"))){
 
             // showText Views
-            etLenght.setHint("Shirt Lenght");
+            etLenght.setHint("Shirt Lenght      شرٹ کی لمبائی");
             etLenght.setVisibility(View.VISIBLE);
             etSleeves.setVisibility(View.VISIBLE);
             etShoulder.setVisibility(View.VISIBLE);
@@ -573,7 +574,7 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
         else if(SelectedCategory.equals(("Three Piece"))){
 
             //showing EditText
-            etLenght.setHint("Coat Lenght");
+            etLenght.setHint("Coat Lenght       کوٹ کی لمبائی");
             etLenght.setVisibility(View.VISIBLE);
 
             etSleeves.setVisibility(View.VISIBLE);
@@ -584,10 +585,10 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
             ethipSize.setVisibility(View.VISIBLE);
             etwrist.setVisibility(View.VISIBLE);
             etarms.setVisibility(View.VISIBLE);
-            etpentlength.setHint("pant Length");
+            etpentlength.setHint("pant Length       پینٹ لمبائی");
             etpentlength.setVisibility(View.VISIBLE);
 
-            etpentbottom.setHint("pant Bottom");
+            etpentbottom.setHint("pant Bottom       پینٹ نیچے");
             etpentbottom.setVisibility(View.VISIBLE);
             etthigh.setVisibility(View.VISIBLE);
             etwaist.setVisibility(View.VISIBLE);
@@ -606,7 +607,7 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
         else if(SelectedCategory.equals(("Waist Coat"))){
 
             //showing editText
-            etLenght.setHint("Waist Coat Length");
+            etLenght.setHint("Waist Coat Length     کمر کوٹ کی لمبائی");
             etLenght.setVisibility(View.VISIBLE);
             etShoulder.setVisibility(View.VISIBLE);
             etcolr.setVisibility(View.VISIBLE);
@@ -637,9 +638,9 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
             ethipSize.setVisibility(View.VISIBLE);
             etDescription.setVisibility(View.VISIBLE);
             etpentlength.setVisibility(View.VISIBLE);
-            etpentlength.setHint("Pant Lenght");
+            etpentlength.setHint("Pant Lenght        پینٹ لمبائی");
             etpentbottom.setVisibility(View.VISIBLE);
-            etpentbottom.setHint("pant bottom size");
+            etpentbottom.setHint("pant bottom       پینٹ نیچے");
 
 
             // hiding the Text Views
@@ -659,7 +660,7 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
         else if(SelectedCategory.equals(("Saffari Coat"))){
 
             //showing EditText
-            etLenght.setHint("Saffari Coat Lenght");
+            etLenght.setHint("Saffari Coat Lenght       سفاری کوٹ کی لمبائی");
             etLenght.setVisibility(View.VISIBLE);
 
             etSleeves.setVisibility(View.VISIBLE);
@@ -669,10 +670,10 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
             etstomachSize.setVisibility(View.VISIBLE);
             etwrist.setVisibility(View.VISIBLE);
 
-            etpentlength.setHint("pent Length");
+            etpentlength.setHint("pant Length       پینٹ لمبائی");
             etpentlength.setVisibility(View.VISIBLE);
 
-            etpentbottom.setHint("pent Bottom");
+            etpentbottom.setHint("pant Bottom       پینٹ نیچے");
             etpentbottom.setVisibility(View.VISIBLE);
             etthigh.setVisibility(View.VISIBLE);
             ethipSize.setVisibility(View.VISIBLE);
@@ -689,6 +690,7 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
         else if (SelectedCategory.equals("Suit")){
 
             //showing EditText
+            etLenght.setHint("Kameez Lenght     قمیض کی لمبائی");
             etLenght.setVisibility(View.VISIBLE);
             etSleeves.setVisibility(View.VISIBLE);
             etShoulder.setVisibility(View.VISIBLE);
@@ -704,10 +706,10 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
             etDescription.setVisibility(View.VISIBLE);
 
 
-            etpentlength.setHint("Shalwar Length");
+            etpentlength.setHint("Shalwar Length        سلور لمبائی");
             etpentlength.setVisibility(View.VISIBLE);
 
-            etpentbottom.setHint("Shalwar Bottom Length ");
+            etpentbottom.setHint("Shalwar Bottom Length     شلوار نیچے");
             etpentbottom.setVisibility(View.VISIBLE);
 
             // hiding the Edit Text

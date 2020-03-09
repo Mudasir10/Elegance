@@ -41,5 +41,7 @@ dependencies {
     implementation 'com.mikhaellopez:circularimageview:3.2.0'
     implementation 'com.nex3z:notification-badge:1.0.2'
 
+    implementation 'gr.pantrif:easy-android-splash-screen:0.0.1'
+
 
 }

@@ -8,6 +8,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.nanodevs.elegance.Activites.RegisterCustomerActivity;
+import com.nanodevs.elegance.classes.InternetConnection;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -28,12 +29,13 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 /* getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,new AddCustomerFragment()).commit();*/
-                final boolean online = isOnline();
-                if (!online)
+
+                if (!InternetConnection.checkConnection(MainActivity.this))
                     Snackbar.make(view, "Please check your internet !", Snackbar.LENGTH_LONG).show();
                     else
                         startActivity(new Intent(MainActivity.this, RegisterCustomerActivity.class));
@@ -59,18 +61,6 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-
-
-    private boolean isOnline() {
-        try {
-            return Runtime.getRuntime().exec("/system/bin/ping -c 1 8.8.8.8").waitFor() == 0; //  "8.8.8.8" is the server to ping
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-
 
 
 

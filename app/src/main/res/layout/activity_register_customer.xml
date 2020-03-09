@@ -116,147 +116,294 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <EditText
-                    android:inputType="numberDecimal"
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etlength"
+                    android:hint="Length        لمبائی"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Length"
-                    android:imeOptions="actionNext" />
+                    android:layout_height="wrap_content">
 
-                <EditText
-                    android:imeOptions="actionNext"
-                    android:inputType="numberDecimal"
+                    <EditText
+                        android:inputType="numberDecimal"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etsleeves"
+                    android:hint="Sleeves       آستین"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Sleeves"
-                     />
+                    android:layout_height="wrap_content">
 
-                <EditText
-                    android:inputType="numberDecimal"
+                    <EditText
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etshoulder"
+                    android:hint="Shoulder      کندھا"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Shoulder"
-                    android:imeOptions="actionNext" />
+                    android:layout_height="wrap_content">
 
-                <EditText
-                    android:inputType="numberDecimal"
+                    <EditText
+                        android:inputType="numberDecimal"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etcoler"
+                    android:hint="coler     کالر"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="coler"
-                    android:imeOptions="actionNext" />
+                    android:layout_height="wrap_content">
 
-                <EditText
-                    android:inputType="numberDecimal"
+                    <EditText
+                        android:inputType="numberDecimal"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etchest"
+                    android:hint="Chest     سینہ"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Chest"
-                    android:imeOptions="actionNext" />
+                    android:layout_height="wrap_content">
 
-                <EditText
+                    <EditText
+                        android:inputType="numberDecimal"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etstomach"
+                    android:hint="Stomach       پیٹ"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Stomach"
-                    android:imeOptions="actionNext"
-                    android:inputType="numberDecimal" />
+                    android:layout_height="wrap_content">
 
-                <EditText
-                    android:inputType="numberDecimal"
+                    <EditText
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_ethipsize"
+                    android:hint="hip Size      ہپ"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="hip Size"
-                    android:imeOptions="actionNext" />
+                    android:layout_height="wrap_content">
 
-                <EditText
-                    android:inputType="numberDecimal"
+                    <EditText
+                        android:inputType="numberDecimal"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etarms"
+                    android:hint="Arms      بازو"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Arms"
-                    android:imeOptions="actionNext" />
+                    android:layout_height="wrap_content">
 
-                <EditText
-                    android:inputType="numberDecimal"
+                    <EditText
+                        android:inputType="numberDecimal"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext" />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etwrist"
+                    android:hint="Wrist     کلائی"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Wrist"
-                    android:imeOptions="actionNext" />
+                    android:layout_height="wrap_content">
 
-                <EditText
-                    android:inputType="numberDecimal"
+                    <EditText
+                        android:inputType="numberDecimal"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etloosingchest"
+                    android:hint="Loosing Chest     سینے کا ڈھیلا"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Loosing Chest"
-                    android:imeOptions="actionNext" />
+                    android:layout_height="wrap_content">
 
-                <EditText
-                    android:inputType="numberDecimal"
+                    <EditText
+                        android:inputType="numberDecimal"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etloosingstomach"
+                    android:hint="Loosing Stomach       پیٹ ڈھیلا"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Loosing Stomach"
-                    android:imeOptions="actionNext" />
+                    android:layout_height="wrap_content">
 
-                <EditText
-                    android:inputType="numberDecimal"
+                    <EditText
+                        android:inputType="numberDecimal"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext" />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etloosinghip"
+                    android:hint="Loosing hip       ڈھیلے ہپ"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Loosing hip"
-                    android:imeOptions="actionNext" />
+                    android:layout_height="wrap_content">
 
-                <EditText
-                    android:inputType="numberDecimal"
+                    <EditText
+                        android:inputType="numberDecimal"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etpentlength"
+                    android:hint="Pent Length       شلوار کی لمبائی"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Pent Length"
-                    android:imeOptions="actionNext" />
+                    android:layout_height="wrap_content">
 
-                <EditText
-                    android:inputType="numberDecimal"
+                    <EditText
+                        android:inputType="numberDecimal"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etpentbottom"
+                    android:hint="Pent Bottom       شلوار نیچے"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Pent Bottom"
-                    android:imeOptions="actionNext" />
+                    android:layout_height="wrap_content">
 
-                <EditText
-                    android:inputType="numberDecimal"
+                    <EditText
+                        android:inputType="numberDecimal"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etwaist"
+                    android:hint="Waist     کمر"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Waist"
-                    android:imeOptions="actionNext" />
+                    android:layout_height="wrap_content">
 
-                <EditText
-                    android:inputType="numberDecimal"
+                    <EditText
+                        android:inputType="numberDecimal"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:imeOptions="actionNext" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etthigh"
+                    android:hint="Thigh     ران"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Thigh"
-                    android:imeOptions="actionNext" />
+                    android:layout_height="wrap_content">
 
-                <EditText
+                    <EditText
+                        android:inputType="numberDecimal"
 
-                    android:inputType="text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:imeOptions="actionNext" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etdescription"
-                    android:gravity="top|start"
+                    android:hint="Description :     تفصیل"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Description :"
-                    android:imeOptions="actionDone"
-                    android:lineSpacingExtra="2dp"
-                    android:lines="3"
-                    android:maxLines="5" />
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:inputType="text"
+
+                        android:gravity="top|start"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:imeOptions="actionDone"
+                        android:lineSpacingExtra="2dp"
+                        android:lines="3"
+                        android:maxLines="5" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
 
             </LinearLayout>
