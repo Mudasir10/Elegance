@@ -3,6 +3,7 @@ package com.nanodevs.elegance.Activites;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -58,18 +59,20 @@ public class StitchCloth extends AppCompatActivity {
     private LinearLayout bLayout, cLayout, kaLayout, khLayout, lLayout, wlayout;
     private int globalSpinnerPosition;
     private String globalItemName;
-
+    Toolbar mToolbar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stitch_cloth);
-        Log.d("MyTag", "onCreate:-------In onCreate");
         initComponents();
         handleButtonListener();
         updateCartCount();
-        updateCartCount();
+
+        mToolbar=findViewById(R.id.app_bar_stitch_cloth);
+        mToolbar.setTitle("Cloth Stitch");
+        setSupportActionBar(mToolbar);
 
         suitSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -639,9 +642,6 @@ public class StitchCloth extends AppCompatActivity {
            loadDataForAllCategories(globalItemName);
            loadDataForThreeCategories(globalItemName);
        }
-
-
-
 
     }
 

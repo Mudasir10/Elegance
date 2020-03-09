@@ -16,7 +16,6 @@
 
 
         <include
-
             android:id="@+id/app_bar_register"
             layout="@layout/app_bar_layout"
             android:layout_width="match_parent"

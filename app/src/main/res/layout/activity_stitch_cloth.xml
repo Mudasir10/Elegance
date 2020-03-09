@@ -11,12 +11,26 @@
        android:layout_height="match_parent"
        >
 
+
+       <include
+           android:id="@+id/app_bar_stitch_cloth"
+           layout="@layout/app_bar_layout"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintHorizontal_bias="1.0"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent" />
+
+
+
        <LinearLayout
            android:id="@+id/linearLayoutClothDisplay"
            android:layout_width="match_parent"
            android:layout_height="105dp"
            android:layout_margin="5dp"
-           android:orientation="horizontal">
+           android:orientation="horizontal"
+           android:layout_below="@+id/app_bar_stitch_cloth">
 
            <com.mikhaellopez.circularimageview.CircularImageView
                android:id="@+id/circularImage"

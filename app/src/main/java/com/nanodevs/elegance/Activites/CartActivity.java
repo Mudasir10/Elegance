@@ -2,6 +2,7 @@ package com.nanodevs.elegance.Activites;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,7 +40,7 @@ public class CartActivity extends AppCompatActivity {
             advancePaymentEditText,balancePaymentEditText,remainingBalanceEditText;
 
     private long totalCalculations,totalSum,discountAmount,advanceAmount,balanceAmount,remainingAmount;
-
+    Toolbar mToolbar;
     @Override
     protected void onStart() {
         super.onStart();
@@ -76,6 +77,11 @@ public class CartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
+        mToolbar=findViewById(R.id.app_bar_cart_activity);
+        mToolbar.setTitle("View Cart");
+        setSupportActionBar(mToolbar);
+
+
         if(getIntent() != null) {
             serialNo= getIntent().getStringExtra("cusId");
             customerName= getIntent().getStringExtra("cusName");
@@ -104,7 +110,6 @@ public class CartActivity extends AppCompatActivity {
 
                 calculateResult();
 
-
             }
             public void beforeTextChanged(CharSequence s, int start, int count, int after){}
             public void onTextChanged(CharSequence s, int start, int before, int count){}
@@ -119,7 +124,7 @@ public class CartActivity extends AppCompatActivity {
         int sum=0;
         String temp;
         if (editableValue1 != null){
-            String calue = editableValue1.toString();
+            String calue = editableValue1.toString().replaceAll("\\s","+");
 
             for (int i = 0; i < calue.length(); i++){
                 temp=String.valueOf(calue.charAt(i));
