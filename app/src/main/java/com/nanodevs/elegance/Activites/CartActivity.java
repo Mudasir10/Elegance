@@ -40,7 +40,7 @@ public class CartActivity extends AppCompatActivity {
             advancePaymentEditText,balancePaymentEditText,remainingBalanceEditText;
 
     private long totalCalculations,totalSum,discountAmount,advanceAmount,balanceAmount,remainingAmount;
-    Toolbar mToolbar;
+    private Toolbar mToolbar;
     @Override
     protected void onStart() {
         super.onStart();
