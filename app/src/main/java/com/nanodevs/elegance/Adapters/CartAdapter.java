@@ -105,7 +105,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewHolder> {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
-                                // Todo
                                 final DatabaseReference cartDataRef=FirebaseDatabase.getInstance().getReference("Cart");
                                 cartDataRef.child(userID).child(holder.suitTypeTextView.getText().toString()).removeValue();
                                 if(cartList.size()==0){
