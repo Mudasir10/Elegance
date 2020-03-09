@@ -1,8 +1,10 @@
 package com.nanodevs.elegance.Activites;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -55,6 +57,7 @@ public class StitchCloth extends AppCompatActivity {
 
     private LinearLayout bLayout, cLayout, kaLayout, khLayout, lLayout, wlayout;
     private int globalSpinnerPosition;
+    private String globalItemName;
 
 
 
@@ -62,14 +65,17 @@ public class StitchCloth extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stitch_cloth);
+        Log.d("MyTag", "onCreate:-------In onCreate");
         initComponents();
         handleButtonListener();
+        updateCartCount();
         updateCartCount();
 
         suitSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 globalSpinnerPosition = position;
+                globalItemName= parent.getItemAtPosition(position).toString();
                 String itemName = parent.getItemAtPosition(position).toString();
                 if (itemName.equals("Kurta")){
                     clearFields();
@@ -150,6 +156,17 @@ public class StitchCloth extends AppCompatActivity {
         }
 
 
+    }
+
+    private void loadDataForCustomerTextView(){
+
+        if (getIntent() != null) {
+
+            clothOrderCustomerSerialNo.setText(String.valueOf(getIntent().getStringExtra("customerId")));
+            clothOrderCustomerName.setText(getIntent().getStringExtra("cus_name"));
+            clothOrderCustomerContact.setText(String.valueOf(getIntent().getStringExtra("cus_phone")));
+
+        }
     }
 
     private void loadDataForAllCategories(final String itemName) {
@@ -410,46 +427,61 @@ public class StitchCloth extends AppCompatActivity {
     }
 
     private void deleteCartOrder() {
-        final String suitTypeName = suitSpinner.getItemAtPosition(globalSpinnerPosition).toString();
-        if (boskiQty == 0 && cottonQty == 0 &&
-                khaadiQty == 0 && karandiQty == 0 && lilanQty == 0
-                && wWearQty == 0){
-                            if(boskiEditText.getText().toString().equals("0")&&
-                            cottonEditText.getText().toString().equals("0")&&
-                            karandiEditText.getText().toString().equals("0")&&
-                            khaadiEditText.getText().toString().equals("0")&&
-                            lilanEditText.getText().toString().equals("0")&&
-                            wWearEditText.getText().toString().equals("0")){
-                                cartRef.child(clothOrderCustomerSerialNo.getText().toString()).child(suitTypeName).getRef().removeValue()
-                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                if(task.isSuccessful()){
-                                                    updateCartCount();
-                                                    Toast.makeText(StitchCloth.this, "Deleted Order", Toast.LENGTH_SHORT).show();
-                                                }
+        AlertDialog.Builder builder=new AlertDialog.Builder(StitchCloth.this).setTitle("Confirmation Dialog ")
+                .setMessage("Are You Sure You Want to Delete "+globalItemName+" Suit Order ? ")
+                .setIcon(R.drawable.ic_delete)
+                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        // Todo
+                        final String suitTypeName = suitSpinner.getItemAtPosition(globalSpinnerPosition).toString();
+                        cartRef.child(clothOrderCustomerSerialNo.getText().toString()).child(suitTypeName).getRef().removeValue()
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()){
+                                            updateCartCount();
+                                            if(globalItemName !=null){
+                                                clearFields();
+                                                loadDataForAllCategories(globalItemName);
+                                                loadDataForThreeCategories(globalItemName);
+                                                Toast.makeText(StitchCloth.this, "Order deleted !", Toast.LENGTH_SHORT).show();
                                             }
-                                        });
-                            }
-                            else
-                                Toast.makeText(this, "Cart is empty, first add items to cart", Toast.LENGTH_SHORT).show();
-        }else
-            Toast.makeText(this, "First add items to cart,then set items to zero to delete order", Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    }
+
+                                });
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        //Todo
+                         dialog.cancel();
+                    }
+                });
+        builder.create();
+                builder.show();
+
     }
 
     private void saveCartItemsData() {
         updateCartCount();
+        DatabaseReference cartRefSaveData = FirebaseDatabase.getInstance().getReference("Cart");
         final String suitTypeName = suitSpinner.getItemAtPosition(globalSpinnerPosition).toString();
-        
             if (boskiQty == 0 && cottonQty == 0 &&
                     khaadiQty == 0 && karandiQty == 0 && lilanQty == 0
                     && wWearQty == 0)
-                Toast.makeText(StitchCloth.this, "please add items to cart !", Toast.LENGTH_SHORT).show();
+                Toast.makeText(StitchCloth.this, "Please first add items to cart !", Toast.LENGTH_SHORT).show();
             else {
                 Cart itemCart = new Cart(boskiQty, cottonQty, khaadiQty, karandiQty, lilanQty, wWearQty, suitTypeName);
                 Map<String, Object> childUpdates = new HashMap<>();
                 childUpdates.put(clothOrderCustomerSerialNo.getText() + "/" + suitTypeName, itemCart.toCartMap());
-                cartRef.updateChildren(childUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
+                cartRefSaveData.updateChildren(childUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(StitchCloth.this, "Items added to cart !", Toast.LENGTH_SHORT).show();
@@ -458,9 +490,6 @@ public class StitchCloth extends AppCompatActivity {
                 });
             }
         }
-       
-        
-    
 
     private void initComponents() {
 
@@ -589,21 +618,38 @@ public class StitchCloth extends AppCompatActivity {
 
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (item.getItemId() == R.id.badge) {
+        if(item.getItemId() == R.id.badge) {
         }
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadDataForCustomerTextView();
+        updateCartCount();
+        if(globalItemName !=null){
+            clearFields();
+           loadDataForAllCategories(globalItemName);
+           loadDataForThreeCategories(globalItemName);
+       }
 
-    private String getDateTime() {
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = new Date();
-        return dateFormat.format(date);
+
+
+
     }
 
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        updateCartCount();
+        loadDataForCustomerTextView();
+        if(globalItemName !=null){
+            loadDataForAllCategories(globalItemName);
+            loadDataForThreeCategories(globalItemName);
+        }
+    }
 }

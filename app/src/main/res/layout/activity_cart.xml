@@ -11,76 +11,85 @@
     android:layout_height="match_parent">
 
 
-    <LinearLayout
-        android:id="@+id/linearLayoutCart"
-        android:layout_width="match_parent"
-        android:layout_height="105dp"
-        android:layout_margin="5dp"
-        android:orientation="horizontal">
+   <androidx.cardview.widget.CardView
+       android:id="@+id/cardTopView"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       app:cardCornerRadius="5dp"
+       android:layout_margin="2dp">
 
-        <com.mikhaellopez.circularimageview.CircularImageView
-            android:id="@+id/circularImage"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginStart="9dp"
-            android:layout_marginTop="9dp"
-            android:src="@drawable/boss"
-            app:civ_border_width="1dp"
-            app:civ_shadow="true"
-            app:civ_shadow_color="#8BC34A"
-            app:civ_shadow_radius="0" />
+       <LinearLayout
+           android:id="@+id/linearLayoutCart"
+           android:layout_width="match_parent"
+           android:layout_height="95dp"
+           android:layout_margin="5dp"
+           android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="9dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginEnd="9dp"
-            android:orientation="vertical">
+           <com.mikhaellopez.circularimageview.CircularImageView
+               android:id="@+id/circularImage"
+               android:layout_width="80dp"
+               android:layout_height="80dp"
+               android:layout_marginStart="9dp"
+               android:layout_marginTop="9dp"
+               android:src="@drawable/boss"
+               app:civ_border_width="1dp"
+               app:civ_shadow="true"
+               app:civ_shadow_color="#8BC34A"
+               app:civ_shadow_radius="0" />
 
-
-            <TextView
-                android:id="@+id/cartCustomerSerialNo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:text="@string/customer_map_no"
-                android:textColor="@android:color/black"
-                android:textSize="19sp" />
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:layout_marginStart="9dp"
+               android:layout_marginTop="2dp"
+               android:layout_marginEnd="9dp"
+               android:orientation="vertical">
 
 
-            <TextView
-                android:id="@+id/cartCustomerName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
-                android:singleLine="true"
-                android:text="@string/customer_name"
-                android:textColor="@android:color/black"
-                android:textSize="19sp" />
+               <TextView
+                   android:id="@+id/cartCustomerSerialNo"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:singleLine="true"
+                   android:text="@string/customer_map_no"
+                   android:textColor="@android:color/black"
+                   android:textSize="19sp" />
+
+               <TextView
+                   android:id="@+id/cartCustomerName"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="7dp"
+                   android:singleLine="true"
+                   android:text="@string/customer_name"
+                   android:textColor="@android:color/black"
+                   android:textSize="19sp" />
 
 
-            <TextView
-                android:id="@+id/cartCustomerContact"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
-                android:singleLine="true"
-                android:text="@string/contact_no"
-                android:textColor="@android:color/black"
-                android:textSize="19sp" />
+               <TextView
+                   android:id="@+id/cartCustomerContact"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="7dp"
+                   android:singleLine="true"
+                   android:text="@string/contact_no"
+                   android:textColor="@android:color/black"
+                   android:textSize="19sp" />
 
 
-        </LinearLayout>
+           </LinearLayout>
 
-    </LinearLayout>
+       </LinearLayout>
+
+   </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cartListRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayoutCart"
+        android:layout_below="@+id/cardTopView"
         android:layout_margin="5dp"
+        android:background="#c5c5c5"
         />
 
     <LinearLayout
@@ -94,12 +103,26 @@
             android:id="@+id/totalCalculationsEditText"
             android:hint="@string/total_calculations"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+
+            <EditText
+                android:inputType="textMultiLine"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/totalCalculationsSumEditText"
+            android:hint="@string/total_amount"
+            android:layout_width="match_parent"
             android:layout_height="80dp"
             >
 
             <EditText
-                android:inputType="numberDecimal"
-
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 />
@@ -114,7 +137,6 @@
             >
 
             <EditText
-
                 android:inputType="numberDecimal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -131,7 +153,6 @@
 
             <EditText
                 android:inputType="numberDecimal"
-
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 />
@@ -147,7 +168,6 @@
 
             <EditText
                 android:inputType="numberDecimal"
-
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 />
@@ -156,7 +176,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/remainingBalance"
-            android:hint="@string/balance"
+            android:hint="@string/remaining_balance"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             >

@@ -43,6 +43,8 @@
     <string name="advance_payment">Advance Payment</string>
     <string name="balance">Balance</string>
     <string name="delete_order">Delete Order</string>
+    <string name="remaining_balance">Remaining Balance</string>
+    <string name="total_amount">Total Amount</string>
 
 
 </resources>

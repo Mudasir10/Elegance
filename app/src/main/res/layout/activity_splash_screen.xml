@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1a1b29"
+    android:background="#ffff"
     tools:context=".Activites.SplashScreenActivity">
 
 
@@ -27,7 +27,7 @@
     <TextView
         android:textAlignment="center"
         android:textSize="20dp"
-        android:textColor="#FFF"
+        android:textColor="@android:color/black"
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
         android:layout_margin="10dp"
         android:layout_marginTop="64dp"
         android:text="Developed By NanodevLab 2020"
-        android:textColor="#FFF"
+        android:textColor="@android:color/black"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
