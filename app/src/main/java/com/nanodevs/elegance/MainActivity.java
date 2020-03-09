@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /* getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,new AddCustomerFragment()).commit();*/
 
                 if (!InternetConnection.checkConnection(MainActivity.this))
                     Snackbar.make(view, "Please check your internet !", Snackbar.LENGTH_LONG).show();
