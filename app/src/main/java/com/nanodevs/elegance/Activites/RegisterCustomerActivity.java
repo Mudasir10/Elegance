@@ -3,6 +3,7 @@ package com.nanodevs.elegance.Activites;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -42,6 +44,9 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
     private DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Measurements");
     private EditText customerName, customerContact, customerSerialNo;
 
+    private CheckBox checkBoxPocket_bothSides,checkBoxPocket_front,checkBoxcolr_simple,checkBoxcolr_sherwani,checkBoxcolr_halfSherwani;
+
+
     private Spinner spinner;
 
     private long count;
@@ -51,14 +56,31 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
             etloosinghip, etpentlength, etpentbottom, etwaist, etthigh, etDescription;
 
 
+    Toolbar mToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_customer);
 
+        mToolbar=findViewById(R.id.app_bar_register);
+        mToolbar.setTitle("Register Customer Activity");
+        mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        mToolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
         initComponents();
-        getSupportActionBar().setTitle("Add New Customer");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
+        if (checkBoxPocket_bothSides.isChecked()){
+            Toast.makeText(this, "Pocket both Sides", Toast.LENGTH_SHORT).show();
+        }
+
 
 
     }
@@ -119,6 +141,12 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
         customerContact = findViewById(R.id.customerNumber);
         customerSerialNo = findViewById(R.id.customerSerialNo);
 
+        //init check boxes
+        checkBoxPocket_bothSides=findViewById(R.id.checkboxPocket_both_sides);
+                checkBoxPocket_front=findViewById(R.id.checkboxPocket_front_procket);
+        checkBoxcolr_simple=findViewById(R.id.checkboxColer_simple);
+                checkBoxcolr_sherwani=findViewById(R.id.checkboxColer_sherwani);
+        checkBoxcolr_halfSherwani=findViewById(R.id.checkboxColer_half_sherwani);
 
 
         spinner = findViewById(R.id.spinnerCategory);
@@ -131,6 +159,8 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
 
 
     }
+
+
 
     private boolean isOnline() {
         try {
@@ -724,6 +754,5 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-
 
 }

@@ -3,6 +3,7 @@ package com.nanodevs.elegance.Activites;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -42,13 +43,23 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
     private TextInputLayout etLenght, etShoulder, etSleeves, etcolr, etchest, etstomachSize, ethipSize, etarms, etwrist, etloosingchest, etloosingstomach,
             etloosinghip, etpentlength, etpentbottom, etwaist, etthigh, etDescription;
 
+
+    Toolbar mToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_measurements);
 
-        getSupportActionBar().setTitle("Update Activity");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mToolbar=findViewById(R.id.app_bar_update);
+        mToolbar.setTitle("Update Activity");
+        mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        mToolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         init();
 

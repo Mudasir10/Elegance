@@ -2,14 +2,18 @@ package com.nanodevs.elegance;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.nanodevs.elegance.Activites.RegisterCustomerActivity;
+import com.nanodevs.elegance.Activites.SplashScreenActivity;
 import com.nanodevs.elegance.classes.InternetConnection;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -21,6 +25,7 @@ import androidx.appcompat.widget.Toolbar;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
                     Snackbar.make(view, "Please check your internet !", Snackbar.LENGTH_LONG).show();
                     else
                         startActivity(new Intent(MainActivity.this, RegisterCustomerActivity.class));
+
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -60,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-
 
 
 

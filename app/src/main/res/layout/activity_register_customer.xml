@@ -5,30 +5,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:layout_behavior="@string/bottom_sheet_behavior"
     app:cardCornerRadius="10dp"
-    android:layout_marginBottom="50dp"
-    >
+    android:layout_marginBottom="50dp">
+
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="2dp">
+        android:layout_height="match_parent">
 
+
+        <include
+
+            android:id="@+id/app_bar_register"
+            layout="@layout/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/customerProfileTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:layout_marginTop="4dp"
             android:text="@string/customer_register"
             android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.053"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/app_bar_register" />
 
         <EditText
 
@@ -393,17 +401,70 @@
 
                     <EditText
                         android:inputType="text"
-
                         android:gravity="top|start"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-
-                        android:imeOptions="actionDone"
                         android:lineSpacingExtra="2dp"
                         android:lines="3"
                         android:maxLines="5" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+
+
+                <LinearLayout
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="Pocket Info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <CheckBox
+                        android:id="@+id/checkboxPocket_both_sides"
+                        android:text="@string/both_sides"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <CheckBox
+                        android:id="@+id/checkboxPocket_front_procket"
+                        android:text="@string/front_pocket"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="coler Info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <CheckBox
+                        android:id="@+id/checkboxColer_simple"
+                        android:text="@string/simple"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <CheckBox
+                        android:id="@+id/checkboxColer_sherwani"
+                        android:text="@string/sherwani"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <CheckBox
+                        android:id="@+id/checkboxColer_half_sherwani"
+                        android:text="@string/half_sherwani"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
 
 
             </LinearLayout>
