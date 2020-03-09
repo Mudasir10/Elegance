@@ -52,7 +52,6 @@ public class HomeFragment extends Fragment {
                     customerAdapter = new CustomerAdapter(customers, getContext());
                     recyclerView.setAdapter(customerAdapter);
 
-
                 }
             });
 

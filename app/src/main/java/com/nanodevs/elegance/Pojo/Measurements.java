@@ -29,6 +29,9 @@ public class Measurements {
     private String etSleeves;
 
 
+    private String pocket;
+    private String colerStyle;
+
     public void SetMeasurementsForWaistCoat(String etLenght, String etShoulder, String etcolr, String etchest, String etstomachSize, String etloosingchest, String etloosingstomach, String etDescription) {
 
         this.etLenght = etLenght;
@@ -51,8 +54,6 @@ public class Measurements {
         this.etpentlength = etpentlength;
         this.etpentbottom = etpentbottom;
     }
-
-
 
 
 

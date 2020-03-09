@@ -14,17 +14,15 @@
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-        <activity android:name=".Activites.CartActivity"
-         />
-
+        <activity
+            android:name=".Activites.CartActivity" />
         <activity
             android:name=".Activites.UpdateMeasurements" />
 
         <activity
             android:name=".Activites.RegisterCustomerActivity" />
 
-        <activity android:name=".Activites.StitchCloth"
-           />
+        <activity android:name=".Activites.StitchCloth" />
 
 
         <activity

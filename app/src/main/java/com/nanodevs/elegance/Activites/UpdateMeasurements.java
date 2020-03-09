@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -39,6 +40,9 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
     private DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Measurements");
     private Spinner spinner;
 
+    private CheckBox checkBoxPocket_bothSides,checkBoxPocket_front,checkBoxcolr_simple,checkBoxcolr_sherwani,checkBoxcolr_halfSherwani;
+
+
     private String SelectedCategory;
     private TextInputLayout etLenght, etShoulder, etSleeves, etcolr, etchest, etstomachSize, ethipSize, etarms, etwrist, etloosingchest, etloosingstomach,
             etloosinghip, etpentlength, etpentbottom, etwaist, etthigh, etDescription;
@@ -52,6 +56,7 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
         setContentView(R.layout.activity_update_measurements);
 
         mToolbar=findViewById(R.id.app_bar_update);
+        setSupportActionBar(mToolbar);
         mToolbar.setTitle("Update Activity");
         mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
         mToolbar.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +65,7 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
                 finish();
             }
         });
+
 
         init();
 
@@ -376,6 +382,17 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
         customerSerialNo=findViewById(R.id.customerSerialNo);
         customerName=findViewById(R.id.customerName);
         customerContact=findViewById(R.id.customerNumber);
+
+
+        //init check boxes
+        checkBoxPocket_bothSides = findViewById(R.id.UpdatecheckboxPocket_both_sides);
+        checkBoxPocket_front = findViewById(R.id.UpdatecheckboxPocket_front_procket);
+        checkBoxcolr_simple = findViewById(R.id.UpdatecheckboxColer_simple);
+        checkBoxcolr_sherwani = findViewById(R.id.UpdatecheckboxColer_sherwani);
+        checkBoxcolr_halfSherwani = findViewById(R.id.UpdatecheckboxColer_half_sherwani);
+
+
+
 
         if (getIntent()!=null){
             customerSerialNo.setText(String.valueOf(getIntent().getLongExtra("customerId", 0)));

@@ -44,7 +44,9 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
     private DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Measurements");
     private EditText customerName, customerContact, customerSerialNo;
 
-    private CheckBox checkBoxPocket_bothSides,checkBoxPocket_front,checkBoxcolr_simple,checkBoxcolr_sherwani,checkBoxcolr_halfSherwani;
+    String bS,Fp,sh,hfsh,simp;
+
+    private  CheckBox checkBoxPocket_bothSides,checkBoxPocket_front,checkBoxcolr_simple,checkBoxcolr_sherwani,checkBoxcolr_halfSherwani;
 
 
     private Spinner spinner;
@@ -64,6 +66,7 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
         setContentView(R.layout.activity_register_customer);
 
         mToolbar=findViewById(R.id.app_bar_register);
+        setSupportActionBar(mToolbar);
         mToolbar.setTitle("Register Customer Activity");
         mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
         mToolbar.setOnClickListener(new View.OnClickListener() {
@@ -73,13 +76,77 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
             }
         });
 
-
         initComponents();
 
 
-        if (checkBoxPocket_bothSides.isChecked()){
-            Toast.makeText(this, "Pocket both Sides", Toast.LENGTH_SHORT).show();
-        }
+        checkBoxPocket_bothSides.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (checkBoxPocket_bothSides.isChecked()){
+                    bS="both Sides";
+                }
+                else{
+                    bS="";
+                }
+
+            }
+        });
+        checkBoxPocket_front.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (checkBoxPocket_front.isChecked()){
+                    Fp="front pocket";
+                }
+                else{
+                    Fp="";
+                }
+
+            }
+        });
+        checkBoxcolr_simple.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (checkBoxcolr_simple.isChecked()){
+                    simp="simple";
+                }
+                else{
+                    simp="";
+                }
+
+            }
+        });
+
+        checkBoxcolr_sherwani.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (checkBoxcolr_sherwani.isChecked()){
+                    sh="Sherwani";
+                }
+                else{
+                    sh="";
+                }
+
+            }
+        });
+        checkBoxcolr_halfSherwani.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (checkBoxcolr_halfSherwani.isChecked()){
+                    hfsh="half Sherwani";
+                }
+                else{
+                    hfsh="";
+                }
+
+
+            }
+        });
+
 
 
 
@@ -142,11 +209,11 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
         customerSerialNo = findViewById(R.id.customerSerialNo);
 
         //init check boxes
-        checkBoxPocket_bothSides=findViewById(R.id.checkboxPocket_both_sides);
-                checkBoxPocket_front=findViewById(R.id.checkboxPocket_front_procket);
-        checkBoxcolr_simple=findViewById(R.id.checkboxColer_simple);
-                checkBoxcolr_sherwani=findViewById(R.id.checkboxColer_sherwani);
-        checkBoxcolr_halfSherwani=findViewById(R.id.checkboxColer_half_sherwani);
+        checkBoxPocket_bothSides = findViewById(R.id.checkboxPocket_both_sides);
+        checkBoxPocket_front = findViewById(R.id.checkboxPocket_front_procket);
+        checkBoxcolr_simple = findViewById(R.id.checkboxColer_simple);
+        checkBoxcolr_sherwani = findViewById(R.id.checkboxColer_sherwani);
+        checkBoxcolr_halfSherwani = findViewById(R.id.checkboxColer_half_sherwani);
 
 
         spinner = findViewById(R.id.spinnerCategory);
