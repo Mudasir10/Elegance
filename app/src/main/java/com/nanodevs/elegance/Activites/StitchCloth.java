@@ -61,6 +61,30 @@ public class StitchCloth extends AppCompatActivity {
     private String globalItemName;
     Toolbar mToolbar;
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadDataForCustomerTextView();
+        updateCartCount();
+        if(globalItemName !=null){
+            clearFields();
+            loadDataForAllCategories(globalItemName);
+            loadDataForThreeCategories(globalItemName);
+        }
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        updateCartCount();
+        loadDataForCustomerTextView();
+        updateCartCount();
+        if(globalItemName !=null){
+            loadDataForAllCategories(globalItemName);
+            loadDataForThreeCategories(globalItemName);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -256,7 +280,6 @@ public class StitchCloth extends AppCompatActivity {
         }).start();
 
     }
-
 
     private void clearFields() {
 
@@ -632,27 +655,5 @@ public class StitchCloth extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        loadDataForCustomerTextView();
-        updateCartCount();
-        if(globalItemName !=null){
-            clearFields();
-           loadDataForAllCategories(globalItemName);
-           loadDataForThreeCategories(globalItemName);
-       }
 
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        updateCartCount();
-        loadDataForCustomerTextView();
-        if(globalItemName !=null){
-            loadDataForAllCategories(globalItemName);
-            loadDataForThreeCategories(globalItemName);
-        }
-    }
 }
