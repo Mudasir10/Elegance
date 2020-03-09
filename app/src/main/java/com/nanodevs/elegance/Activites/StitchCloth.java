@@ -59,7 +59,7 @@ public class StitchCloth extends AppCompatActivity {
     private LinearLayout bLayout, cLayout, kaLayout, khLayout, lLayout, wlayout;
     private int globalSpinnerPosition;
     private String globalItemName;
-    Toolbar mToolbar;
+    private Toolbar mToolbar;
 
     @Override
     protected void onResume() {
