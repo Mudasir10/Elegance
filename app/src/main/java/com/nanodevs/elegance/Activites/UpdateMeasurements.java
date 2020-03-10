@@ -539,6 +539,13 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
         if (SelectedCategory.equals("Kurta")){
 
+            checkBoxcolr_halfSherwani.setChecked(false);
+            checkBoxcolr_sherwani.setChecked(false);
+            checkBoxcolr_simple.setChecked(false);
+            checkBoxPocket_bothSides.setChecked(false);
+            checkBoxPocket_front.setChecked(false);
+
+
             // Show these Text View
             etLenght.setHint("Kameez Length     قمیض کی لمبائی");
             etLenght.setVisibility(View.VISIBLE);
@@ -690,6 +697,11 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
         }
         else if(SelectedCategory.equals(("Shirt"))){
+
+            checkBoxcolr_halfSherwani.setChecked(false);
+            checkBoxcolr_sherwani.setChecked(false);
+            checkBoxcolr_simple.setChecked(false);
+            checkBoxPocket_front.setChecked(false);
 
             // showText Views
 
@@ -1224,6 +1236,15 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
         }
         else if (SelectedCategory.equals("Suit")){
 
+
+
+            checkBoxcolr_halfSherwani.setChecked(false);
+            checkBoxcolr_sherwani.setChecked(false);
+            checkBoxcolr_simple.setChecked(false);
+            checkBoxPocket_bothSides.setChecked(false);
+            checkBoxPocket_front.setChecked(false);
+
+
             //showing EditText
 
             etLenght.setHint("Kameez Lenght     قمیض کی لمبائی");
@@ -1257,7 +1278,6 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
             textViewpocketStyle.setVisibility(View.VISIBLE);
             textViewColerInfo.setVisibility(View.VISIBLE);
-
 
 
 
@@ -1314,23 +1334,22 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
                         // set check if contain value
 
-                        if (colerStyle.equals("half Sherwani")){
+                        if (colerStyle.equals("half Sherwani")) {
                             checkBoxcolr_halfSherwani.setChecked(true);
                         }
-                        if (colerStyle.equals("simple")){
+                        if (colerStyle.equals("simple")) {
                             checkBoxcolr_simple.setChecked(true);
                         }
-                        if (colerStyle.equals("Sherwani")){
+                        if (colerStyle.equals("Sherwani")) {
                             checkBoxcolr_sherwani.setChecked(true);
                         }
-
-                        if (frontPocket.equals("yes")){
+                        if (frontPocket.equals("yes")) {
                             checkBoxPocket_front.setChecked(true);
                         }
-                        if (bothSidesPocket.equals("yes")){
+                        if (bothSidesPocket.equals("yes")) {
                             checkBoxPocket_bothSides.setChecked(true);
                         }
-                        if (frontPocket.equals("yes") && bothSidesPocket.equals("yes")){
+                        if (frontPocket.equals("yes") && bothSidesPocket.equals("yes")) {
                             checkBoxPocket_front.setChecked(true);
                             checkBoxPocket_bothSides.setChecked(true);
                         }
