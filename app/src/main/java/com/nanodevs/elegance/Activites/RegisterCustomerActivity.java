@@ -44,7 +44,11 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
     private DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Measurements");
     private EditText customerName, customerContact, customerSerialNo;
 
-    String bS,Fp,sh,hfsh,simp;
+    String Bs="no",Fp="no";
+    String colerStyle="not defined";
+
+    private TextView textViewpocketStyle,textViewColerInfo;
+
 
     private  CheckBox checkBoxPocket_bothSides,checkBoxPocket_front,checkBoxcolr_simple,checkBoxcolr_sherwani,checkBoxcolr_halfSherwani;
 
@@ -57,8 +61,9 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
     TextInputLayout etLenght, etShoulder, etSleeves, etcolr, etchest, etstomachSize, ethipSize, etarms, etwrist, etloosingchest, etloosingstomach,
             etloosinghip, etpentlength, etpentbottom, etwaist, etthigh, etDescription;
 
-
     Toolbar mToolbar;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,83 +74,18 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
         setSupportActionBar(mToolbar);
         mToolbar.setTitle("Register Customer Activity");
         mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-        mToolbar.setOnClickListener(new View.OnClickListener() {
+        setSupportActionBar(mToolbar);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
 
+
         initComponents();
 
 
-        checkBoxPocket_bothSides.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (checkBoxPocket_bothSides.isChecked()){
-                    bS="both Sides";
-                }
-                else{
-                    bS="";
-                }
-
-            }
-        });
-        checkBoxPocket_front.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (checkBoxPocket_front.isChecked()){
-                    Fp="front pocket";
-                }
-                else{
-                    Fp="";
-                }
-
-            }
-        });
-        checkBoxcolr_simple.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (checkBoxcolr_simple.isChecked()){
-                    simp="simple";
-                }
-                else{
-                    simp="";
-                }
-
-            }
-        });
-
-        checkBoxcolr_sherwani.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (checkBoxcolr_sherwani.isChecked()){
-                    sh="Sherwani";
-                }
-                else{
-                    sh="";
-                }
-
-            }
-        });
-        checkBoxcolr_halfSherwani.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (checkBoxcolr_halfSherwani.isChecked()){
-                    hfsh="half Sherwani";
-                }
-                else{
-                    hfsh="";
-                }
-
-
-            }
-        });
 
 
 
@@ -215,6 +155,10 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
         checkBoxcolr_sherwani = findViewById(R.id.checkboxColer_sherwani);
         checkBoxcolr_halfSherwani = findViewById(R.id.checkboxColer_half_sherwani);
 
+        textViewColerInfo=findViewById(R.id.textColerStyle);
+        textViewpocketStyle=findViewById(R.id.textPocketInfo);
+
+
 
         spinner = findViewById(R.id.spinnerCategory);
 
@@ -223,6 +167,67 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+
+
+
+
+        checkBoxPocket_bothSides.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (checkBoxPocket_bothSides.isChecked()){
+                    Bs="yes";
+                }
+                if (!checkBoxPocket_bothSides.isChecked()){
+                    Bs="no";
+                }
+            }
+        });
+        checkBoxPocket_front.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (checkBoxPocket_front.isChecked()){
+                    Fp="yes";
+                }
+                if (!checkBoxPocket_front.isChecked()){
+                    Fp="no";
+                }
+
+
+            }
+        });
+        checkBoxcolr_simple.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (checkBoxcolr_simple.isChecked()){
+                    colerStyle="simple";
+                }
+
+            }
+        });
+
+        checkBoxcolr_sherwani.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (checkBoxcolr_sherwani.isChecked()){
+                    colerStyle="Sherwani";
+                }
+
+            }
+        });
+        checkBoxcolr_halfSherwani.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (checkBoxcolr_halfSherwani.isChecked()){
+                    colerStyle="half Sherwani";
+                }
+
+            }
+        });
 
 
     }
@@ -265,7 +270,7 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
 
            Measurements measurements=new Measurements();
            measurements.SetMeasurementsForSuit(length,Sleeves,shoulder,coler,chest,stomachSize,armsSize,wristSize,loosingChest,loosingStomach
-                   ,des,HipSize,loosinHip,pentLength,pentBottom);
+                   ,des,HipSize,loosinHip,pentLength,pentBottom,Fp,Bs,colerStyle);
 
            Map<String,Object> data= measurements.SuitToMap();
            saveCustomerData(customerSerialNo.getText().toString(),customerName.getText().toString(),customerContact.getText().toString(),data,SelectedCategory);
@@ -307,7 +312,7 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
 
             Measurements measurements=new Measurements();
             measurements.SetMeasurementsForKurta(length,sleeve,shoulder,colr,chest,stomachsize,hipsize,
-                    arms,wrist,loosingchest,loosingstomach,loosinghip,pentLenght,pentbottom,desciption);
+                    arms,wrist,loosingchest,loosingstomach,loosinghip,pentLenght,pentbottom,desciption,Fp,Bs,colerStyle);
 
             Map<String,Object> data= measurements.KurtatoMap();
             saveCustomerData(customerSerialNo.getText().toString(),customerName.getText().toString(),customerContact.getText().toString(),data,SelectedCategory);
@@ -595,7 +600,7 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
         && !arms.isEmpty() && !wrist.isEmpty() && !loosingChest.isEmpty() && !loosingstomach.isEmpty() && !des.isEmpty()){
 
            Measurements measurements=new Measurements();
-           measurements.SetMeasurementsForShirt(len,Sleeves,shoulder,colr,chest,stomachSize,arms,wrist,loosingChest,loosingstomach,des);
+           measurements.SetMeasurementsForShirt(len,Sleeves,shoulder,colr,chest,stomachSize,arms,wrist,loosingChest,loosingstomach,des,Fp,colerStyle);
 
            Map<String,Object> data= measurements.ShirttoMap();
            saveCustomerData(customerSerialNo.getText().toString(),customerName.getText().toString(),customerContact.getText().toString(),data,SelectedCategory);
@@ -630,6 +635,17 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
             etloosingstomach.setVisibility(View.VISIBLE);
             etloosinghip.setVisibility(View.VISIBLE);
 
+            checkBoxPocket_bothSides.setVisibility(View.VISIBLE);
+            checkBoxcolr_sherwani.setVisibility(View.VISIBLE);
+            checkBoxcolr_halfSherwani.setVisibility(View.VISIBLE);
+            checkBoxcolr_simple.setVisibility(View.VISIBLE);
+            checkBoxPocket_front.setVisibility(View.VISIBLE);
+
+            textViewpocketStyle.setVisibility(View.VISIBLE);
+            textViewColerInfo.setVisibility(View.VISIBLE);
+
+
+
             etpentlength.setHint("Shalwar Length        شلوار کی لمبائی");
             etpentlength.setVisibility(View.VISIBLE);
 
@@ -658,6 +674,17 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
             etloosingstomach.setVisibility(View.VISIBLE);
             etDescription.setVisibility(View.VISIBLE);
 
+
+            checkBoxcolr_sherwani.setVisibility(View.VISIBLE);
+            checkBoxcolr_halfSherwani.setVisibility(View.VISIBLE);
+            checkBoxcolr_simple.setVisibility(View.VISIBLE);
+            checkBoxPocket_front.setVisibility(View.VISIBLE);
+
+            textViewpocketStyle.setVisibility(View.VISIBLE);
+            textViewColerInfo.setVisibility(View.VISIBLE);
+
+
+
             //hide EditText
             ethipSize.setVisibility(GONE);
             etloosinghip.setVisibility(GONE);
@@ -666,6 +693,7 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
             etwaist.setVisibility(GONE);
             etthigh.setVisibility(GONE);
 
+            checkBoxPocket_bothSides.setVisibility(GONE);
 
         }
         else if(SelectedCategory.equals(("Three Piece"))){
@@ -697,8 +725,15 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
             etloosingstomach.setVisibility(GONE);
             etloosinghip.setVisibility(GONE);
 
+            checkBoxPocket_bothSides.setVisibility(GONE);
+            checkBoxcolr_sherwani.setVisibility(GONE);
+            checkBoxcolr_halfSherwani.setVisibility(GONE);
+            checkBoxcolr_simple.setVisibility(GONE);
+            checkBoxPocket_front.setVisibility(GONE);
 
 
+            textViewpocketStyle.setVisibility(GONE);
+            textViewColerInfo.setVisibility(GONE);
 
         }
         else if(SelectedCategory.equals(("Waist Coat"))){
@@ -725,6 +760,15 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
             etpentbottom.setVisibility(GONE);
             etwaist.setVisibility(GONE);
             etthigh.setVisibility(GONE);
+
+            checkBoxPocket_bothSides.setVisibility(GONE);
+            checkBoxcolr_sherwani.setVisibility(GONE);
+            checkBoxcolr_halfSherwani.setVisibility(GONE);
+            checkBoxcolr_simple.setVisibility(GONE);
+            checkBoxPocket_front.setVisibility(GONE);
+
+            textViewpocketStyle.setVisibility(GONE);
+            textViewColerInfo.setVisibility(GONE);
 
         }
         else if(SelectedCategory.equals(("Pant"))){
@@ -753,6 +797,14 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
             etloosingstomach.setVisibility(GONE);
             etloosinghip.setVisibility(GONE);
 
+            checkBoxPocket_bothSides.setVisibility(GONE);
+            checkBoxcolr_sherwani.setVisibility(GONE);
+            checkBoxcolr_halfSherwani.setVisibility(GONE);
+            checkBoxcolr_simple.setVisibility(GONE);
+            checkBoxPocket_front.setVisibility(GONE);
+
+            textViewpocketStyle.setVisibility(GONE);
+            textViewColerInfo.setVisibility(GONE);
         }
         else if(SelectedCategory.equals(("Saffari Coat"))){
 
@@ -783,6 +835,15 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
             etloosingchest.setVisibility(GONE);
             etloosingstomach.setVisibility(GONE);
             etloosinghip.setVisibility(GONE);
+
+            checkBoxPocket_bothSides.setVisibility(GONE);
+            checkBoxcolr_sherwani.setVisibility(GONE);
+            checkBoxcolr_halfSherwani.setVisibility(GONE);
+            checkBoxcolr_simple.setVisibility(GONE);
+            checkBoxPocket_front.setVisibility(GONE);
+
+            textViewpocketStyle.setVisibility(GONE);
+            textViewColerInfo.setVisibility(GONE);
         }
         else if (SelectedCategory.equals("Suit")){
 
@@ -801,6 +862,19 @@ public class RegisterCustomerActivity extends AppCompatActivity implements Adapt
             etloosingchest.setVisibility(View.VISIBLE);
             etloosingstomach.setVisibility(View.VISIBLE);
             etDescription.setVisibility(View.VISIBLE);
+
+            checkBoxPocket_bothSides.setVisibility(View.VISIBLE);
+            checkBoxcolr_sherwani.setVisibility(View.VISIBLE);
+            checkBoxcolr_halfSherwani.setVisibility(View.VISIBLE);
+            checkBoxcolr_simple.setVisibility(View.VISIBLE);
+            checkBoxPocket_front.setVisibility(View.VISIBLE);
+
+            textViewpocketStyle.setVisibility(View.VISIBLE);
+            textViewColerInfo.setVisibility(View.VISIBLE);
+
+
+
+
 
 
             etpentlength.setHint("Shalwar Length        سلور لمبائی");

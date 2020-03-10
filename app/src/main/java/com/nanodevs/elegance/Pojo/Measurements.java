@@ -29,7 +29,8 @@ public class Measurements {
     private String etSleeves;
 
 
-    private String pocket;
+    private String frontpocket;
+    private String bothSidespocket;
     private String colerStyle;
 
     public void SetMeasurementsForWaistCoat(String etLenght, String etShoulder, String etcolr, String etchest, String etstomachSize, String etloosingchest, String etloosingstomach, String etDescription) {
@@ -102,7 +103,7 @@ public class Measurements {
 
 
 
-    public void SetMeasurementsForSuit(String etLenght, String etSleeves, String etShoulder, String etcolr, String etchest, String etstomachSize, String etarms, String etwrist, String etloosingchest, String etloosingstomach, String etDescription, String ethipSize, String etloosinghip, String etpentlength, String etpentbottom) {
+    public void SetMeasurementsForSuit(String etLenght, String etSleeves, String etShoulder, String etcolr, String etchest, String etstomachSize, String etarms, String etwrist, String etloosingchest, String etloosingstomach, String etDescription, String ethipSize, String etloosinghip, String etpentlength, String etpentbottom,String Frontpocket,String PocketbothSides,String colerStyle) {
 
         this.etLenght = etLenght;
         this.etSleeves = etSleeves;
@@ -119,6 +120,12 @@ public class Measurements {
         this.etloosinghip = etloosinghip;
         this.etpentlength = etpentlength;
         this.etpentbottom = etpentbottom;
+
+
+        this.frontpocket=Frontpocket;
+        this.bothSidespocket=PocketbothSides;
+        this.colerStyle=colerStyle;
+
     }
 
 
@@ -126,7 +133,7 @@ public class Measurements {
 
 
 
-    public void SetMeasurementsForShirt(String etLenght, String etSleeves, String etShoulder, String etcolr, String etchest, String etstomachSize, String etarms, String etwrist, String etloosingchest, String etloosingstomach, String etDescription) {
+    public void SetMeasurementsForShirt(String etLenght, String etSleeves, String etShoulder, String etcolr, String etchest, String etstomachSize, String etarms, String etwrist, String etloosingchest, String etloosingstomach, String etDescription,String Frontpocket,String colerStyle) {
 
         this.etLenght = etLenght;
         this.etSleeves = etSleeves;
@@ -139,6 +146,9 @@ public class Measurements {
         this.etloosingchest = etloosingchest;
         this.etloosingstomach = etloosingstomach;
         this.etDescription = etDescription;
+
+        this.frontpocket=Frontpocket;
+        this.colerStyle=colerStyle;
 
     }
 
@@ -150,7 +160,7 @@ public class Measurements {
     }
 
     public void SetMeasurementsForKurta(String etLenght, String etSleeves, String etShoulder, String etcolr,
-                                        String etchest, String etstomachSize, String ethipSize, String etarms, String etwrist, String etloosingchest, String etloosingstomach, String etloosinghip, String etpentlength, String etpentbottom, String etDescription) {
+                                        String etchest, String etstomachSize, String ethipSize, String etarms, String etwrist, String etloosingchest, String etloosingstomach, String etloosinghip, String etpentlength, String etpentbottom, String etDescription,String Frontpocket,String PocketbothSides,String colerStyle) {
         this.etLenght = etLenght;
         this.etSleeves = etSleeves;
         this.etShoulder = etShoulder;
@@ -166,6 +176,11 @@ public class Measurements {
         this.etpentlength = etpentlength;
         this.etpentbottom = etpentbottom;
         this.etDescription = etDescription;
+
+        this.frontpocket=Frontpocket;
+        this.bothSidespocket=PocketbothSides;
+        this.colerStyle=colerStyle;
+
     }
 
 
@@ -188,6 +203,10 @@ public class Measurements {
         result.put("pantBottom",etpentbottom);
         result.put("des",etDescription);
 
+        result.put("colerStyle",this.colerStyle);
+        result.put("frontPocket",this.frontpocket);
+        result.put("pocketBothSides",this.bothSidespocket);
+
 
         return result;
     }
@@ -206,6 +225,9 @@ public class Measurements {
         result.put("loosingChest",etloosingchest);
         result.put("loosingStomach",etloosingstomach);
         result.put("des",etDescription);
+
+        result.put("colerStyle",this.colerStyle);
+        result.put("frontPocket",this.frontpocket);
         return result;
     }
 
@@ -228,6 +250,10 @@ public class Measurements {
         result.put("pantLength",etpentlength);
         result.put("pantBottom",etpentbottom);
         result.put("des",etDescription);
+
+        result.put("colerStyle",this.colerStyle);
+        result.put("frontPocket",this.frontpocket);
+        result.put("pocketBothSides",this.bothSidespocket);
 
         return result;
     }
