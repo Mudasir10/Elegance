@@ -44,12 +44,15 @@
     <string name="balance">Balance</string>
     <string name="delete_order">Delete Order</string>
     <string name="remaining_balance">Remaining Balance</string>
-    <string name="total_amount">Total Amount</string>
+    <string name="total_amount">Total Bill</string>
     <string name="both_sides">Both Sides</string>
     <string name="front_pocket">front Pocket</string>
     <string name="simple">Simple</string>
     <string name="sherwani">Sherwani</string>
     <string name="half_sherwani">half-Sherwani</string>
+    <string name="expected_date">Expected Date</string>
+    <string name="calculate_bill">Calculate Bill</string>
+    <string name="search_order">Search Order</string>
 
 
 </resources>

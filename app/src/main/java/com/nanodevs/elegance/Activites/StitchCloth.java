@@ -446,7 +446,11 @@ public class StitchCloth extends AppCompatActivity {
         deleteCartOrderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteCartOrder();
+              if(mCartItemCount>0){
+                  deleteCartOrder();
+              }
+              else
+                  Toast.makeText(StitchCloth.this, "first add items to cart then you can delete !", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -616,7 +620,6 @@ public class StitchCloth extends AppCompatActivity {
         return true;
 
     }
-
 
     private void updateCartCount() {
 

@@ -128,12 +128,17 @@
             android:id="@+id/totalCalculationsSumEditText"
             android:hint="@string/total_amount"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
             >
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:textColor="@color/colorRed"
+                android:textStyle="bold"
+                android:enabled="false"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -142,13 +147,15 @@
             android:id="@+id/discountEditText"
             android:hint="@string/discount"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             >
 
             <EditText
                 android:inputType="numberDecimal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:textColor="@color/colorRed"
+                android:enabled="false"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -157,13 +164,15 @@
             android:id="@+id/advancePayment"
             android:hint="@string/advance_payment"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             >
 
             <EditText
                 android:inputType="numberDecimal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:textColor="@color/colorRed"
+                android:enabled="false"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -172,13 +181,16 @@
             android:id="@+id/balancePayment"
             android:hint="@string/balance"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             >
 
             <EditText
                 android:inputType="numberDecimal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:enabled="false"
+                android:textColor="@color/colorRed"
+                android:textStyle="bold"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -187,18 +199,38 @@
             android:id="@+id/remainingBalance"
             android:hint="@string/remaining_balance"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             >
 
             <EditText
                 android:inputType="numberDecimal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:textColor="@color/colorRed"
+                android:enabled="false"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
 
 
+
+       <EditText
+           android:id="@+id/expectedDate"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:inputType="text"
+           android:hint="@string/expected_date"/>
+
+
+        <Button
+            android:id="@+id/getBillsBtn"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:text="@string/calculate_bill"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:background="@drawable/round_button"
+            android:layout_marginTop="5dp"/>
 
 
     </LinearLayout>

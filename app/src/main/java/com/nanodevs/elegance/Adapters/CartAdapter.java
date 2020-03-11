@@ -28,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.nanodevs.elegance.Activites.StitchCloth;
+import com.nanodevs.elegance.MainActivity;
 import com.nanodevs.elegance.Pojo.Cart;
 import com.nanodevs.elegance.R;
 import java.util.List;
@@ -107,14 +108,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewHolder> {
 
                                 final DatabaseReference cartDataRef=FirebaseDatabase.getInstance().getReference("Cart");
                                 cartDataRef.child(userID).child(holder.suitTypeTextView.getText().toString()).removeValue();
-                                if(cartList.size()==0){
-                                    Intent intent = new Intent(context, StitchCloth.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                if(cartList.size()==1){
+
+                                    Intent intent = new Intent(context,MainActivity.class);
                                     context.startActivity(intent);
+
                                 }else
-                                    Toast.makeText(context, ""+cartList.size(), Toast.LENGTH_SHORT).show();
-                                        Toast.makeText(context, "Suit Type : "+holder.suitTypeTextView.getText().toString()
-                                        +" category is deleted !", Toast.LENGTH_SHORT).show();
+                                      Toast.makeText(context, "Suit Type : "+holder.suitTypeTextView.getText().toString()
+                                              +" category is deleted !", Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
                             }
                         })
@@ -131,12 +132,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewHolder> {
                             }
         });
 
-    }
-
-
-    private void setPlaceOrderData(){
-        DatabaseReference ordersReference = FirebaseDatabase.getInstance().getReference("CustomerOrders");
-        ordersReference.child("Orders").setValue(cartList);
     }
 
 

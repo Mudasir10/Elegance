@@ -7,8 +7,7 @@ public class ClothOrder {
 
     private long customerSerial;
     private String customerName;
-    private String customerMeasurementsType;
-    private String customerSuitMeasurements;
+    private String customerContact;
 
     private String suitType;
     private String clothType;
@@ -17,14 +16,15 @@ public class ClothOrder {
     private String orderDate;
     private String expectedDate;
     private boolean suitStatus;
-    private long suitAdvancePayment;
     private long totalBill;
     private long discount;
+    private long suitAdvancePayment;
     private long balance;
     private long remainingBalance;
 
 
     public ClothOrder() {
+
     }
 
 
