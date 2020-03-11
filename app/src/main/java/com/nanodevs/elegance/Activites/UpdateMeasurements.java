@@ -12,8 +12,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -39,6 +41,14 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
     private DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Measurements");
     private Spinner spinner;
 
+    private CheckBox checkBoxPocket_bothSides,checkBoxPocket_front,checkBoxcolr_simple,checkBoxcolr_sherwani,checkBoxcolr_halfSherwani;
+
+
+    String bS="no",Fp="no";
+    String colerStyle="not defined";
+
+    private TextView textViewpocketStyle,textViewColerInfo;
+
     private String SelectedCategory;
     private TextInputLayout etLenght, etShoulder, etSleeves, etcolr, etchest, etstomachSize, ethipSize, etarms, etwrist, etloosingchest, etloosingstomach,
             etloosinghip, etpentlength, etpentbottom, etwaist, etthigh, etDescription;
@@ -54,14 +64,20 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
         mToolbar=findViewById(R.id.app_bar_update);
         mToolbar.setTitle("Update Activity");
         mToolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-        mToolbar.setOnClickListener(new View.OnClickListener() {
+        setSupportActionBar(mToolbar);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
 
+
         init();
+
+
+
+
 
     }
 
@@ -251,9 +267,30 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
         String pentLength= etpentlength.getEditText().getText().toString();
         String pentBottom= etpentbottom.getEditText().getText().toString();
 
+        if (checkBoxPocket_front.isChecked() && checkBoxPocket_bothSides.isChecked()){
+            Fp="yes";
+            bS="yes";
+        }
+        if (checkBoxPocket_front.isChecked()){
+            Fp="yes";
+        }
+        if (checkBoxPocket_bothSides.isChecked()){
+            bS="yes";
+        }
+        if (checkBoxcolr_simple.isChecked()){
+            colerStyle="simple";
+        }
+        if (checkBoxcolr_sherwani.isChecked()){
+            colerStyle="Sherwani";
+        }
+        if (checkBoxcolr_halfSherwani.isChecked()){
+            colerStyle="half Sherwani";
+        }
+
+
         Measurements measurements=new Measurements();
         measurements.SetMeasurementsForSuit(length,Sleeves,shoulder,coler,chest,stomachSize,armsSize,wristSize,loosingChest,
-                loosingStomach,des,HipSize,loosinHip,pentLength,pentBottom);
+                loosingStomach,des,HipSize,loosinHip,pentLength,pentBottom,Fp,bS,colerStyle);
 
         Map<String,Object> data= measurements.SuitToMap();
 
@@ -286,7 +323,7 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
         String des= etDescription.getEditText().getText().toString();
 
         Measurements measurements=new Measurements();
-        measurements.SetMeasurementsForShirt(len,Sleeves,shoulder,colr,chest,stomachSize,arms,wrist,loosingChest,loosingstomach,des);
+        measurements.SetMeasurementsForShirt(len,Sleeves,shoulder,colr,chest,stomachSize,arms,wrist,loosingChest,loosingstomach,des,Fp,colerStyle);
 
         Map<String,Object> data= measurements.ShirttoMap();
         UpdateCustomerMeasurement(customerSerialNo.getText().toString(),data,SelectedCategory);
@@ -312,9 +349,30 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
         String pentbottom= etpentbottom.getEditText().getText().toString();
         String desciption= etDescription.getEditText().getText().toString();
 
+        if (checkBoxPocket_front.isChecked() && checkBoxPocket_bothSides.isChecked()){
+            Fp="yes";
+            bS="yes";
+        }
+        if (checkBoxPocket_front.isChecked()){
+            Fp="yes";
+        }
+        if (checkBoxPocket_bothSides.isChecked()){
+            bS="yes";
+        }
+        if (checkBoxcolr_simple.isChecked()){
+            colerStyle="simple";
+        }
+        if (checkBoxcolr_sherwani.isChecked()){
+            colerStyle="Sherwani";
+        }
+        if (checkBoxcolr_halfSherwani.isChecked()){
+            colerStyle="half Sherwani";
+        }
+
+
         Measurements measurements=new Measurements();
         measurements.SetMeasurementsForKurta(length,sleeve,shoulder,colr,chest,stomachsize,hipsize,
-                arms,wrist,loosingchest,loosingstomach,loosinghip,pentLenght,pentbottom,desciption);
+                arms,wrist,loosingchest,loosingstomach,loosinghip,pentLenght,pentbottom,desciption,Fp,bS,colerStyle);
 
         Map<String,Object> data= measurements.KurtatoMap();
         UpdateCustomerMeasurement(customerSerialNo.getText().toString(),data,SelectedCategory);
@@ -377,6 +435,19 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
         customerName=findViewById(R.id.customerName);
         customerContact=findViewById(R.id.customerNumber);
 
+
+        //init check boxes
+        checkBoxPocket_bothSides = findViewById(R.id.UpdatecheckboxPocket_both_sides);
+        checkBoxPocket_front = findViewById(R.id.UpdatecheckboxPocket_front_procket);
+        checkBoxcolr_simple = findViewById(R.id.UpdatecheckboxColer_simple);
+        checkBoxcolr_sherwani = findViewById(R.id.UpdatecheckboxColer_sherwani);
+        checkBoxcolr_halfSherwani = findViewById(R.id.UpdatecheckboxColer_half_sherwani);
+
+
+        textViewColerInfo=findViewById(R.id.textColerStyleUpdate);
+        textViewpocketStyle=findViewById(R.id.textPocketInfoUpdate);
+
+
         if (getIntent()!=null){
             customerSerialNo.setText(String.valueOf(getIntent().getLongExtra("customerId", 0)));
             customerName.setText(String.valueOf(getIntent().getStringExtra("cus_name")));
@@ -394,6 +465,70 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
 
 
+        checkBoxPocket_bothSides.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (checkBoxPocket_bothSides.isChecked()){
+                    bS="yes";
+                }
+                if (!checkBoxPocket_bothSides.isChecked()){
+                    bS="no";
+                }
+            }
+        });
+        checkBoxPocket_front.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (checkBoxPocket_front.isChecked()){
+                    Fp="yes";
+                }
+                if (!checkBoxPocket_front.isChecked()){
+                  Fp="no";
+                }
+
+
+            }
+        });
+        checkBoxcolr_simple.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (checkBoxcolr_simple.isChecked()){
+                    colerStyle="simple";
+                }
+
+            }
+        });
+
+        checkBoxcolr_sherwani.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (checkBoxcolr_sherwani.isChecked()){
+                    colerStyle="Sherwani";
+                }
+
+            }
+        });
+        checkBoxcolr_halfSherwani.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (checkBoxcolr_halfSherwani.isChecked()){
+                    colerStyle="half Sherwani";
+                }
+
+            }
+        });
+
+
+
+
+
+
+
     }
 
 
@@ -403,6 +538,13 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
         SelectedCategory = parent.getItemAtPosition(position).toString();
 
         if (SelectedCategory.equals("Kurta")){
+
+            checkBoxcolr_halfSherwani.setChecked(false);
+            checkBoxcolr_sherwani.setChecked(false);
+            checkBoxcolr_simple.setChecked(false);
+            checkBoxPocket_bothSides.setChecked(false);
+            checkBoxPocket_front.setChecked(false);
+
 
             // Show these Text View
             etLenght.setHint("Kameez Length     قمیض کی لمبائی");
@@ -418,6 +560,19 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
             etloosingchest.setVisibility(View.VISIBLE);
             etloosingstomach.setVisibility(View.VISIBLE);
             etloosinghip.setVisibility(View.VISIBLE);
+
+            checkBoxPocket_bothSides.setVisibility(View.VISIBLE);
+            checkBoxcolr_sherwani.setVisibility(View.VISIBLE);
+            checkBoxcolr_halfSherwani.setVisibility(View.VISIBLE);
+            checkBoxcolr_simple.setVisibility(View.VISIBLE);
+            checkBoxPocket_front.setVisibility(View.VISIBLE);
+
+
+            textViewpocketStyle.setVisibility(View.VISIBLE);
+            textViewColerInfo.setVisibility(View.VISIBLE);
+
+
+
 
 
             etpentlength.setHint("Shalwar Length        شلوار کی لمبائی");
@@ -455,6 +610,10 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
                         String pentbottom=dataSnapshot.child("pantBottom").getValue().toString();
                         String desciption=dataSnapshot.child("des").getValue().toString();
 
+                        String colerStyle=dataSnapshot.child("colerStyle").getValue().toString();
+                        String frontPocket=dataSnapshot.child("frontPocket").getValue().toString();
+                        String bothSidesPocket=dataSnapshot.child("pocketBothSides").getValue().toString();
+
                         // Show these Text View
                         etLenght.getEditText().setText(length);
                         etSleeves.getEditText().setText(sleeve);
@@ -471,6 +630,31 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
                         etpentlength.getEditText().setText(pentLenght);
                         etpentbottom.getEditText().setText(pentbottom);
                         etDescription.getEditText().setText(desciption);
+
+                        // set check if contain value
+
+                        if (colerStyle.equals("half Sherwani")){
+                            checkBoxcolr_halfSherwani.setChecked(true);
+                        }
+                         if (colerStyle.equals("simple")){
+                            checkBoxcolr_simple.setChecked(true);
+                        }
+                         if (colerStyle.equals("Sherwani")){
+                            checkBoxcolr_sherwani.setChecked(true);
+                        }
+
+                        if (frontPocket.equals("yes")){
+                            checkBoxPocket_front.setChecked(true);
+                        }
+                         if (bothSidesPocket.equals("yes")){
+                            checkBoxPocket_bothSides.setChecked(true);
+                        }
+                         if (frontPocket.equals("yes") && bothSidesPocket.equals("yes")){
+                            checkBoxPocket_front.setChecked(true);
+                            checkBoxPocket_bothSides.setChecked(true);
+                        }
+
+
 
                     }
                     else{
@@ -491,6 +675,12 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
                         etpentbottom.getEditText().setText("");
                         etDescription.getEditText().setText("");
 
+                        checkBoxcolr_halfSherwani.setChecked(false);
+                        checkBoxcolr_sherwani.setChecked(false);
+                        checkBoxcolr_simple.setChecked(false);
+                        checkBoxPocket_bothSides.setChecked(false);
+                        checkBoxPocket_front.setChecked(false);
+
                     }
 
 
@@ -508,6 +698,11 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
         }
         else if(SelectedCategory.equals(("Shirt"))){
 
+            checkBoxcolr_halfSherwani.setChecked(false);
+            checkBoxcolr_sherwani.setChecked(false);
+            checkBoxcolr_simple.setChecked(false);
+            checkBoxPocket_front.setChecked(false);
+
             // showText Views
 
             etLenght.setHint("Shirt Lenght      شرٹ کی لمبائی");
@@ -523,6 +718,18 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
             etloosingstomach.setVisibility(View.VISIBLE);
             etDescription.setVisibility(View.VISIBLE);
 
+            checkBoxcolr_sherwani.setVisibility(View.VISIBLE);
+            checkBoxcolr_halfSherwani.setVisibility(View.VISIBLE);
+            checkBoxcolr_simple.setVisibility(View.VISIBLE);
+            checkBoxPocket_front.setVisibility(View.VISIBLE);
+
+
+            textViewpocketStyle.setVisibility(View.VISIBLE);
+            textViewColerInfo.setVisibility(View.VISIBLE);
+
+
+
+
             //hide EditText
             ethipSize.setVisibility(GONE);
             etloosinghip.setVisibility(GONE);
@@ -531,6 +738,7 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
             etwaist.setVisibility(GONE);
             etthigh.setVisibility(GONE);
 
+            checkBoxPocket_bothSides.setVisibility(GONE);
 
             databaseReference.child(customerSerialNo.getText().toString()).child("Shirt").addValueEventListener(new ValueEventListener() {
                 @Override
@@ -550,6 +758,9 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
                         String loosingStomach=dataSnapshot.child("loosingStomach").getValue().toString();
                         String description=dataSnapshot.child("des").getValue().toString();
 
+                        String colerStyle=dataSnapshot.child("colerStyle").getValue().toString();
+                        String frontPocket=dataSnapshot.child("frontPocket").getValue().toString();
+
                         etLenght.getEditText().setText(length);
                         etSleeves.getEditText().setText(Sleeves);
                         etShoulder.getEditText().setText(shoulder);
@@ -561,6 +772,23 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
                         etloosingchest.getEditText().setText(loosingChest);
                         etloosingstomach.getEditText().setText(loosingStomach);
                         etDescription.getEditText().setText(description);
+
+                        // set check if contain value
+
+                        if (colerStyle.equals("half Sherwani")){
+                            checkBoxcolr_halfSherwani.setChecked(true);
+                        }
+                        if (colerStyle.equals("simple")){
+                            checkBoxcolr_simple.setChecked(true);
+                        }
+                        if (colerStyle.equals("Sherwani")){
+                            checkBoxcolr_sherwani.setChecked(true);
+                        }
+
+                        if (frontPocket.equals("yes")){
+                            checkBoxPocket_front.setChecked(true);
+                        }
+
 
                     }
                     else{
@@ -575,6 +803,11 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
                         etloosingchest.getEditText().setText("");
                         etloosingstomach.getEditText().setText("");
                         etDescription.getEditText().setText("");
+
+                        checkBoxcolr_halfSherwani.setChecked(false);
+                        checkBoxcolr_sherwani.setChecked(false);
+                        checkBoxcolr_simple.setChecked(false);
+                        checkBoxPocket_front.setChecked(false);
                     }
 
 
@@ -621,6 +854,16 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
             etloosingchest.setVisibility(GONE);
             etloosingstomach.setVisibility(GONE);
             etloosinghip.setVisibility(GONE);
+
+            checkBoxPocket_bothSides.setVisibility(GONE);
+            checkBoxcolr_sherwani.setVisibility(GONE);
+            checkBoxcolr_halfSherwani.setVisibility(GONE);
+            checkBoxcolr_simple.setVisibility(GONE);
+            checkBoxPocket_front.setVisibility(GONE);
+
+
+            textViewpocketStyle.setVisibility(GONE);
+            textViewColerInfo.setVisibility(GONE);
 
 
 
@@ -721,6 +964,16 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
             etwaist.setVisibility(GONE);
             etthigh.setVisibility(GONE);
 
+            checkBoxPocket_bothSides.setVisibility(GONE);
+            checkBoxcolr_sherwani.setVisibility(GONE);
+            checkBoxcolr_halfSherwani.setVisibility(GONE);
+            checkBoxcolr_simple.setVisibility(GONE);
+            checkBoxPocket_front.setVisibility(GONE);
+
+
+            textViewpocketStyle.setVisibility(GONE);
+            textViewColerInfo.setVisibility(GONE);
+
 
             databaseReference.child(customerSerialNo.getText().toString()).child("Waist Coat").addValueEventListener(new ValueEventListener() {
                 @Override
@@ -807,6 +1060,17 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
             etloosingstomach.setVisibility(GONE);
             etloosinghip.setVisibility(GONE);
 
+
+            checkBoxPocket_bothSides.setVisibility(GONE);
+            checkBoxcolr_sherwani.setVisibility(GONE);
+            checkBoxcolr_halfSherwani.setVisibility(GONE);
+            checkBoxcolr_simple.setVisibility(GONE);
+            checkBoxPocket_front.setVisibility(GONE);
+
+
+            textViewpocketStyle.setVisibility(GONE);
+            textViewColerInfo.setVisibility(GONE);
+
             databaseReference.child(customerSerialNo.getText().toString()).child("Pant").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -885,6 +1149,17 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
             etloosinghip.setVisibility(GONE);
 
 
+            checkBoxPocket_bothSides.setVisibility(GONE);
+            checkBoxcolr_sherwani.setVisibility(GONE);
+            checkBoxcolr_halfSherwani.setVisibility(GONE);
+            checkBoxcolr_simple.setVisibility(GONE);
+            checkBoxPocket_front.setVisibility(GONE);
+
+
+            textViewpocketStyle.setVisibility(GONE);
+            textViewColerInfo.setVisibility(GONE);
+
+
             databaseReference.child(customerSerialNo.getText().toString()).child("Saffari Coat").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -961,6 +1236,15 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
         }
         else if (SelectedCategory.equals("Suit")){
 
+
+
+            checkBoxcolr_halfSherwani.setChecked(false);
+            checkBoxcolr_sherwani.setChecked(false);
+            checkBoxcolr_simple.setChecked(false);
+            checkBoxPocket_bothSides.setChecked(false);
+            checkBoxPocket_front.setChecked(false);
+
+
             //showing EditText
 
             etLenght.setHint("Kameez Lenght     قمیض کی لمبائی");
@@ -983,6 +1267,20 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
             etpentbottom.setHint("Shalwar Bottom        شلوار نیچے");
             etpentbottom.setVisibility(View.VISIBLE);
+
+
+            checkBoxPocket_bothSides.setVisibility(View.VISIBLE);
+            checkBoxcolr_sherwani.setVisibility(View.VISIBLE);
+            checkBoxcolr_halfSherwani.setVisibility(View.VISIBLE);
+            checkBoxcolr_simple.setVisibility(View.VISIBLE);
+            checkBoxPocket_front.setVisibility(View.VISIBLE);
+
+
+            textViewpocketStyle.setVisibility(View.VISIBLE);
+            textViewColerInfo.setVisibility(View.VISIBLE);
+
+
+
 
             // hiding the Edit Text
             etwaist.setVisibility(GONE);
@@ -1012,6 +1310,10 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
                      String stomachSize=dataSnapshot.child("stomachSize").getValue().toString();
                      String wrsitSize=dataSnapshot.child("wristSize").getValue().toString();
 
+                        String colerStyle=dataSnapshot.child("colerStyle").getValue().toString();
+                        String frontPocket=dataSnapshot.child("frontPocket").getValue().toString();
+                        String bothSidesPocket=dataSnapshot.child("pocketBothSides").getValue().toString();
+
 
                         etLenght.getEditText().setText(length);
                         etSleeves.getEditText().setText(Sleeves);
@@ -1028,6 +1330,33 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
                         etDescription.getEditText().setText(des);
                         etpentlength.getEditText().setText(pantLength);
                         etpentbottom.getEditText().setText(pantBottom);
+
+
+                        // set check if contain value
+
+                        if (colerStyle.equals("half Sherwani")) {
+                            checkBoxcolr_halfSherwani.setChecked(true);
+                        }
+                        if (colerStyle.equals("simple")) {
+                            checkBoxcolr_simple.setChecked(true);
+                        }
+                        if (colerStyle.equals("Sherwani")) {
+                            checkBoxcolr_sherwani.setChecked(true);
+                        }
+                        if (frontPocket.equals("yes")) {
+                            checkBoxPocket_front.setChecked(true);
+                        }
+                        if (bothSidesPocket.equals("yes")) {
+                            checkBoxPocket_bothSides.setChecked(true);
+                        }
+                        if (frontPocket.equals("yes") && bothSidesPocket.equals("yes")) {
+                            checkBoxPocket_front.setChecked(true);
+                            checkBoxPocket_bothSides.setChecked(true);
+                        }
+
+
+
+
 
                     }
                     else{
@@ -1047,6 +1376,12 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
                         etDescription.getEditText().setText("");
                         etpentlength.getEditText().setText("");
                         etpentbottom.getEditText().setText("");
+
+                        checkBoxcolr_halfSherwani.setChecked(false);
+                        checkBoxcolr_sherwani.setChecked(false);
+                        checkBoxcolr_simple.setChecked(false);
+                        checkBoxPocket_bothSides.setChecked(false);
+                        checkBoxPocket_front.setChecked(false);
 
                     }
 

@@ -411,12 +411,14 @@
 
 
                 <LinearLayout
+
                     android:layout_margin="10dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:id="@+id/textPocketInfo"
                         android:text="Pocket Info"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -442,6 +444,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:id="@+id/textColerStyle"
                         android:text="coler Info"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
