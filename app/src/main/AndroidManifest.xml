@@ -21,6 +21,9 @@
             android:name=".Activites.UpdateMeasurements" />
 
         <activity
+            android:name=".Activites.SearchOrders" />
+
+        <activity
             android:name=".Activites.RegisterCustomerActivity" />
 
         <activity android:name=".Activites.StitchCloth"
