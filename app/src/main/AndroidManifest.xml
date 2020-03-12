@@ -14,12 +14,12 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".Activites.CartActivity" />
         <activity android:name=".Activites.UpdateMeasurements" />
         <activity android:name=".Activites.ViewCustomerOrdersActivity" />
         <activity android:name=".Activites.RegisterCustomerActivity" />
-        <activity android:name=".Activites.StitchCloth" />
+        <activity android:name=".Activites.AddStitchOrderActivity" />
         <activity
             android:name=".Activites.SplashScreenActivity"
             android:label="@string/app_name"

@@ -385,7 +385,12 @@ public class CartActivity extends AppCompatActivity {
         {
 
             if(global_TotalSum!=0&&global_TotalSum>0){
-                uploadOrder();
+              new Thread(new Runnable() {
+                  @Override
+                  public void run() {
+                      uploadOrder();
+                  }
+              }).start();
             }else
                 Toast.makeText(this, "First complete Billing", Toast.LENGTH_SHORT).show();
 

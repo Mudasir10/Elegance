@@ -32,13 +32,10 @@ import com.nanodevs.elegance.Pojo.Cart;
 import com.nanodevs.elegance.R;
 import com.nex3z.notificationbadge.NotificationBadge;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class StitchCloth extends AppCompatActivity {
+public class AddStitchOrderActivity extends AppCompatActivity {
     private DatabaseReference cartRef = FirebaseDatabase.getInstance().getReference("Cart");
 
     private Button boskiPlusBtn, boksiMinusBtn;
@@ -89,7 +86,7 @@ public class StitchCloth extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stitch_cloth);
+        setContentView(R.layout.activity_addstitchorder);
         initComponents();
         handleButtonListener();
         updateCartCount();
@@ -165,7 +162,7 @@ public class StitchCloth extends AppCompatActivity {
                     khLayout.setVisibility(View.VISIBLE);
                     wlayout.setVisibility(View.VISIBLE);
                 } else
-                    Toast.makeText(StitchCloth.this, "Invalid Category !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddStitchOrderActivity.this, "Invalid Category !", Toast.LENGTH_SHORT).show();
 
             }
             @Override
@@ -436,8 +433,13 @@ public class StitchCloth extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                updateCartCount();
-                saveCartItemsData();
+               new Thread(new Runnable() {
+                   @Override
+                   public void run() {
+                       updateCartCount();
+                       saveCartItemsData();
+                   }
+               }).start();
 
             }
         });
@@ -450,7 +452,7 @@ public class StitchCloth extends AppCompatActivity {
                   deleteCartOrder();
               }
               else
-                  Toast.makeText(StitchCloth.this, "first add items to cart then you can delete !", Toast.LENGTH_SHORT).show();
+                  Toast.makeText(AddStitchOrderActivity.this, "first add items to cart then you can delete !", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -458,7 +460,7 @@ public class StitchCloth extends AppCompatActivity {
 
     private void deleteCartOrder() {
 
-        AlertDialog.Builder builder=new AlertDialog.Builder(StitchCloth.this).setTitle("Confirmation Dialog ")
+        AlertDialog.Builder builder=new AlertDialog.Builder(AddStitchOrderActivity.this).setTitle("Confirmation Dialog ")
                 .setMessage("Are you sure you want to delete "+globalItemName+" suit order ? ")
                 .setIcon(R.drawable.ic_delete)
                 .setPositiveButton("YES", new DialogInterface.OnClickListener() {
@@ -477,7 +479,7 @@ public class StitchCloth extends AppCompatActivity {
                                                 clearFields();
                                                 loadDataForAllCategories(globalItemName);
                                                 loadDataForThreeCategories(globalItemName);
-                                                Toast.makeText(StitchCloth.this, "Order deleted !", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(AddStitchOrderActivity.this, "Order deleted !", Toast.LENGTH_SHORT).show();
                                             }
 
                                         }
@@ -509,7 +511,7 @@ public class StitchCloth extends AppCompatActivity {
             if (boskiQty == 0 && cottonQty == 0 &&
                     khaadiQty == 0 && karandiQty == 0 && lilanQty == 0
                     && wWearQty == 0)
-                Toast.makeText(StitchCloth.this, "Please first add items to cart !", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddStitchOrderActivity.this, "Please first add items to cart !", Toast.LENGTH_SHORT).show();
             else {
                 Cart itemCart = new Cart(boskiQty, cottonQty, khaadiQty, karandiQty, lilanQty, wWearQty, suitTypeName);
                 Map<String, Object> childUpdates = new HashMap<>();
@@ -517,7 +519,7 @@ public class StitchCloth extends AppCompatActivity {
                 cartRefSaveData.updateChildren(childUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(StitchCloth.this, "Items added to cart !", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddStitchOrderActivity.this, "Items added to cart !", Toast.LENGTH_SHORT).show();
                         updateCartCount();
                     }
                 });
@@ -588,9 +590,9 @@ public class StitchCloth extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (mCartItemCount == 0)
-                    Toast.makeText(StitchCloth.this, "Cart is Empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddStitchOrderActivity.this, "Cart is Empty", Toast.LENGTH_SHORT).show();
                 else {
-                    Intent intent=new Intent(StitchCloth.this, CartActivity.class);
+                    Intent intent=new Intent(AddStitchOrderActivity.this, CartActivity.class);
                     intent.putExtra("cusId",clothOrderCustomerSerialNo.getText());
                     intent.putExtra("cusName",clothOrderCustomerName.getText());
                     intent.putExtra("cusPhone",clothOrderCustomerContact.getText());
@@ -603,9 +605,9 @@ public class StitchCloth extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (mCartItemCount == 0)
-                    Toast.makeText(StitchCloth.this, "Cart is Empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddStitchOrderActivity.this, "Cart is Empty", Toast.LENGTH_SHORT).show();
                 else {
-                    Intent intent=new Intent(StitchCloth.this, CartActivity.class);
+                    Intent intent=new Intent(AddStitchOrderActivity.this, CartActivity.class);
                     intent.putExtra("cusId",clothOrderCustomerSerialNo.getText());
                     intent.putExtra("cusName",clothOrderCustomerName.getText());
                     intent.putExtra("cusPhone",clothOrderCustomerContact.getText());
@@ -659,4 +661,55 @@ public class StitchCloth extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onBackPressed() {
+
+        if(mCartItemCount>0)
+        {
+            AlertDialog.Builder builder=new AlertDialog.Builder(AddStitchOrderActivity.this).setTitle("Confirmation Dialog ")
+                    .setMessage("Are you sure you want to delete "+globalItemName+" suit order ? ")
+                    .setIcon(R.drawable.ic_delete)
+                    .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            final String suitTypeName = suitSpinner.getItemAtPosition(globalSpinnerPosition).toString();
+                            cartRef.child(clothOrderCustomerSerialNo.getText().toString()).child(suitTypeName).getRef().removeValue()
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if(task.isSuccessful()){
+                                                updateCartCount();
+                                                if(globalItemName !=null){
+                                                    clearFields();
+                                                    loadDataForAllCategories(globalItemName);
+                                                    loadDataForThreeCategories(globalItemName);
+                                                   AddStitchOrderActivity.super.onBackPressed();
+                                                }
+
+                                            }
+                                        }
+
+                                    });
+                            dialog.dismiss();
+
+
+                        }
+                    })
+                    .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            dialog.cancel();
+                        }
+                    });
+            builder.create();
+            builder.show();
+
+
+        }else
+        super.onBackPressed();
+
+
+    }
 }

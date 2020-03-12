@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nanodevs.elegance.Activites.ViewCustomerOrdersActivity;
-import com.nanodevs.elegance.Activites.StitchCloth;
+import com.nanodevs.elegance.Activites.AddStitchOrderActivity;
 import com.nanodevs.elegance.Activites.UpdateMeasurements;
 import com.nanodevs.elegance.Pojo.Customer;
 import com.nanodevs.elegance.R;
@@ -68,7 +68,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.viewHo
         holder.placeStitchOrderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context, StitchCloth.class);
+                Intent intent=new Intent(context, AddStitchOrderActivity.class);
                 intent.putExtra("customerId",String.valueOf(customerList.get(position).getCustomerSerial()) );
                 intent.putExtra("cus_name",customerList.get(position).getCustomerName());
                 intent.putExtra("cus_phone",customerList.get(position).getCustomerContact());
