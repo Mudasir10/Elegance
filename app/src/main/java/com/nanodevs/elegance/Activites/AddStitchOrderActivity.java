@@ -667,7 +667,7 @@ public class AddStitchOrderActivity extends AppCompatActivity {
         if(mCartItemCount>0)
         {
             AlertDialog.Builder builder=new AlertDialog.Builder(AddStitchOrderActivity.this).setTitle("Confirmation Dialog ")
-                    .setMessage("Are you sure you want to delete "+globalItemName+" suit order ? ")
+                    .setMessage("Before going back, please delete cart items to cancel the order ! ")
                     .setIcon(R.drawable.ic_delete)
                     .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                         @Override
