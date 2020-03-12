@@ -8,13 +8,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.nanodevs.elegance.Activites.ViewCustomerOrdersActivity;
 import com.nanodevs.elegance.Activites.StitchCloth;
 import com.nanodevs.elegance.Activites.UpdateMeasurements;
 import com.nanodevs.elegance.Pojo.Customer;
@@ -78,6 +77,17 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.viewHo
             }
         });
 
+        holder.viewOrdersCustomerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context, ViewCustomerOrdersActivity.class);
+                intent.putExtra("order_cusId",String.valueOf(customerList.get(position).getCustomerSerial()) );
+                intent.putExtra("order_cusName",String.valueOf(customerList.get(position).getCustomerName()) );
+                intent.putExtra("order_cusContact",String.valueOf(customerList.get(position).getCustomerContact()) );
+                context.startActivity(intent);
+            }
+        });
+
 
 
     }
@@ -128,7 +138,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.viewHo
     class viewHolder extends RecyclerView.ViewHolder {
 
        private TextView CusId, CusName, CusPhone;
-       Button imageButtonUpdate,placeStitchOrderBtn;
+       Button imageButtonUpdate,placeStitchOrderBtn,viewOrdersCustomerBtn;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
@@ -138,6 +148,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.viewHo
             CusPhone = itemView.findViewById(R.id.customerDispContact);
             imageButtonUpdate=itemView.findViewById(R.id.updateMeasurement);
             placeStitchOrderBtn=itemView.findViewById(R.id.callStitchOrder);
+            viewOrdersCustomerBtn=itemView.findViewById(R.id.viewOrderOfCustomer);
 
         }
     }

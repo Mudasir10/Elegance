@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="5dp"
+    android:layout_margin="2dp">
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+
+
+         <TextView
+            android:id="@+id/suitTypeViewOrderItemList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="2dp"
+            android:text="@string/suit_type"
+            android:textColor="@color/colorRed"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            />
+
+
+        <View
+            android:id="@+id/viewLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="5dp"
+            android:background="@color/colorPrimaryDark"
+            android:layout_below="@+id/suitTypeViewOrderItemList"/>
+
+        <LinearLayout
+            android:id="@+id/ClothTypeLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/viewLine"
+            android:layout_margin="5dp"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:id="@+id/boskiViewOrderLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/boski"
+                    android:textColor="@android:color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+                    />
+
+
+
+                <EditText
+                    android:id="@+id/ViewOrder_boskiQtyEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:enabled="false"
+                    android:hint="@string/cloth_quantity"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:padding="8dp"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textColor="#FF0000"
+                    android:textColorHint="@android:color/black" />
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cottonViewOrderLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/cotton"
+                    android:textColor="@android:color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+
+                    />
+
+
+
+
+
+                <EditText
+                    android:id="@+id/ViewOrder_cottonQtyEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="19dp"
+                    android:enabled="false"
+                    android:hint="@string/cloth_quantity"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:padding="8dp"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorRed"
+                    android:textColorHint="@android:color/black" />
+
+
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/khaadiViewOrderLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/khaadi"
+                    android:textColor="@android:color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+
+                    />
+
+
+
+
+
+                <EditText
+                    android:id="@+id/ViewOrder_khaadiQtyEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:enabled="false"
+                    android:hint="@string/cloth_quantity"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:padding="8dp"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textColor="#FF0000"
+                    android:textColorHint="@android:color/black" />
+
+
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/karandiViewOrderLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/karandi"
+                    android:textColor="@android:color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+
+                    />
+
+
+
+
+
+                <EditText
+                    android:id="@+id/ViewOrder_karandiQtyEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:enabled="false"
+                    android:hint="@string/cloth_quantity"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:padding="8dp"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textColor="#FF0000"
+                    android:textColorHint="@android:color/black" />
+
+
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/lilanViewOrderLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/lilan"
+                    android:textColor="@android:color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+
+                    />
+
+
+
+
+
+                <EditText
+                    android:id="@+id/ViewOrder_lilanQtyEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="35dp"
+                    android:enabled="false"
+                    android:hint="@string/cloth_quantity"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:padding="8dp"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textColor="#FF0000"
+                    android:textColorHint="@android:color/black" />
+
+
+
+
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/wWearViewOrderLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/washing_wear"
+                    android:textColor="@android:color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+
+                    />
+
+
+
+
+
+
+                <EditText
+                    android:id="@+id/ViewOrder_wWearQtyEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:enabled="false"
+                    android:hint="@string/cloth_quantity"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:padding="8dp"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textColor="#FF0000"
+                    android:textColorHint="@android:color/black" />
+
+
+
+
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorPrimaryDark"
+                />
+
+
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

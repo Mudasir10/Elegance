@@ -22,7 +22,6 @@
     <string name="measurements">Measurements</string>
     <string name="customer_search">Customer Search</string>
     <string name="search_hint">Customer Name,MapNo,Contact</string>
-    <string name="customer_id">Customer Id</string>
     <string name="phone">Phone :</string>
     <string name="customer_measurement">Customer Measurement</string>
     <string name="customer_description">Customer Description</string>
@@ -53,6 +52,12 @@
     <string name="expected_date">Expected Date</string>
     <string name="calculate_bill">Calculate Bill</string>
     <string name="search_order">Search Order</string>
+    <string name="customer_id">Customer ID</string>
+    <string name="suit_status">Suit Status</string>
+    <string name="order_date">Order Date</string>
+    <string name="order_key">Order Key :</string>
+    <string name="order_bill_key">Order Bill key :</string>
+    <string name="deliver_orders">Deliver Orders  </string>
 
 
 </resources>

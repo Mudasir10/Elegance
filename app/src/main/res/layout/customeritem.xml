@@ -72,7 +72,15 @@
                 android:id="@+id/updateMeasurement"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"/>
+
+            <Button
+                android:background="@drawable/ic_orders"
+                android:id="@+id/viewOrderOfCustomer"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"/>
 
             <Button
@@ -80,7 +88,7 @@
                 android:background="@drawable/sewing"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                />
 
         </LinearLayout>

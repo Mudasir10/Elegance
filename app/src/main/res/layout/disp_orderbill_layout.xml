@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        >
+
+        <Switch
+            android:id="@+id/viewOrder_SuitStatusSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/suit_status"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/totalBillTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/total_amount"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorRed"
+            android:layout_marginTop="5dp"/>
+        <TextView
+            android:id="@+id/discountBillTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/discount"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorRed"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/advancePaymentTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/advance_payment"
+            android:textSize="16sp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorRed"/>
+
+        <TextView
+            android:id="@+id/balancePaymentTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/balance"
+            android:textColor="@color/colorRed"
+            android:layout_marginTop="5dp"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/remainingBalanceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/remaining_balance"
+            android:layout_marginTop="5dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorRed"/>
+
+        <TextView
+            android:id="@+id/orderSubmittedDateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/order_date"
+            android:textSize="16sp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorRed"/>
+        <TextView
+            android:id="@+id/expectedDateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/expected_date"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/colorRed"/>
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

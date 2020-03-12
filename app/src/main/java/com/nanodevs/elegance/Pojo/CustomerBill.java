@@ -5,8 +5,8 @@ import java.util.Map;
 
 public class CustomerBill {
 
-    private long customerSerial;
     private String customerName;
+    private long customerSerial;
     private String customerContact;
 
 
@@ -158,10 +158,92 @@ public class CustomerBill {
     }
 
 
+    public String getCustomerName() {
+        return customerName;
+    }
 
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
 
+    public long getCustomerSerial() {
+        return customerSerial;
+    }
 
+    public void setCustomerSerial(long customerSerial) {
+        this.customerSerial = customerSerial;
+    }
 
+    public String getCustomerContact() {
+        return customerContact;
+    }
 
+    public void setCustomerContact(String customerContact) {
+        this.customerContact = customerContact;
+    }
+
+    public String getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(String orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public String getExpectedDate() {
+        return expectedDate;
+    }
+
+    public void setExpectedDate(String expectedDate) {
+        this.expectedDate = expectedDate;
+    }
+
+    public boolean isSuitStatus() {
+        return suitStatus;
+    }
+
+    public void setSuitStatus(boolean suitStatus) {
+        this.suitStatus = suitStatus;
+    }
+
+    public long getTotalBill() {
+        return totalBill;
+    }
+
+    public void setTotalBill(long totalBill) {
+        this.totalBill = totalBill;
+    }
+
+    public long getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(long discount) {
+        this.discount = discount;
+    }
+
+    public long getSuitAdvancePayment() {
+        return suitAdvancePayment;
+    }
+
+    public void setSuitAdvancePayment(long suitAdvancePayment) {
+        this.suitAdvancePayment = suitAdvancePayment;
+    }
+
+    public long getBalance() {
+        return balance;
+    }
+
+    public void setBalance(long balance) {
+        this.balance = balance;
+    }
+
+    public long getRemainingBalance() {
+        return remainingBalance;
+    }
+
+    public void setRemainingBalance(long remainingBalance) {
+        this.remainingBalance = remainingBalance;
+    }
 }
 
