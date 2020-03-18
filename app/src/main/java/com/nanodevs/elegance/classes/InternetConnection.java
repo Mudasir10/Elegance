@@ -16,7 +16,6 @@ public class InternetConnection {
 
         if (connMgr != null) {
             NetworkInfo activeNetworkInfo = connMgr.getActiveNetworkInfo();
-
             if (activeNetworkInfo != null) { // connected to the internet
                 // connected to the mobile provider's data plan
                 if (activeNetworkInfo.getType() == ConnectivityManager.TYPE_WIFI) {

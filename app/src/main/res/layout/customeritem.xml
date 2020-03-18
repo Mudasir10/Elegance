@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="10dp"
+    app:cardCornerRadius="20dp"
     android:layout_margin="5dp">
 
     <RelativeLayout
@@ -15,9 +15,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="5dp"
             android:layout_toStartOf="@+id/lineraLayout"
             android:text="@string/customer_id"
@@ -31,10 +31,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/customerDispId"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginTop="13dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginStart="15dp"
+            android:minLines="2"
+            android:maxLines="2"
+            android:layout_marginTop="19dp"
             android:layout_toStartOf="@+id/lineraLayout"
             android:text="@string/customer_name"
             android:textAlignment="viewStart"
@@ -46,16 +46,15 @@
             android:id="@+id/customerDispContact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="viewStart"
-            android:textStyle="normal"
-            android:textSize="17sp"
-            android:text="@string/phone"
-            android:layout_marginEnd="5dp"
             android:layout_below="@+id/customerDispName"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="15dp"
             android:layout_toStartOf="@+id/lineraLayout"
-            android:layout_marginBottom="10dp"/>
+            android:text="@string/phone"
+            android:textAlignment="viewStart"
+            android:textSize="17sp"
+            android:textStyle="normal" />
 
         <LinearLayout
             android:id="@+id/lineraLayout"
@@ -63,8 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
+          android:layout_margin="10dp"
             android:layout_marginBottom="10dp"
             android:orientation="vertical"
             >
@@ -74,23 +72,22 @@
                 android:id="@+id/updateMeasurement"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp"/>
+                android:layout_margin="10dp"
+                />
 
             <Button
                 android:background="@drawable/ic_orders"
                 android:id="@+id/viewOrderOfCustomer"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp"/>
+                android:layout_margin="10dp" />
 
             <Button
                 android:id="@+id/callStitchOrder"
                 android:background="@drawable/sewing"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginTop="5dp"
+               android:layout_margin="10dp"
                />
 
         </LinearLayout>

@@ -3,24 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/btnConnectPrinter"
+        android:id="@+id/UpdatebtnConnectPrinter"
         android:title="CWP"
         app:showAsAction="ifRoom" />
 
 
     <item
-        android:id="@+id/btnPrinterSettings"
+        android:id="@+id/UpdatebtnPrinterSettings"
         android:icon="@drawable/ic_settings"
         android:title="Item"
         app:showAsAction="ifRoom" />
 
-
-
     <item
         app:showAsAction="always"
-        android:id="@+id/btnDonePlaceOrder"
+        android:id="@+id/UpdatebtndoneSaveCustomer"
         android:icon="@drawable/ic_done"
         android:title="Done" />
+
 
 
 </menu>

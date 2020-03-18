@@ -220,15 +220,36 @@
            android:hint="@string/expected_date"/>
 
 
-        <Button
-            android:id="@+id/getBillsBtn"
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:text="@string/calculate_bill"
+
+        <LinearLayout
+            android:weightSum="2"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_weight="1"
+                android:id="@+id/getBillsBtn"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:text="@string/calculate_bill"
+                android:textStyle="bold"
+                android:background="@drawable/round_button"
+                android:layout_margin="10dp"/>
+
+            <Button
+                android:onClick="print"
+                android:layout_weight="1"
+                android:id="@+id/printReciept"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+            android:text="print Reciept"
             android:textStyle="bold"
-            android:layout_gravity="center"
-            android:background="@drawable/round_button"
-            android:layout_marginTop="5dp"/>
+            android:background="@drawable/round_button"/>
+
+
+        </LinearLayout>
 
 
     </LinearLayout>

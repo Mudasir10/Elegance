@@ -161,7 +161,7 @@ public class Measurements {
 
     public void SetMeasurementsForKurta(String etLenght, String etSleeves, String etShoulder, String etcolr,
                                         String etchest, String etstomachSize, String ethipSize, String etarms, String etwrist, String etloosingchest, String etloosingstomach, String etloosinghip, String etpentlength, String etpentbottom, String etDescription,String Frontpocket,String PocketbothSides,String colerStyle) {
-        this.etLenght = etLenght;
+         this.etLenght = etLenght;
         this.etSleeves = etSleeves;
         this.etShoulder = etShoulder;
         this.etcolr = etcolr;

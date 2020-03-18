@@ -1,6 +1,13 @@
 package com.nanodevs.elegance.ui.home;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -34,7 +41,6 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private CustomerAdapter customerAdapter;
 
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -43,7 +49,9 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         this.setHasOptionsMenu(true);
         init(root);
-        if (InternetConnection.checkConnection(getContext())) {
+
+
+        if (InternetConnection.checkConnection(getContext())){
 
             homeViewModel.getAllCustomers().observe(getViewLifecycleOwner(), new Observer<List<Customer>>() {
                 @Override
@@ -55,13 +63,18 @@ public class HomeFragment extends Fragment {
                 }
             });
 
-        } else {
-            Toast.makeText(getContext(), "No Internet Connection !", Toast.LENGTH_SHORT).show();
-            // Not Available...
         }
+        else{
+            Toast.makeText(getContext(), "Can not Load Data Without Internet!", Toast.LENGTH_SHORT).show();
+        }
+
+
 
         return root;
     }
+
+
+
 
     @Override
     public void onStart() {
@@ -82,7 +95,7 @@ public class HomeFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
         // Inflate the menu; this adds items to the action bar if it is present.
         inflater.inflate(R.menu.main, menu);
-        MenuItem searchItem = menu.findItem(R.id.action_search);
+        final MenuItem searchItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) searchItem.getActionView();
 
         searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
@@ -97,14 +110,17 @@ public class HomeFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String newText) {
 
+
                 if (InternetConnection.checkConnection(getContext())) {
 
                     if (recyclerView.getAdapter() != null) {
+
                         customerAdapter.getFilter().filter(newText);
                         Toast.makeText(getContext(), "Searching Items", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(getContext(), " No Data!!", Toast.LENGTH_SHORT).show();
                     }
+
 
 
                 } else {
@@ -114,6 +130,23 @@ public class HomeFragment extends Fragment {
                 return false;
             }
         });
+
+        searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener()
+        {
+            @Override
+            public void onFocusChange(View v, boolean newViewFocus)
+            {
+                if (!newViewFocus)
+                {
+                    Toast.makeText(getContext(), "Closed", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
+
+
+
 
     }
 

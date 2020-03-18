@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string name="title_activity_settings">Settings</string>
+    <!-- Strings related to Settings -->
+
+    <!-- Example printer settings -->
+    <string name="pref_header_printer">Drucker</string>
+    <string name="pref_title_vendorid">VendorID</string>
+    <string name="pref_default_vendorid">1221</string>
+    <string name="pref_title_productid_name">ProductID</string>
+    <string name="pref_default_productid_name">4474</string>
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">Allgemein</string>
+
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact
+        based on your message history
+    </string>
+
+    <!-- Example settings for Data & Sync -->
+
+    <!-- Example settings for Notifications -->
+
+
+</resources>

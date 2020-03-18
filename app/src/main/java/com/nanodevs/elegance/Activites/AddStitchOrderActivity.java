@@ -23,6 +23,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,6 +38,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AddStitchOrderActivity extends AppCompatActivity {
+
     private DatabaseReference cartRef = FirebaseDatabase.getInstance().getReference("Cart");
 
     private Button boskiPlusBtn, boksiMinusBtn;
@@ -45,7 +48,7 @@ public class AddStitchOrderActivity extends AppCompatActivity {
     private Button lilanPlusBtn, lilanMinusBtn;
     private Button wWearPlusBtn, wWearMinusBtn;
     private EditText boskiEditText, cottonEditText, karandiEditText, khaadiEditText, lilanEditText, wWearEditText;
-    private Button addToCartBtn,deleteCartOrderBtn;
+    private Button addToCartBtn, deleteCartOrderBtn;
 
     private long mCartItemCount = 0;
     private long boskiQty = 0, cottonQty = 0, karandiQty = 0, khaadiQty = 0, lilanQty = 0, wWearQty = 0;
@@ -63,7 +66,7 @@ public class AddStitchOrderActivity extends AppCompatActivity {
         super.onResume();
         loadDataForCustomerTextView();
         updateCartCount();
-        if(globalItemName !=null){
+        if (globalItemName != null) {
             clearFields();
             loadDataForAllCategories(globalItemName);
             loadDataForThreeCategories(globalItemName);
@@ -77,7 +80,7 @@ public class AddStitchOrderActivity extends AppCompatActivity {
         updateCartCount();
         loadDataForCustomerTextView();
         updateCartCount();
-        if(globalItemName !=null){
+        if (globalItemName != null) {
             loadDataForAllCategories(globalItemName);
             loadDataForThreeCategories(globalItemName);
         }
@@ -90,8 +93,9 @@ public class AddStitchOrderActivity extends AppCompatActivity {
         initComponents();
         handleButtonListener();
         updateCartCount();
-
-        mToolbar=findViewById(R.id.app_bar_stitch_cloth);
+        updateCartCount();
+        updateCartCount();
+        mToolbar = findViewById(R.id.app_bar_stitch_cloth);
         mToolbar.setTitle("Cloth Stitch");
         setSupportActionBar(mToolbar);
 
@@ -99,9 +103,9 @@ public class AddStitchOrderActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 globalSpinnerPosition = position;
-                globalItemName= parent.getItemAtPosition(position).toString();
+                globalItemName = parent.getItemAtPosition(position).toString();
                 String itemName = parent.getItemAtPosition(position).toString();
-                if (itemName.equals("Kurta")){
+                if (itemName.equals("Kurta")) {
                     clearFields();
                     loadDataForAllCategories(itemName);
                     cLayout.setVisibility(View.VISIBLE);
@@ -110,7 +114,7 @@ public class AddStitchOrderActivity extends AppCompatActivity {
                     khLayout.setVisibility(View.VISIBLE);
                     lLayout.setVisibility(View.VISIBLE);
                     wlayout.setVisibility(View.VISIBLE);
-                }else if (itemName.equals("Shirt")) {
+                } else if (itemName.equals("Shirt")) {
                     clearFields();
                     loadDataForAllCategories(itemName);
                     cLayout.setVisibility(View.VISIBLE);
@@ -165,6 +169,7 @@ public class AddStitchOrderActivity extends AppCompatActivity {
                     Toast.makeText(AddStitchOrderActivity.this, "Invalid Category !", Toast.LENGTH_SHORT).show();
 
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -173,7 +178,7 @@ public class AddStitchOrderActivity extends AppCompatActivity {
 
         if (getIntent() != null) {
 
-           clothOrderCustomerSerialNo.setText(String.valueOf(getIntent().getStringExtra("customerId")));
+            clothOrderCustomerSerialNo.setText(String.valueOf(getIntent().getStringExtra("customerId")));
             clothOrderCustomerName.setText(getIntent().getStringExtra("cus_name"));
             clothOrderCustomerContact.setText(String.valueOf(getIntent().getStringExtra("cus_phone")));
 
@@ -182,7 +187,7 @@ public class AddStitchOrderActivity extends AppCompatActivity {
 
     }
 
-    private void loadDataForCustomerTextView(){
+    private void loadDataForCustomerTextView() {
 
         if (getIntent() != null) {
 
@@ -202,26 +207,31 @@ public class AddStitchOrderActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                        if(dataSnapshot.exists()){
+                        if (dataSnapshot.exists()) {
                             boskiQty = Long.parseLong(dataSnapshot.child("boskiQty").getValue().toString());
-                            cottonQty= Long.parseLong(dataSnapshot.child("cottonQty").getValue().toString());
-                            khaadiQty= Long.parseLong(dataSnapshot.child("khaadiQty").getValue().toString());
-                            karandiQty= Long.parseLong(dataSnapshot.child("karandiQty").getValue().toString());
-                            lilanQty= Long.parseLong(dataSnapshot.child("lilanQty").getValue().toString());
-                            wWearQty= Long.parseLong(dataSnapshot.child("wWearQty").getValue().toString());
+                            cottonQty = Long.parseLong(dataSnapshot.child("cottonQty").getValue().toString());
+                            khaadiQty = Long.parseLong(dataSnapshot.child("khaadiQty").getValue().toString());
+                            karandiQty = Long.parseLong(dataSnapshot.child("karandiQty").getValue().toString());
+                            lilanQty = Long.parseLong(dataSnapshot.child("lilanQty").getValue().toString());
+                            wWearQty = Long.parseLong(dataSnapshot.child("wWearQty").getValue().toString());
                             boskiEditText.setText(String.valueOf(boskiQty));
                             cottonEditText.setText(String.valueOf(cottonQty));
                             khaadiEditText.setText(String.valueOf(khaadiQty));
                             karandiEditText.setText(String.valueOf(karandiQty));
                             lilanEditText.setText(String.valueOf(lilanQty));
                             wWearEditText.setText(String.valueOf(wWearQty));
-                        }else{
+                        } else {
                             boskiEditText.setHint("Qty");
-                            cottonEditText.setHint("Qty");;
-                            khaadiEditText.setHint("Qty");;
-                            karandiEditText.setHint("Qty");;
-                            lilanEditText.setHint("Qty");;
-                            wWearEditText.setHint("Qty");;
+                            cottonEditText.setHint("Qty");
+                            ;
+                            khaadiEditText.setHint("Qty");
+                            ;
+                            karandiEditText.setHint("Qty");
+                            ;
+                            lilanEditText.setHint("Qty");
+                            ;
+                            wWearEditText.setHint("Qty");
+                            ;
                         }
 
 
@@ -244,35 +254,40 @@ public class AddStitchOrderActivity extends AppCompatActivity {
             public void run() {
                 cartRef.child(String.valueOf(clothOrderCustomerSerialNo.getText())).child(itemName).
                         addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.exists()){
-                            cottonQty= Long.parseLong(dataSnapshot.child("cottonQty").getValue().toString());
-                            khaadiQty= Long.parseLong(dataSnapshot.child("khaadiQty").getValue().toString());
-                            wWearQty= Long.parseLong(dataSnapshot.child("wWearQty").getValue().toString());
-                            boskiEditText.setText(String.valueOf(boskiQty));
-                            cottonEditText.setText(String.valueOf(cottonQty));
-                            khaadiEditText.setText(String.valueOf(khaadiQty));
-                            karandiEditText.setText(String.valueOf(karandiQty));
-                            lilanEditText.setText(String.valueOf(lilanQty));
-                            wWearEditText.setText(String.valueOf(wWearQty));
-                        }else{
-                            boskiEditText.setHint("Qty");
-                            cottonEditText.setHint("Qty");;
-                            khaadiEditText.setHint("Qty");;
-                            karandiEditText.setHint("Qty");;
-                            lilanEditText.setHint("Qty");;
-                            wWearEditText.setHint("Qty");;
-                        }
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if (dataSnapshot.exists()) {
+                                    cottonQty = Long.parseLong(dataSnapshot.child("cottonQty").getValue().toString());
+                                    khaadiQty = Long.parseLong(dataSnapshot.child("khaadiQty").getValue().toString());
+                                    wWearQty = Long.parseLong(dataSnapshot.child("wWearQty").getValue().toString());
+                                    boskiEditText.setText(String.valueOf(boskiQty));
+                                    cottonEditText.setText(String.valueOf(cottonQty));
+                                    khaadiEditText.setText(String.valueOf(khaadiQty));
+                                    karandiEditText.setText(String.valueOf(karandiQty));
+                                    lilanEditText.setText(String.valueOf(lilanQty));
+                                    wWearEditText.setText(String.valueOf(wWearQty));
+                                } else {
+                                    boskiEditText.setHint("Qty");
+                                    cottonEditText.setHint("Qty");
+                                    ;
+                                    khaadiEditText.setHint("Qty");
+                                    ;
+                                    karandiEditText.setHint("Qty");
+                                    ;
+                                    lilanEditText.setHint("Qty");
+                                    ;
+                                    wWearEditText.setHint("Qty");
+                                    ;
+                                }
 
 
-                    }
+                            }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                    }
-                });
+                            }
+                        });
             }
         }).start();
 
@@ -297,7 +312,7 @@ public class AddStitchOrderActivity extends AppCompatActivity {
 
     private void handleButtonListener() {
 
-
+        updateCartCount();
         boksiMinusBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -433,13 +448,23 @@ public class AddStitchOrderActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-               new Thread(new Runnable() {
-                   @Override
-                   public void run() {
-                       updateCartCount();
-                       saveCartItemsData();
-                   }
-               }).start();
+                if (boskiQty == 0 && cottonQty == 0 &&
+                        khaadiQty == 0 && karandiQty == 0 && lilanQty == 0
+                        && wWearQty == 0) {
+                    Toast.makeText(AddStitchOrderActivity.this, "Please first add items to cart !", Toast.LENGTH_SHORT).show();
+                }else{
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            updateCartCount();
+                            saveCartItemsData();
+                        }
+                    }).start();
+
+                }
+
+
+
 
             }
         });
@@ -448,11 +473,10 @@ public class AddStitchOrderActivity extends AppCompatActivity {
         deleteCartOrderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              if(mCartItemCount>0){
-                  deleteCartOrder();
-              }
-              else
-                  Toast.makeText(AddStitchOrderActivity.this, "first add items to cart then you can delete !", Toast.LENGTH_SHORT).show();
+                if (mCartItemCount > 0) {
+                    deleteCartOrder();
+                } else
+                    Toast.makeText(AddStitchOrderActivity.this, "first add items to cart then you can delete !", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -460,8 +484,8 @@ public class AddStitchOrderActivity extends AppCompatActivity {
 
     private void deleteCartOrder() {
 
-        AlertDialog.Builder builder=new AlertDialog.Builder(AddStitchOrderActivity.this).setTitle("Confirmation Dialog ")
-                .setMessage("Are you sure you want to delete "+globalItemName+" suit order ? ")
+        AlertDialog.Builder builder = new AlertDialog.Builder(AddStitchOrderActivity.this).setTitle("Confirmation Dialog ")
+                .setMessage("Are you sure you want to delete " + globalItemName + " suit order ? ")
                 .setIcon(R.drawable.ic_delete)
                 .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
@@ -473,9 +497,9 @@ public class AddStitchOrderActivity extends AppCompatActivity {
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
-                                        if(task.isSuccessful()){
+                                        if (task.isSuccessful()) {
                                             updateCartCount();
-                                            if(globalItemName !=null){
+                                            if (globalItemName != null) {
                                                 clearFields();
                                                 loadDataForAllCategories(globalItemName);
                                                 loadDataForThreeCategories(globalItemName);
@@ -496,39 +520,37 @@ public class AddStitchOrderActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
 
                         //Todo
-                         dialog.cancel();
+                        dialog.cancel();
                     }
                 });
         builder.create();
-                builder.show();
+        builder.show();
 
     }
 
     private void saveCartItemsData() {
-        updateCartCount();
-        DatabaseReference cartRefSaveData = FirebaseDatabase.getInstance().getReference("Cart");
-        final String suitTypeName = suitSpinner.getItemAtPosition(globalSpinnerPosition).toString();
-            if (boskiQty == 0 && cottonQty == 0 &&
-                    khaadiQty == 0 && karandiQty == 0 && lilanQty == 0
-                    && wWearQty == 0)
-                Toast.makeText(AddStitchOrderActivity.this, "Please first add items to cart !", Toast.LENGTH_SHORT).show();
-            else {
-                Cart itemCart = new Cart(boskiQty, cottonQty, khaadiQty, karandiQty, lilanQty, wWearQty, suitTypeName);
-                Map<String, Object> childUpdates = new HashMap<>();
-                childUpdates.put(clothOrderCustomerSerialNo.getText() + "/" + suitTypeName, itemCart.toCartMap());
-                cartRefSaveData.updateChildren(childUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(AddStitchOrderActivity.this, "Items added to cart !", Toast.LENGTH_SHORT).show();
-                        updateCartCount();
-                    }
-                });
-            }
+        if (boskiQty == 0 && cottonQty == 0 &&
+                khaadiQty == 0 && karandiQty == 0 && lilanQty == 0
+                && wWearQty == 0) {return;
+        } else {
+            updateCartCount();
+            DatabaseReference cartRefSaveData = FirebaseDatabase.getInstance().getReference("Cart");
+            final String suitTypeName = suitSpinner.getItemAtPosition(globalSpinnerPosition).toString();
+            Cart itemCart = new Cart(boskiQty, cottonQty, khaadiQty, karandiQty, lilanQty, wWearQty, suitTypeName);
+            Map<String, Object> childUpdates = new HashMap<>();
+            childUpdates.put(clothOrderCustomerSerialNo.getText() + "/" + suitTypeName, itemCart.toCartMap());
+            cartRefSaveData.updateChildren(childUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    Toast.makeText(AddStitchOrderActivity.this, "Items added to cart !", Toast.LENGTH_SHORT).show();
+                    updateCartCount();
+                }
+            });
         }
+    }
 
     private void initComponents() {
-
-        deleteCartOrderBtn= findViewById(R.id.deleteItemsFromCartBtn);
+        deleteCartOrderBtn = findViewById(R.id.deleteItemsFromCartBtn);
         cLayout = findViewById(R.id.cottonLayout);
         bLayout = findViewById(R.id.boskiLayout);
         kaLayout = findViewById(R.id.karandiLayout);
@@ -592,10 +614,10 @@ public class AddStitchOrderActivity extends AppCompatActivity {
                 if (mCartItemCount == 0)
                     Toast.makeText(AddStitchOrderActivity.this, "Cart is Empty", Toast.LENGTH_SHORT).show();
                 else {
-                    Intent intent=new Intent(AddStitchOrderActivity.this, CartActivity.class);
-                    intent.putExtra("cusId",clothOrderCustomerSerialNo.getText());
-                    intent.putExtra("cusName",clothOrderCustomerName.getText());
-                    intent.putExtra("cusPhone",clothOrderCustomerContact.getText());
+                    Intent intent = new Intent(AddStitchOrderActivity.this, CartActivity.class);
+                    intent.putExtra("cusId", clothOrderCustomerSerialNo.getText());
+                    intent.putExtra("cusName", clothOrderCustomerName.getText());
+                    intent.putExtra("cusPhone", clothOrderCustomerContact.getText());
                     startActivity(intent);
                 }
             }
@@ -607,10 +629,10 @@ public class AddStitchOrderActivity extends AppCompatActivity {
                 if (mCartItemCount == 0)
                     Toast.makeText(AddStitchOrderActivity.this, "Cart is Empty", Toast.LENGTH_SHORT).show();
                 else {
-                    Intent intent=new Intent(AddStitchOrderActivity.this, CartActivity.class);
-                    intent.putExtra("cusId",clothOrderCustomerSerialNo.getText());
-                    intent.putExtra("cusName",clothOrderCustomerName.getText());
-                    intent.putExtra("cusPhone",clothOrderCustomerContact.getText());
+                    Intent intent = new Intent(AddStitchOrderActivity.this, CartActivity.class);
+                    intent.putExtra("cusId", clothOrderCustomerSerialNo.getText());
+                    intent.putExtra("cusName", clothOrderCustomerName.getText());
+                    intent.putExtra("cusPhone", clothOrderCustomerContact.getText());
                     startActivity(intent);
                 }
 
@@ -655,7 +677,7 @@ public class AddStitchOrderActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if(item.getItemId() == R.id.badge) {
+        if (item.getItemId() == R.id.badge) {
         }
         return super.onOptionsItemSelected(item);
     }
@@ -664,27 +686,24 @@ public class AddStitchOrderActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        if(mCartItemCount>0)
-        {
-            AlertDialog.Builder builder=new AlertDialog.Builder(AddStitchOrderActivity.this).setTitle("Confirmation Dialog ")
+        if (mCartItemCount > 0) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(AddStitchOrderActivity.this).setTitle("Confirmation Dialog ")
                     .setMessage("Before going back, please delete cart items to cancel the order ! ")
                     .setIcon(R.drawable.ic_delete)
                     .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-
-                            final String suitTypeName = suitSpinner.getItemAtPosition(globalSpinnerPosition).toString();
-                            cartRef.child(clothOrderCustomerSerialNo.getText().toString()).child(suitTypeName).getRef().removeValue()
+                            cartRef.child(clothOrderCustomerSerialNo.getText().toString()).getRef().removeValue()
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
-                                            if(task.isSuccessful()){
+                                            if (task.isSuccessful()) {
                                                 updateCartCount();
-                                                if(globalItemName !=null){
+                                                if (globalItemName != null) {
                                                     clearFields();
                                                     loadDataForAllCategories(globalItemName);
                                                     loadDataForThreeCategories(globalItemName);
-                                                   AddStitchOrderActivity.super.onBackPressed();
+                                                    AddStitchOrderActivity.super.onBackPressed();
                                                 }
 
                                             }
@@ -692,7 +711,6 @@ public class AddStitchOrderActivity extends AppCompatActivity {
 
                                     });
                             dialog.dismiss();
-
 
                         }
                     })
@@ -707,8 +725,8 @@ public class AddStitchOrderActivity extends AppCompatActivity {
             builder.show();
 
 
-        }else
-        super.onBackPressed();
+        } else
+            super.onBackPressed();
 
 
     }

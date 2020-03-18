@@ -46,6 +46,8 @@ public class ViewOrdersListBillAdapter extends RecyclerView.Adapter<ViewOrdersLi
 
 
         holder.suitSwitchView.setChecked(mBillList.get(position).isSuitStatus());
+
+
         holder.suitSwitchView.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

@@ -60,7 +60,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewHolder> {
                 holder.lilanQtyEditText.getText().toString().equals("0")|| holder.wWearQtyEditText.getText().toString().equals("0")){
             if(holder.boskiQtyEditText.getText().toString().equals("0")){
                 holder.boski.setVisibility(View.GONE);
-
             }
             if(holder.cottonIQtyEditText.getText().toString().equals("0")){
                 holder.cotton.setVisibility(View.GONE);
@@ -127,7 +126,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewHolder> {
 
     @Override
     public int getItemCount() {
+
         return cartList.size();
+
     }
 
     public class viewHolder extends RecyclerView.ViewHolder {
@@ -175,4 +176,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewHolder> {
 
         }
     }
+
+
+
 }

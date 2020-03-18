@@ -273,7 +273,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etloosingchest"
-                    android:hint="Loosing Chest     سینے کا ڈھیلا"
+                    android:hint="Loosing Chest  "
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -290,7 +290,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etloosingstomach"
-                    android:hint="Loosing Stomach       پیٹ ڈھیلا"
+                    android:hint="Loosing Stomach       "
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -307,7 +307,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/act_reg_etloosinghip"
-                    android:hint="Loosing hip       ڈھیلے ہپ"
+                    android:hint="Loosing hip  "
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -399,13 +399,13 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:inputType="text"
+                        android:inputType="textMultiLine"
                         android:gravity="top|start"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:lineSpacingExtra="2dp"
-                        android:lines="3"
-                        android:maxLines="5" />
+                        android:minLines="2"
+                        android:maxLines="3" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 

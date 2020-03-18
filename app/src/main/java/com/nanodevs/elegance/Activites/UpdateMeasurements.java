@@ -4,14 +4,27 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.provider.SelfDestructiveThread;
 
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.hardware.usb.UsbDevice;
+import android.hardware.usb.UsbManager;
 import android.os.Bundle;
+import android.os.Message;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -29,7 +42,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.nanodevs.elegance.Pojo.Measurements;
 import com.nanodevs.elegance.R;
+import com.nanodevs.elegance.classes.ESC_POS_EPSON_ANDROID;
+import com.nanodevs.elegance.classes.InternetConnection;
+import com.nanodevs.elegance.classes.USBPort;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,18 +62,35 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
     private CheckBox checkBoxPocket_bothSides,checkBoxPocket_front,checkBoxcolr_simple,checkBoxcolr_sherwani,checkBoxcolr_halfSherwani;
 
-
     String bS="no",Fp="no";
     String colerStyle="not defined";
-
     private TextView textViewpocketStyle,textViewColerInfo;
-
     private String SelectedCategory;
     private TextInputLayout etLenght, etShoulder, etSleeves, etcolr, etchest, etstomachSize, ethipSize, etarms, etwrist, etloosingchest, etloosingstomach,
             etloosinghip, etpentlength, etpentbottom, etwaist, etthigh, etDescription;
 
 
     Toolbar mToolbar;
+
+    Button btnPrintMeasurement;
+
+
+    private static final String TAG = "UpdateMeasurements";
+
+    // libs and perms for printing
+    private static final int RESULT_SETTINGS = 1;
+
+    private static final String ACTION_USB_PERMISSION = "com.android.example.USB_PERMISSION";
+
+    // Intent
+    private PendingIntent mPermissionIntent;
+    // USB
+    private UsbManager mUsbManager;
+    private USBPort mUsbPort;
+
+    private ESC_POS_EPSON_ANDROID mEscPos;
+    private String globalCategory;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,16 +111,99 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
         init();
 
+        // Mudasir
+        mUsbManager = (UsbManager) getSystemService(Context.USB_SERVICE);
 
+        // TODO
+        // Regist BroadCast Receiver. (To acquire Permission.)
+        mPermissionIntent = PendingIntent.getBroadcast(this, 0, new Intent(ACTION_USB_PERMISSION), 0);
+        IntentFilter filter = new IntentFilter(ACTION_USB_PERMISSION);
+        registerReceiver(mUsbReceiver, filter);
+        filter = new IntentFilter(mUsbManager.ACTION_USB_DEVICE_DETACHED);
+        registerReceiver(mUsbReceiver, filter);
+        filter = new IntentFilter(mUsbManager.ACTION_USB_DEVICE_ATTACHED);
+        registerReceiver(mUsbReceiver, filter);
 
+        mUsbPort = new USBPort(mUsbManager);
+        mEscPos  = new ESC_POS_EPSON_ANDROID(mUsbPort);
+
+        // Mudasir
 
 
     }
 
     @Override
+    public void onDestroy()
+    {
+        unregisterReceiver(mUsbReceiver);
+        try {
+            mUsbPort.close();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        super.onDestroy();
+    }
+
+    private final BroadcastReceiver mUsbReceiver = new BroadcastReceiver()
+    {
+        public void onReceive(Context context, Intent intent)
+        {
+            String action = intent.getAction();
+            if (ACTION_USB_PERMISSION.equals(action))
+            {
+                synchronized (this)
+                {
+                    UsbDevice device = (UsbDevice) intent
+                            .getParcelableExtra(UsbManager.EXTRA_DEVICE);
+                    if (intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false))
+                    {
+                        if (device != null)
+                        {
+                            // call method to set up device communication
+                        }
+                    }
+                    else
+                    {
+                        Log.d(TAG, "permission denied for device " + device);
+                    }
+                }
+            }
+            if (UsbManager.ACTION_USB_DEVICE_ATTACHED.equals(action))
+            {
+                UsbDevice device = (UsbDevice)intent.getParcelableExtra(UsbManager.EXTRA_DEVICE);
+                if (device != null)
+                {
+                    // call your method that cleans up and closes communication with the device
+                    mUsbPort.SetUSBConnectionFlag(false);
+
+                    Toast.makeText(context, "Usb Attached", Toast.LENGTH_SHORT).show();
+                   /* list.clear();
+                    list.add("USB Device ATTACHED");
+                    mAdapter.notifyDataSetChanged();*/
+                }
+            }
+
+            if (UsbManager.ACTION_USB_DEVICE_DETACHED.equals(action))
+            {
+                UsbDevice device = (UsbDevice)intent.getParcelableExtra(UsbManager.EXTRA_DEVICE);
+                if (device != null)
+                {
+                    // call your method that cleans up and closes communication with the device
+                    mUsbPort.SetUSBConnectionFlag(false);
+
+                    Toast.makeText(context, "Usb Detached", Toast.LENGTH_SHORT).show();
+                    /*list.clear();
+                    list.add("USB Device detached");
+                    mAdapter.notifyDataSetChanged();*/
+                }
+            }
+        }
+    };
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.reg_cus_menu,menu);
+        getMenuInflater().inflate(R.menu.menu_update,menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -92,7 +211,7 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        if (item.getItemId()==R.id.btndoneSaveCustomer){
+        if (item.getItemId()==R.id.UpdatebtndoneSaveCustomer){
 
             AlertDialog.Builder builder=new AlertDialog.Builder(this);
             builder.setTitle("Confirmation Message");
@@ -102,41 +221,35 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
 
-                    if (isOnline()){
-
+                    if (InternetConnection.checkConnection(UpdateMeasurements.this)){
                         if (SelectedCategory.equals("Kurta")){
-                            UpdateDataForKurtaCategory();
-                            dialog.dismiss();
+                                UpdateDataForKurtaCategory();
+                                dialog.dismiss();
                         }
                         else if (SelectedCategory.equals("Shirt")){
-                            UpdateDataForShirtCategory();
-                            dialog.dismiss();
+                                UpdateDataForShirtCategory();
+                                dialog.dismiss();
                         }
                         else if (SelectedCategory.equals("Suit")){
-                            UpdateDataForSuitCategory();
-                            dialog.dismiss();
+                                UpdateDataForSuitCategory();
+                                dialog.dismiss();
                         }
                         else if (SelectedCategory.equals("Saffari Coat")){
-                            UpdateDataForSaffariCoatCategory();
-                            dialog.dismiss();
+                                UpdateDataForSaffariCoatCategory();
+                                dialog.dismiss();
                         }
                         else if (SelectedCategory.equals("Three Piece")){
-                            UpdateDataForThreePieceCategory();
-                            dialog.dismiss();
+                                UpdateDataForThreePieceCategory();
+                                dialog.dismiss();
                         }
                         else if (SelectedCategory.equals("Pant")){
-                            UpdateDataForPantCategory();
-                            dialog.dismiss();
+                                UpdateDataForPantCategory();
+                                dialog.dismiss();
                         }
                         else if (SelectedCategory.equals("Waist Coat")){
-                            UpdateDataForWaistCoatCategory();
-                            dialog.dismiss();
+                                UpdateDataForWaistCoatCategory();
+                                dialog.dismiss();
                         }
-                        else{
-                            Toast.makeText(UpdateMeasurements.this, "", Toast.LENGTH_SHORT).show();
-                        }
-
-
                     }
                     else{
                         Toast.makeText(UpdateMeasurements.this, "Can not Save Customer Without Internet", Toast.LENGTH_SHORT).show();
@@ -155,10 +268,75 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
             builder.create();
             builder.show();
+        }
+        else if(item.getItemId()==R.id.UpdatebtnPrinterSettings){
+
+            Intent settingActivity = new Intent(UpdateMeasurements.this, SettingsActivity.class);
+            startActivity(settingActivity);
+
+        }else if (item.getItemId()==R.id.UpdatebtnConnectPrinter){
+
+            /* list.clear();*/
+            SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+            String vendorIDstr = sharedPrefs.getString("printer_vendorId", "0");
+            int vendorID = 0;
+            try {
+                vendorID = Integer.parseInt(vendorIDstr);
+            } catch(NumberFormatException nfe) {
+                vendorID = 0;
+            }
+            String productIDstr = sharedPrefs.getString("printer_productId","0");
+            int productID = 0;
+            try {
+                productID = Integer.parseInt(productIDstr);
+            } catch(NumberFormatException nfe) {
+                productID = 0;
+            }
+
+            UsbDevice foundDevice = mUsbPort.search_device(vendorID,productID);
+            if ( foundDevice == null) {
+
+                Toast.makeText(this, " Printer Not Found", Toast.LENGTH_SHORT).show();
+                /*list.add("USB Device vendorId=" + vendorIDstr + " productID=" + productIDstr + " not found");
+                list.add("Try to search devices");
+                list.add("Don't forget to enter the VendorID and ProductID into the settings dialog");
+                mAdapter.notifyDataSetChanged();
+*/
+            }
+            else {
+                Toast.makeText(this, " PrinterFound", Toast.LENGTH_SHORT).show();
+                /*       list.add("Device found...");*/
+
+            }
+            try {
+                if ( !this.mUsbManager.hasPermission(foundDevice) )
+                    Toast.makeText(this, "Need Authification, please repeat...", Toast.LENGTH_SHORT).show();
+                /*list.add("Need Authification, please repeat...");*/
+                this.mUsbManager.requestPermission(foundDevice, mPermissionIntent);
 
 
+                if ( mUsbPort.connect_device(foundDevice)) {
+                    Toast.makeText(this, "Device connected...", Toast.LENGTH_SHORT).show();
+                    /*  list.add("Device connected...");*/
+
+                }
+                else
+                    Toast.makeText(this, "Device not connected...", Toast.LENGTH_SHORT).show();
+                /*  list.add("Device not connected...");*/
+
+            }
+            catch ( Exception  e )
+            {
+                Toast.makeText(this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+               /* list.clear();
+                //list.add(e.getLocalizedMessage());
+                list.add(e.getMessage());
+                mAdapter.notifyDataSetChanged();*/
+            }
+            /* mAdapter.notifyDataSetChanged();*/
 
         }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -378,6 +556,12 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
         UpdateCustomerMeasurement(customerSerialNo.getText().toString(),data,SelectedCategory);
     }
 
+    private String getDate() {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
 
     private void UpdateCustomerMeasurement(String customerSerialNo,
                                   Map<String, Object> measurements, String SelectedCategory) {
@@ -430,6 +614,9 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
         etwaist = findViewById(R.id.act_reg_etwaist);
         etthigh = findViewById(R.id.act_reg_etthigh);
+
+
+        btnPrintMeasurement=findViewById(R.id.printMeasurement);
 
         customerSerialNo=findViewById(R.id.customerSerialNo);
         customerName=findViewById(R.id.customerName);
@@ -524,6 +711,604 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
         });
 
 
+        btnPrintMeasurement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                if (InternetConnection.checkConnection(UpdateMeasurements.this)){
+
+                    try{
+                        print();
+                    }catch (Exception ex){
+                        Toast.makeText(UpdateMeasurements.this, ""+ex.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                else{
+                    Toast.makeText(UpdateMeasurements.this, "Cannot Print Withour Internet!", Toast.LENGTH_SHORT).show();
+                }
+
+
+
+            }
+        });
+
+
+    }
+
+    private void print() {
+
+         String len=etLenght.getEditText().getText().toString();
+         String Shoulder=etShoulder.getEditText().getText().toString();
+         String coler=etcolr.getEditText().getText().toString();
+         String chest=etchest.getEditText().getText().toString();
+         String stomach= etstomachSize.getEditText().getText().toString();
+         String loosingchest= etloosingchest.getEditText().getText().toString();
+         String loosingStomach=  etloosingstomach.getEditText().getText().toString();
+         String des=  etDescription.getEditText().getText().toString();
+         String wrist= etwrist.getEditText().getText().toString();
+         String thigh= etthigh.getEditText().getText().toString();
+         String waist = etwaist.getEditText().getText().toString();
+         String hipSize= ethipSize.getEditText().getText().toString();
+         String pantLenght= etpentlength.getEditText().getText().toString();
+         String pantBottom= etpentbottom.getEditText().getText().toString();
+         String loosingHip= etloosinghip.getEditText().getText().toString();
+         String arms= etarms.getEditText().getText().toString();
+        String slev=  etSleeves.getEditText().getText().toString();
+
+          boolean pocketBSides= checkBoxPocket_bothSides.isChecked();
+          boolean pocketFront= checkBoxPocket_front.isChecked();
+
+          boolean colerSimple= checkBoxcolr_simple.isChecked();
+        boolean colerSherwani= checkBoxcolr_sherwani.isChecked();
+        boolean colerHalfSherwani= checkBoxcolr_halfSherwani.isChecked();
+
+
+
+
+        if(globalCategory.equals("Kurta")){
+
+            String test = null;
+            mEscPos.init_printer();
+            mEscPos.select_fontA();
+            mEscPos.select_code_tab(ESC_POS_EPSON_ANDROID.CodePage.PC858);
+            mEscPos.underline_2dot_on();
+            mEscPos.justification_center();
+            test = "Elegance Collection";
+            mEscPos.print_line(test);
+            mEscPos.underline_off();
+            mEscPos.print_linefeed();
+
+            mEscPos.justification_left();
+            test="Customer Name : "+customerName.getText().toString();
+            mEscPos.print_line(test);
+
+            test="Customer Id : "+customerSerialNo.getText().toString();
+            mEscPos.print_line(test);
+            mEscPos.print_linefeed();
+
+            test="Current Date : "+getDate();
+            mEscPos.print_line(test);
+            mEscPos.print_linefeed();
+
+            test="Suit Type =  Kurta";
+            mEscPos.print_line(test);
+            mEscPos.print_linefeed();
+
+            mEscPos.print_linefeed();
+
+            mEscPos.justification_center();
+            test=len +"  -  "+slev+ "  -  "+Shoulder+"  -  "+coler+"  -  "+chest+"  -  "+stomach;
+            mEscPos.print_line(test);
+
+            mEscPos.print_linefeed();
+            mEscPos.justification_center();
+            test=pantLenght+"-"+pantBottom+"  -  "+loosingHip+"  -  "+loosingStomach +"  -  "+loosingchest;
+            mEscPos.print_line(test);
+
+            mEscPos.print_linefeed();
+
+            mEscPos.justification_center();
+
+
+            if (pocketFront){
+                test="Front Pocket : Yes";
+                mEscPos.print_line(test);
+                mEscPos.print_linefeed();
+            }
+            if (pocketBSides){
+                test="2 Sides Pocket : Yes ";
+                mEscPos.print_line(test);
+                mEscPos.print_linefeed();
+            }
+
+            if (colerSimple){
+                test="Coler : Simple";
+                mEscPos.print_line(test);
+                mEscPos.print_linefeed();
+            }
+            if (colerSherwani){
+                test="Coler : Sherwani";
+                mEscPos.print_line(test);
+                mEscPos.print_linefeed();
+            }
+            if (colerHalfSherwani){
+                test="Coler :  Half-Sherwani";
+                mEscPos.print_line(test);
+                mEscPos.print_linefeed();
+            }
+
+
+            mEscPos.justification_right();
+            test=""+arms+"  -  "+wrist;
+            mEscPos.print_line(test);
+
+            mEscPos.print_linefeed();
+            mEscPos.justification_left();
+            test= "Description : "+des;
+            mEscPos.print_line(test);
+            mEscPos.print_linefeed();
+            mEscPos.print_linefeed();
+
+            mEscPos.feedpapercut();
+
+
+        }else if(globalCategory.equals("Shirt")){
+
+            Toast.makeText(this, "Print For Shirt", Toast.LENGTH_SHORT).show();
+            String test = null;
+            mEscPos.init_printer();
+            mEscPos.select_fontA();
+            mEscPos.select_code_tab(ESC_POS_EPSON_ANDROID.CodePage.PC858);
+            mEscPos.underline_2dot_on();
+            mEscPos.justification_center();
+            test = "Elegance Collection";
+            mEscPos.print_line(test);
+            mEscPos.underline_off();
+            mEscPos.print_linefeed();
+
+            mEscPos.justification_left();
+            test="Customer Name : "+customerName.getText().toString();
+            mEscPos.print_line(test);
+
+            test="Customer Id : "+customerSerialNo.getText().toString();
+            mEscPos.print_line(test);
+            mEscPos.print_linefeed();
+
+            test="Current Date : "+getDate();
+            mEscPos.print_line(test);
+            mEscPos.print_linefeed();
+
+            test="Suit Type =  Shirt";
+            mEscPos.print_line(test);
+            mEscPos.print_linefeed();
+
+            mEscPos.print_linefeed();
+
+            mEscPos.justification_center();
+            test=len +"  -  "+slev+ "  -  "+Shoulder+"  -  "+coler+"  -  "+chest+"  -  "+stomach;
+            mEscPos.print_line(test);
+
+            mEscPos.print_linefeed();
+            mEscPos.justification_center();
+            test="\t"+"-"+"\t"+"  -  "+"\t"+"  -  "+loosingStomach +"  -  "+loosingchest;
+            mEscPos.print_line(test);
+
+            mEscPos.print_linefeed();
+
+            mEscPos.justification_center();
+
+
+            if (pocketFront){
+                test="Front Pocket : Yes";
+                mEscPos.print_line(test);
+                mEscPos.print_linefeed();
+            }
+
+            if (colerSimple){
+                test="Coler : Simple";
+                mEscPos.print_line(test);
+                mEscPos.print_linefeed();
+            }
+            if (colerSherwani){
+                test="Coler : Sherwani";
+                mEscPos.print_line(test);
+                mEscPos.print_linefeed();
+            }
+            if (colerHalfSherwani){
+                test="Coler :  Half-Sherwani";
+                mEscPos.print_line(test);
+                mEscPos.print_linefeed();
+            }
+
+
+            mEscPos.justification_right();
+            test=""+arms+"  -  "+wrist;
+            mEscPos.print_line(test);
+
+            mEscPos.print_linefeed();
+            mEscPos.justification_left();
+            test= "Description : "+des;
+            mEscPos.print_line(test);
+            mEscPos.print_linefeed();
+            mEscPos.print_linefeed();
+
+            mEscPos.feedpapercut();
+
+
+
+
+
+
+        }else if(globalCategory.equals("Suit")){
+
+           Toast.makeText(this, "Print For Suit", Toast.LENGTH_SHORT).show();
+
+            String test = null;
+            mEscPos.init_printer();
+            mEscPos.select_fontA();
+            mEscPos.select_code_tab(ESC_POS_EPSON_ANDROID.CodePage.PC858);
+            mEscPos.underline_2dot_on();
+            mEscPos.justification_center();
+            test = "Elegance Collection";
+            mEscPos.print_line(test);
+            mEscPos.underline_off();
+            mEscPos.print_linefeed();
+
+            mEscPos.justification_left();
+            test="Customer Name : "+customerName.getText().toString();
+            mEscPos.print_line(test);
+
+            test="Customer Id : "+customerSerialNo.getText().toString();
+            mEscPos.print_line(test);
+            mEscPos.print_linefeed();
+
+            test="Current Date : "+getDate();
+            mEscPos.print_line(test);
+            mEscPos.print_linefeed();
+
+            test="Suit Type =  Suit";
+            mEscPos.print_line(test);
+            mEscPos.print_linefeed();
+
+            mEscPos.print_linefeed();
+
+            mEscPos.justification_center();
+            test=len +"  -  "+slev+ "  -  "+Shoulder+"  -  "+coler+"  -  "+chest+"  -  "+stomach;
+            mEscPos.print_line(test);
+
+            mEscPos.print_linefeed();
+            mEscPos.justification_center();
+            test=pantLenght+"-"+pantBottom+"  -  "+loosingHip+"  -  "+loosingStomach +"  -  "+loosingchest;
+            mEscPos.print_line(test);
+
+            mEscPos.print_linefeed();
+
+            mEscPos.justification_center();
+
+
+            if (pocketFront){
+                test="Front Pocket : Yes";
+                mEscPos.print_line(test);
+                mEscPos.print_linefeed();
+            }
+            if (pocketBSides){
+                test="2 Sides Pocket : Yes ";
+                mEscPos.print_line(test);
+                mEscPos.print_linefeed();
+            }
+
+            if (colerSimple){
+                test="Coler : Simple";
+                mEscPos.print_line(test);
+                mEscPos.print_linefeed();
+            }
+            if (colerSherwani){
+                test="Coler : Sherwani";
+                mEscPos.print_line(test);
+                mEscPos.print_linefeed();
+            }
+            if (colerHalfSherwani){
+                test="Coler :  Half-Sherwani";
+                mEscPos.print_line(test);
+                mEscPos.print_linefeed();
+            }
+
+
+            mEscPos.justification_right();
+            test=""+arms+"  -  "+wrist;
+            mEscPos.print_line(test);
+
+            mEscPos.print_linefeed();
+            mEscPos.justification_left();
+            test= "Description : "+des;
+            mEscPos.print_line(test);
+            mEscPos.print_linefeed();
+            mEscPos.print_linefeed();
+
+            mEscPos.feedpapercut();
+
+
+
+
+
+
+
+        }else if(globalCategory.equals("Saffari Coat")){
+            Toast.makeText(this, "Print For Saffari Coat ", Toast.LENGTH_SHORT).show();
+
+            String test = null;
+            mEscPos.init_printer();
+            mEscPos.select_fontA();
+            mEscPos.select_code_tab(ESC_POS_EPSON_ANDROID.CodePage.PC858);
+            mEscPos.underline_2dot_on();
+            mEscPos.justification_center();
+            test = "Elegance Collection";
+            mEscPos.print_line(test);
+            mEscPos.underline_off();
+            mEscPos.print_linefeed();
+
+            mEscPos.justification_left();
+            test="Customer Name : "+customerName.getText().toString();
+            mEscPos.print_line(test);
+
+            test="Customer Id : "+customerSerialNo.getText().toString();
+            mEscPos.print_line(test);
+            mEscPos.print_linefeed();
+
+
+            test="Current Date : "+getDate();
+            mEscPos.print_line(test);
+            mEscPos.print_linefeed();
+
+            test="Suit Type =  Saffari Coat";
+            mEscPos.print_line(test);
+            mEscPos.print_linefeed();
+
+            test="Saffari Coat Length : "+len;
+            mEscPos.print_line(test);
+
+            test="Sleeves : "+slev;
+            mEscPos.print_line(test);
+
+            test="Shoulder : "+Shoulder;
+            mEscPos.print_line(test);
+
+            test="Coler : "+coler;
+            mEscPos.print_line(test);
+
+            test="Chest : "+chest;
+            mEscPos.print_line(test);
+
+            test="Stomach : "+stomach;
+            mEscPos.print_line(test);
+
+            test="hip Size : "+hipSize;
+            mEscPos.print_line(test);
+
+            test="Arms : "+arms;
+            mEscPos.print_line(test);
+
+            test="Wrsit : "+wrist;
+            mEscPos.print_line(test);
+
+            test="pant Lenght  : "+pantLenght;
+            mEscPos.print_line(test);
+
+            test="pant Bottom  : "+pantBottom;
+            mEscPos.print_line(test);
+
+            test="Waist  : "+waist;
+            mEscPos.print_line(test);
+
+            test="Thigh  : "+thigh;
+            mEscPos.print_line(test);
+
+            test= "Description : "+des;
+            mEscPos.print_line(test);
+            mEscPos.print_linefeed();
+            mEscPos.print_linefeed();
+            mEscPos.feedpapercut();
+
+
+
+
+        }else if(globalCategory.equals("Three Piece")){
+            Toast.makeText(this, "Print For Three-Piece ", Toast.LENGTH_SHORT).show();
+
+
+            String test = null;
+            mEscPos.init_printer();
+            mEscPos.select_fontA();
+            mEscPos.select_code_tab(ESC_POS_EPSON_ANDROID.CodePage.PC858);
+            mEscPos.underline_2dot_on();
+            mEscPos.justification_center();
+            test = "Elegance Collection";
+            mEscPos.print_line(test);
+            mEscPos.underline_off();
+            mEscPos.print_linefeed();
+
+            mEscPos.justification_left();
+            test="Customer Name : "+customerName.getText().toString();
+            mEscPos.print_line(test);
+
+            test="Customer Id : "+customerSerialNo.getText().toString();
+            mEscPos.print_line(test);
+            mEscPos.print_linefeed();
+
+            test="Current Date : "+getDate();
+            mEscPos.print_line(test);
+            mEscPos.print_linefeed();
+
+
+            test="Suit Type =  Three Piece";
+            mEscPos.print_line(test);
+            mEscPos.print_linefeed();
+
+            test="Coat Length : "+len;
+            mEscPos.print_line(test);
+
+            test="Sleeves : "+slev;
+            mEscPos.print_line(test);
+
+            test="Shoulder : "+Shoulder;
+            mEscPos.print_line(test);
+
+            test="Coler : "+coler;
+            mEscPos.print_line(test);
+
+            test="Chest : "+chest;
+            mEscPos.print_line(test);
+
+            test="Stomach : "+stomach;
+            mEscPos.print_line(test);
+
+            test="hip Size : "+hipSize;
+            mEscPos.print_line(test);
+
+            test="Arms : "+arms;
+            mEscPos.print_line(test);
+
+            test="Wrsit : "+wrist;
+            mEscPos.print_line(test);
+
+            test="pant Lenght  : "+pantLenght;
+            mEscPos.print_line(test);
+
+            test="pant Bottom  : "+pantBottom;
+            mEscPos.print_line(test);
+
+            test="Waist  : "+waist;
+            mEscPos.print_line(test);
+
+            test="Thigh  : "+thigh;
+            mEscPos.print_line(test);
+
+            test= "Description : "+des;
+            mEscPos.print_line(test);
+            mEscPos.print_linefeed();
+            mEscPos.print_linefeed();
+            mEscPos.feedpapercut();
+
+
+
+        }else if(globalCategory.equals("Pant")){
+
+            Toast.makeText(this, "Print For Pant ", Toast.LENGTH_SHORT).show();
+
+            String test = null;
+            mEscPos.init_printer();
+            mEscPos.select_fontA();
+            mEscPos.select_code_tab(ESC_POS_EPSON_ANDROID.CodePage.PC858);
+            mEscPos.underline_2dot_on();
+            mEscPos.justification_center();
+            test = "Elegance Collection";
+            mEscPos.print_line(test);
+            mEscPos.underline_off();
+            mEscPos.print_linefeed();
+
+            mEscPos.justification_left();
+            test="Customer Name : "+customerName.getText().toString();
+            mEscPos.print_line(test);
+
+            test="Customer Id : "+customerSerialNo.getText().toString();
+            mEscPos.print_line(test);
+            mEscPos.print_linefeed();
+
+            test="Current Date : "+getDate();
+            mEscPos.print_line(test);
+            mEscPos.print_linefeed();
+
+            test="Suit Type =  Pant";
+            mEscPos.print_line(test);
+            mEscPos.print_linefeed();
+
+            test="Hip Size : "+hipSize;
+            mEscPos.print_line(test);
+
+            test="Pant Length : "+pantLenght;
+            mEscPos.print_line(test);
+
+            test="Pant Bottom : "+pantBottom;
+            mEscPos.print_line(test);
+
+            test="Wais : "+waist;
+            mEscPos.print_line(test);
+
+            test="Thigh : "+thigh;
+            mEscPos.print_line(test);
+
+            test= "Description : "+des;
+            mEscPos.print_line(test);
+            mEscPos.print_linefeed();
+            mEscPos.print_linefeed();
+            mEscPos.feedpapercut();
+
+
+
+
+
+
+        }else if(globalCategory.equals("Waist Coat")){
+            Toast.makeText(this, "Print For  Waist Coat ", Toast.LENGTH_SHORT).show();
+
+            String test = null;
+            mEscPos.init_printer();
+            mEscPos.select_fontA();
+            mEscPos.select_code_tab(ESC_POS_EPSON_ANDROID.CodePage.PC858);
+            mEscPos.underline_2dot_on();
+            mEscPos.justification_center();
+            test = "Elegance Collection";
+            mEscPos.print_line(test);
+            mEscPos.underline_off();
+            mEscPos.print_linefeed();
+
+            mEscPos.justification_left();
+            test="Customer Name : "+customerName.getText().toString();
+            mEscPos.print_line(test);
+
+            test="Customer Id : "+customerSerialNo.getText().toString();
+            mEscPos.print_line(test);
+            mEscPos.print_linefeed();
+
+            test="Current Date : "+getDate();
+            mEscPos.print_line(test);
+            mEscPos.print_linefeed();
+
+            test="Suit Type =  Waist Coat";
+            mEscPos.print_line(test);
+            mEscPos.print_linefeed();
+
+            test="Waist Coat Length : "+len;
+            mEscPos.print_line(test);
+
+            test="Shoulder : "+Shoulder;
+            mEscPos.print_line(test);
+
+            test="Coler : "+coler;
+            mEscPos.print_line(test);
+
+            test="Chest : "+chest;
+            mEscPos.print_line(test);
+
+            test="Stomach : "+stomach;
+            mEscPos.print_line(test);
+
+            test="Loosing Chest: "+loosingchest;
+            mEscPos.print_line(test);
+
+            test="Loosing Stomach: "+loosingStomach;
+            mEscPos.print_line(test);
+
+            test= "Description : "+des;
+            mEscPos.print_line(test);
+            mEscPos.print_linefeed();
+            mEscPos.print_linefeed();
+            mEscPos.feedpapercut();
+
+
+        }
 
 
 
@@ -536,6 +1321,8 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
         SelectedCategory = parent.getItemAtPosition(position).toString();
+
+        globalCategory=SelectedCategory;
 
         if (SelectedCategory.equals("Kurta")){
 
@@ -705,7 +1492,7 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
             // showText Views
 
-            etLenght.setHint("Shirt Lenght      شرٹ کی لمبائی");
+            etLenght.setHint("Shirt Length      شرٹ کی لمبائی");
             etLenght.setVisibility(View.VISIBLE);
             etSleeves.setVisibility(View.VISIBLE);
             etShoulder.setVisibility(View.VISIBLE);
@@ -828,7 +1615,7 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
             //showing EditText
 
-            etLenght.setHint("Coat Lenght       کوٹ کی لمبائی");
+            etLenght.setHint("Coat Length       کوٹ کی لمبائی");
             etLenght.setVisibility(View.VISIBLE);
             etSleeves.setVisibility(View.VISIBLE);
             etShoulder.setVisibility(View.VISIBLE);
@@ -1040,7 +1827,7 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
             ethipSize.setVisibility(View.VISIBLE);
             etDescription.setVisibility(View.VISIBLE);
 
-            etpentlength.setHint("Pant Lenght       پینٹ لمبائی");
+            etpentlength.setHint("Pant Length      پینٹ لمبائی");
             etpentlength.setVisibility(View.VISIBLE);
 
             etpentbottom.setHint("Pant Bottom       پینٹ نیچے");
@@ -1121,7 +1908,7 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
             //showing EditText
 
-            etLenght.setHint("Saffari Coat Lenght       سفاری کوٹ کی لمبائی");
+            etLenght.setHint("Saffari Coat Length       سفاری کوٹ کی لمبائی");
             etLenght.setVisibility(View.VISIBLE);
             etSleeves.setVisibility(View.VISIBLE);
             etShoulder.setVisibility(View.VISIBLE);
@@ -1247,7 +2034,7 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
             //showing EditText
 
-            etLenght.setHint("Kameez Lenght     قمیض کی لمبائی");
+            etLenght.setHint("Kameez Length     قمیض کی لمبائی");
             etLenght.setVisibility(View.VISIBLE);
             etSleeves.setVisibility(View.VISIBLE);
             etShoulder.setVisibility(View.VISIBLE);
@@ -1262,7 +2049,7 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
             etloosingstomach.setVisibility(View.VISIBLE);
             etDescription.setVisibility(View.VISIBLE);
 
-            etpentlength.setHint("Shalwar Lenght        سلور لمبائی");
+            etpentlength.setHint("Shalwar Length        سلور لمبائی");
             etpentlength.setVisibility(View.VISIBLE);
 
             etpentbottom.setHint("Shalwar Bottom        شلوار نیچے");

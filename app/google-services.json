@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "632017942060-82etuig41vbu373r8llrdivkrqq6l4f4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nanodevs.elegance",
+            "certificate_hash": "9749baa12d3d0e5d11d5fcdd6c66d9c8d6f20cce"
+          }
+        },
+        {
           "client_id": "632017942060-haso9ssc4ntr5dqibhar81rth7jqeor1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

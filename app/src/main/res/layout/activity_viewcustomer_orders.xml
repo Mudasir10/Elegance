@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".Activites.ViewCustomerOrdersActivity"
-   >
+    tools:context=".Activites.ViewCustomerOrdersActivity">
+
+
 
 
 
@@ -13,6 +14,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/app_bar_viewOrder"
+        layout="@layout/app_bar_layout"/>
 
 
     <androidx.cardview.widget.CardView
