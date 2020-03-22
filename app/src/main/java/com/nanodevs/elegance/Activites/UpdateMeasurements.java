@@ -39,6 +39,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.nanodevs.elegance.Pojo.Measurements;
 import com.nanodevs.elegance.R;
@@ -58,6 +59,7 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
     private EditText customerName, customerContact, customerSerialNo;
     private DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Measurements");
+    private DatabaseReference refCustomer=FirebaseDatabase.getInstance().getReference("Customer");
     private Spinner spinner;
 
     private CheckBox checkBoxPocket_bothSides,checkBoxPocket_front,checkBoxcolr_simple,checkBoxcolr_sherwani,checkBoxcolr_halfSherwani;
@@ -566,6 +568,8 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
     private void UpdateCustomerMeasurement(String customerSerialNo,
                                   Map<String, Object> measurements, String SelectedCategory) {
 
+
+
         Map<String,Object> data=new HashMap<>();
         data.put(customerSerialNo+"/"+SelectedCategory,measurements);
 
@@ -589,6 +593,8 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
                 Toast.makeText(UpdateMeasurements.this,"Failed to "+e.getMessage(),Toast.LENGTH_SHORT);
             }
         });
+
+
 
 
     }
@@ -639,7 +645,7 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
             customerSerialNo.setText(String.valueOf(getIntent().getLongExtra("customerId", 0)));
             customerName.setText(String.valueOf(getIntent().getStringExtra("cus_name")));
             customerContact.setText(String.valueOf(getIntent().getStringExtra("cus_phone")));
-
+            Log.d(TAG, "init: key : "+getIntent().getStringExtra("key"));
         }
 
         spinner = findViewById(R.id.spinnerCategory);
@@ -664,6 +670,8 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
                 }
             }
         });
+
+
         checkBoxPocket_front.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -715,7 +723,6 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
             @Override
             public void onClick(View v) {
 
-
                 if (InternetConnection.checkConnection(UpdateMeasurements.this)){
 
                     try{
@@ -728,8 +735,6 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
                 else{
                     Toast.makeText(UpdateMeasurements.this, "Cannot Print Withour Internet!", Toast.LENGTH_SHORT).show();
                 }
-
-
 
             }
         });

@@ -24,14 +24,15 @@ public class HomeViewModel extends ViewModel {
     private DatabaseReference databaseReference;
     private MutableLiveData<List<Customer>> customersList;
 
-
     public LiveData<List<Customer>> getAllCustomers() {
-        if (customersList == null) {
+        if (customersList == null ) {
             customersList = new MutableLiveData<List<Customer>>();
             loadAllCustomers();
         }
         return customersList;
     }
+
+
 
     private void loadAllCustomers() {
 
@@ -45,10 +46,12 @@ public class HomeViewModel extends ViewModel {
 
         List<Customer> list;
 
+
         @Override
         protected Void doInBackground(Void... voids) {
 
             list = new ArrayList<>();
+
 
             databaseReference = FirebaseDatabase.getInstance().getReference("Customer");
 
@@ -56,11 +59,15 @@ public class HomeViewModel extends ViewModel {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     list.clear();
+
+
                     if(dataSnapshot.exists()){
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
                             Customer customer = snapshot.getValue(Customer.class);
                             list.add(customer);
                         }
+
                         customersList.setValue(list);
                     }
 
@@ -75,7 +82,6 @@ public class HomeViewModel extends ViewModel {
             return null;
         }
     }
-
 
 
 }

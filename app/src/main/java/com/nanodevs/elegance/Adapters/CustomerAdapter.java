@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,11 +29,19 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.viewHo
     private List<Customer> customerListFull;
     private Context context;
 
+    private List<String> keys;
+
+
     public CustomerAdapter(List<Customer> customerList, Context context) {
         this.customerList = customerList;
         this.customerListFull = new ArrayList<>(customerList);
         this.context = context;
     }
+
+    public void setKeys(List<String> keys){
+        this.keys=keys;
+    }
+
 
 
     @NonNull
@@ -55,10 +64,13 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.viewHo
             @Override
             public void onClick(View v) {
 
+               // Toast.makeText(context, "key : "+keys.get(position), Toast.LENGTH_SHORT).show();
+
                 Intent intent=new Intent(context, UpdateMeasurements.class);
                 intent.putExtra("customerId", customerList.get(position).getCustomerSerial());
                 intent.putExtra("cus_name",customerList.get(position).getCustomerName());
                 intent.putExtra("cus_phone",customerList.get(position).getCustomerContact());
+
                 context.startActivity(intent);
 
 
@@ -68,11 +80,14 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.viewHo
         holder.placeStitchOrderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 Intent intent=new Intent(context, AddStitchOrderActivity.class);
-                intent.putExtra("customerId",String.valueOf(customerList.get(position).getCustomerSerial()) );
+                intent.putExtra("customerId",String.valueOf(customerList.get(position).getCustomerSerial()));
                 intent.putExtra("cus_name",customerList.get(position).getCustomerName());
                 intent.putExtra("cus_phone",customerList.get(position).getCustomerContact());
                 context.startActivity(intent);
+
 
             }
         });
@@ -80,11 +95,15 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.viewHo
         holder.viewOrdersCustomerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 Intent intent=new Intent(context, ViewCustomerOrdersActivity.class);
                 intent.putExtra("order_cusId",String.valueOf(customerList.get(position).getCustomerSerial()) );
                 intent.putExtra("order_cusName",String.valueOf(customerList.get(position).getCustomerName()) );
                 intent.putExtra("order_cusContact",String.valueOf(customerList.get(position).getCustomerContact()) );
                 context.startActivity(intent);
+
+
             }
         });
 

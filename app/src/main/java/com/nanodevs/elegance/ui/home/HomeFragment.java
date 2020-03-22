@@ -63,6 +63,8 @@ public class HomeFragment extends Fragment {
                 }
             });
 
+
+
         }
         else{
             Toast.makeText(getContext(), "Can not Load Data Without Internet!", Toast.LENGTH_SHORT).show();
@@ -149,6 +151,7 @@ public class HomeFragment extends Fragment {
 
 
     }
+
 
 
 }
