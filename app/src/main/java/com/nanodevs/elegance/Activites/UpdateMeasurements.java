@@ -17,6 +17,7 @@ import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbManager;
 import android.os.Bundle;
 import android.os.Message;
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
@@ -62,7 +63,6 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
     private List<String> keyList=new ArrayList<>();
     private EditText customerName, customerContact, customerSerialNo;
     private DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Measurements");
-    private DatabaseReference refCustomer=FirebaseDatabase.getInstance().getReference("Customer");
     private Spinner spinner;
 
     private CheckBox checkBoxPocket_bothSides,checkBoxPocket_front,checkBoxcolr_simple,checkBoxcolr_sherwani,checkBoxcolr_halfSherwani;
@@ -79,6 +79,7 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
     Button btnPrintMeasurement;
 
+    private DatabaseReference refCustomer= FirebaseDatabase.getInstance().getReference("Customer");
 
     private static final String TAG = "UpdateMeasurements";
 
@@ -606,9 +607,8 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
         return dateFormat.format(date);
     }
 
-    private void UpdateCustomerMeasurement(String customerSerialNo,
-                                  Map<String, Object> measurements, String SelectedCategory) {
-
+    private void UpdateCustomerMeasurement(final String customerSerialNo,
+                                           Map<String, Object> measurements, String SelectedCategory) {
 
 
         Map<String,Object> data=new HashMap<>();
@@ -619,6 +619,16 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
             public void onComplete(@NonNull Task<Void> task) {
 
                 if (task.isSuccessful()){
+
+                   String key=  keyList.get(Integer.valueOf(customerSerialNo) - 1);
+
+                    String name= customerName.getText().toString();
+                    String phone =customerContact.getText().toString();
+
+                    refCustomer.child(key).child("customerName").setValue(name);
+                    refCustomer.child(key).child("customerContact").setValue(phone);
+
+                    Log.d(TAG, "onComplete:  key : "+key);
 
                     Toast.makeText(UpdateMeasurements.this, "Measurement Updated .", Toast.LENGTH_SHORT).show();
                 }
@@ -685,7 +695,6 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
             customerSerialNo.setText(String.valueOf(getIntent().getLongExtra("customerId", 0)));
             customerName.setText(String.valueOf(getIntent().getStringExtra("cus_name")));
             customerContact.setText(String.valueOf(getIntent().getStringExtra("cus_phone")));
-            Log.d(TAG, "init: key : "+getIntent().getStringExtra("key"));
         }
 
         spinner = findViewById(R.id.spinnerCategory);
@@ -778,6 +787,8 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
             }
         });
+
+
 
 
     }

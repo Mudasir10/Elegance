@@ -2,6 +2,7 @@ package com.nanodevs.elegance.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.nanodevs.elegance.Activites.ViewCustomerOrdersActivity;
 import com.nanodevs.elegance.Activites.AddStitchOrderActivity;
 import com.nanodevs.elegance.Activites.UpdateMeasurements;
@@ -29,17 +32,11 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.viewHo
     private List<Customer> customerListFull;
     private Context context;
 
-    private List<String> keys;
-
 
     public CustomerAdapter(List<Customer> customerList, Context context) {
         this.customerList = customerList;
         this.customerListFull = new ArrayList<>(customerList);
         this.context = context;
-    }
-
-    public void setKeys(List<String> keys){
-        this.keys=keys;
     }
 
 
@@ -63,6 +60,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.viewHo
         holder.imageButtonUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
                // Toast.makeText(context, "key : "+keys.get(position), Toast.LENGTH_SHORT).show();
 
