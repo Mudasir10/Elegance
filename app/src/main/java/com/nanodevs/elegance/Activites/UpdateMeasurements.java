@@ -49,14 +49,17 @@ import com.nanodevs.elegance.classes.USBPort;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static android.view.View.GONE;
 
 public class UpdateMeasurements extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    private List<String> keyList=new ArrayList<>();
     private EditText customerName, customerContact, customerSerialNo;
     private DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference("Measurements");
     private DatabaseReference refCustomer=FirebaseDatabase.getInstance().getReference("Customer");
@@ -110,7 +113,6 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
             }
         });
 
-
         init();
 
         // Mudasir
@@ -129,10 +131,50 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
         mUsbPort = new USBPort(mUsbManager);
         mEscPos  = new ESC_POS_EPSON_ANDROID(mUsbPort);
 
-        // Mudasir
+        // Mudasir   <------
 
+
+       /*--------> code by Imran   */
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                getKeyForCustomer();
+            }
+        }).start();
+
+        /*     code by Imran <-------- */
 
     }
+
+
+
+    /*--------> code by Imran */   private void getKeyForCustomer() {
+
+        final int no=Integer.parseInt(customerSerialNo.getText().toString());
+
+        refCustomer.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    String id = ds.getKey();
+                    keyList.add(id);
+                }
+                Log.d("MyTag", "onDataChange: keys ---->"+keyList.get(no-1));
+                /* code for updating each value  in keyNode
+                ref.child(key).child("name").setValue(name);*/
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    } /*  code by Imran <-------- */
+
+
+
 
     @Override
     public void onDestroy()
@@ -564,7 +606,6 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
         return dateFormat.format(date);
     }
 
-
     private void UpdateCustomerMeasurement(String customerSerialNo,
                                   Map<String, Object> measurements, String SelectedCategory) {
 
@@ -598,7 +639,6 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
 
     }
-
 
     private void init() {
         // edit Text
@@ -1320,7 +1360,6 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
 
 
     }
-
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -2194,10 +2233,7 @@ public class UpdateMeasurements extends AppCompatActivity implements AdapterView
     }
 
     @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
-
+    public void onNothingSelected(AdapterView<?> parent) {}
 
 
 }
